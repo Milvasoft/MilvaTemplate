@@ -27,7 +27,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
           
       - name: Build solution and generate NuGet package
-        run: nuget pack ./out/*.nupkg
+        run: nuget pack ./out/*.nuspec
 
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./out/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate --no-symbols true
