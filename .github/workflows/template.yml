@@ -28,3 +28,4 @@ jobs:
        PROJECT_FILE_PATH: ./Milvasoft.Templates.Web.Ef.nuspec  
        NUGET_KEY: ${{secrets.NUGET_API_KEY}} 
        VERSION_REGEX: ^\s*<version>(.*)<\/version>$
+       PACKAGE_PATH: ./
