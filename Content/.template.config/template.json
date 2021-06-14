@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Milvasoft Corporation",
+  "classifications": [ "Web", "Solution", "Service", "Cloud" ],
+  "sourceName": "MilvaTemplate",
+  "identity": "Milvasoft.Templates.Web.Ef",
+  "name": "Milvasoft Web Ef",
+  "shortName": "milvawebef",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "defaultName": "Milvasoft",
+  "description": "Template for web application with ef core with npsql.",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net5.0",
+          "description": "Target net5.0"
+        }
+      ],
+      "replaces": "net5.0",
+      "defaultValue": "net5.0"
+    },
+    "RoutePrefix": {
+      "type": "parameter",
+      "description": "The application's route prefix.",
+      "datatype": "text",
+      "replaces": "xrouteprefixx",
+      "defaultValue": "api"
+    },
+    "HttpPort": {
+      "type": "parameter",
+      "description": "The application's HTTP port.",
+      "datatype": "text",
+      "replaces": "xhttpportxx",
+      "defaultValue": "5000"
+    },
+    "HttpsPort": {
+      "type": "parameter",
+      "description": "The application's HTTPS port.",
+      "datatype": "text",
+      "replaces": "xhttpsportxx",
+      "defaultValue": "5001"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "MilvaTemplate.sln"
+    }
+  ]
+
+}

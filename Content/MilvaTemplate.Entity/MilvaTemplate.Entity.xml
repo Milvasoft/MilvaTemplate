@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MilvaTemplate.Entity</name>
+    </assembly>
+    <members>
+        <member name="T:MilvaTemplate.Entity.Identity.MilvaTemplateRole">
+            <summary>
+            Defines the <see cref="T:MilvaTemplate.Entity.Identity.MilvaTemplateRole" />. This user is role to authentication in MilvaTemplate api.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.Entity.Identity.MilvaTemplateUser">
+            <summary>
+            Defines the <see cref="T:MilvaTemplate.Entity.Identity.MilvaTemplateUser" />. This user is used to authentication in MilvaTemplate api.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.Entity.SystemLanguage">
+            <summary>
+            Busines Logic based information : Languages added to the system.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Entity.SystemLanguage.LanguageName">
+            <summary>
+            Name of language. (e.g. Turkish, English)
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Entity.SystemLanguage.IsoCode">
+            <summary>
+            Defines the ISO code of that language. (e.g. en-US)
+            </summary>
+        </member>
+    </members>
+</doc>

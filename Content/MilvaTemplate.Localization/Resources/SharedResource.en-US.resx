@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountTimeOut" xml:space="preserve">
+    <value>Your session has timed out.</value>
+  </data>
+  <data name="ActionDELETE" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="ActionPOST" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="ActionPUT" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="AddingNewEntityWithExistsIdException" xml:space="preserve">
+    <value>You cannot add data with the same data ID as the existing data ID!</value>
+  </data>
+  <data name="AlreadyLoggedOutMessage" xml:space="preserve">
+    <value>Already logged out of the system.</value>
+  </data>
+  <data name="AnyEntityWasNotFound" xml:space="preserve">
+    <value>No {0} could be found.</value>
+  </data>
+  <data name="AppStoppedSuccessfully" xml:space="preserve">
+    <value>Application successfully stopped.</value>
+  </data>
+  <data name="CannotUpdateOrDeleteDefaultRecord" xml:space="preserve">
+    <value>You cannot delete or update default database records.</value>
+  </data>
+  <data name="ControllersSingleObjectWasNotFound" xml:space="preserve">
+    <value>{0} was not found.</value>
+  </data>
+  <data name="DeletingEntityWithRelationsException" xml:space="preserve">
+    <value>You are trying to delete data that has a relationship.</value>
+  </data>
+  <data name="DeletingInvalidEntityException" xml:space="preserve">
+    <value>Invalid deleting operation.</value>
+  </data>
+  <data name="EarlyPaymentWasCompletedSuccessfully" xml:space="preserve">
+    <value>Early payment transaction was successfully completed.</value>
+  </data>
+  <data name="EmptyListException" xml:space="preserve">
+    <value>At least one element must be selected.</value>
+  </data>
+  <data name="ExpenseDescription" xml:space="preserve">
+    <value>{0} {1} of {2} were bought at {4}'{3}'.</value>
+  </data>
+  <data name="ExpiredDemoException" xml:space="preserve">
+    <value>Your demo period is over, please contact Milvasoft.</value>
+  </data>
+  <data name="FeatureNotImplementedException" xml:space="preserve">
+    <value>This feature is not yet in use.</value>
+  </data>
+  <data name="FileIsTooBigMessage" xml:space="preserve">
+    <value>The file size is too large. Please upload {0} MB or smaller file.</value>
+  </data>
+  <data name="FilteringErrorMessage" xml:space="preserve">
+    <value>No {0} matching the search criteria was found.</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>You don't have permission.</value>
+  </data>
+  <data name="IdentityConcurrencyFailure" xml:space="preserve">
+    <value>Concurrency failure, data has been modified.</value>
+  </data>
+  <data name="IdentityDefaultError" xml:space="preserve">
+    <value>An unknown failure has occurred.</value>
+  </data>
+  <data name="IdentityDuplicateEmail" xml:space="preserve">
+    <value>There is another user with this email.</value>
+  </data>
+  <data name="IdentityDuplicateRoleName" xml:space="preserve">
+    <value>This role is already exist.</value>
+  </data>
+  <data name="IdentityDuplicateUsername" xml:space="preserve">
+    <value>There is another user with this username.</value>
+  </data>
+  <data name="IdentityInvalidEmail" xml:space="preserve">
+    <value>Invalid email.</value>
+  </data>
+  <data name="IdentityInvalidRoleName" xml:space="preserve">
+    <value>Invalid role name.</value>
+  </data>
+  <data name="IdentityInvalidToken" xml:space="preserve">
+    <value>Invalid credentials.</value>
+  </data>
+  <data name="IdentityInvalidUsername" xml:space="preserve">
+    <value>Invalid username.</value>
+  </data>
+  <data name="IdentityLoginAlreadyAssociated" xml:space="preserve">
+    <value>This user is already logged in.</value>
+  </data>
+  <data name="IdentityPasswordMismatch" xml:space="preserve">
+    <value>Incorrect password.</value>
+  </data>
+  <data name="IdentityPasswordRequiresDigit" xml:space="preserve">
+    <value>Password must have at least one digit.</value>
+  </data>
+  <data name="IdentityPasswordRequiresLower" xml:space="preserve">
+    <value>Password must have at least one lowercase.</value>
+  </data>
+  <data name="IdentityPasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Password must have at least one alphanumeric character.</value>
+  </data>
+  <data name="IdentityPasswordRequiresUniqueChars" xml:space="preserve">
+    <value>Password must have at least one special character.</value>
+  </data>
+  <data name="IdentityPasswordRequiresUpper" xml:space="preserve">
+    <value>Password must have at least one uppercase.</value>
+  </data>
+  <data name="IdentityPasswordTooShort" xml:space="preserve">
+    <value>Password lenght is too short.</value>
+  </data>
+  <data name="IdentityRecoveryCodeRedemptionFailed" xml:space="preserve">
+    <value>Recovery failed.</value>
+  </data>
+  <data name="IdentityResultException" xml:space="preserve">
+    <value>An error occurred while performing user operations.</value>
+  </data>
+  <data name="IdentityUserAlreadyHasPassword" xml:space="preserve">
+    <value>User already has password.</value>
+  </data>
+  <data name="IdentityUserAlreadyInRole" xml:space="preserve">
+    <value>The user is already assigned to this role.</value>
+  </data>
+  <data name="IdentityUserLockoutNotEnabled" xml:space="preserve">
+    <value>Lockout is not enabled for this user.</value>
+  </data>
+  <data name="IdentityUserNotInRole" xml:space="preserve">
+    <value>User is not assigned to this role.</value>
+  </data>
+  <data name="InvalidItemRangeException" xml:space="preserve">
+    <value>Please enter a valid 'item count'.</value>
+  </data>
+  <data name="InvalidLicenceException" xml:space="preserve">
+    <value>Invalid licence!</value>
+  </data>
+  <data name="InvalidNumericValueException" xml:space="preserve">
+    <value>The numerical value of {0} entered is an invalid value for this operation.</value>
+  </data>
+  <data name="InvalidPageIndexException" xml:space="preserve">
+    <value>Please enter a valid page number.</value>
+  </data>
+  <data name="WrongRequestedPageNumber" xml:space="preserve">
+    <value>Requested page count cannot be 0. Page count must be greater than 0.</value>
+  </data>
+  <data name="InvalidParameterException" xml:space="preserve">
+    <value>An error was found in the data. Please contact Milvasoft officials.</value>
+  </data>
+  <data name="InvalidRelatedProcess" xml:space="preserve">
+    <value>There is a data that is related to the data you are trying to process.</value>
+  </data>
+  <data name="WrongRequestedItemCount" xml:space="preserve">
+    <value>Count of requested record count cannot be 0 or less. Requested record count must be greater than 0.</value>
+  </data>
+  <data name="LocalizedEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LocalizedName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LocalizedPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LocalizedSurname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="LocalizedUser" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="LocalizedUserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="LocalizedWebSiteAddress" xml:space="preserve">
+    <value>Web site address</value>
+  </data>
+  <data name="LoginCustomerErrorMessageFromAPI" xml:space="preserve">
+    <value>There was a problem. Error message: {0}</value>
+  </data>
+  <data name="MilvaBaseException" xml:space="preserve">
+    <value>An unexpected error was encountered, please try again. If the problem is not resolved, please contact Milvasoft technical team.</value>
+  </data>
+  <data name="MinDecimalValueException" xml:space="preserve">
+    <value>Please enter a valid {0}.</value>
+  </data>
+  <data name="MissingHeaderException" xml:space="preserve">
+    <value>Please enter {0} header info.</value>
+  </data>
+  <data name="DeleteErrorMessage" xml:space="preserve">
+    <value>No {0} found to be deleted.</value>
+  </data>
+  <data name="GetAllErrorMessage" xml:space="preserve">
+    <value>No {0} found.</value>
+  </data>
+  <data name="NullParameterException" xml:space="preserve">
+    <value>You have submitted some data incomplete. If you think you haven't made a mistake, please contact the Milvasoft technical team.</value>
+  </data>
+  <data name="OutOfRangePageCountMessage" xml:space="preserve">
+    <value>The number of pages requested is greater than the page generated. Maximum number of pages should be {0}.</value>
+  </data>
+  <data name="PleaseEnterAValidValue" xml:space="preserve">
+    <value>Please enter a valid value.</value>
+  </data>
+  <data name="PreventStringInjectionBellowMin" xml:space="preserve">
+    <value>{0} is below the minimum character limit. Please enter at least {1} characters.</value>
+  </data>
+  <data name="PreventStringInjectionContainsForbiddenWordError" xml:space="preserve">
+    <value>{0} contains invalid words.</value>
+  </data>
+  <data name="PreventStringInjectionLengthResultNotTrue" xml:space="preserve">
+    <value>{0} must have a character length in the range {1} to {2}.</value>
+  </data>
+  <data name="PreventStringInjectionMaxLengthException" xml:space="preserve">
+    <value>Please enter a valid value for the maximum character length.</value>
+  </data>
+  <data name="PreventStringInjectionMinLengthBigThanMaxLengthException" xml:space="preserve">
+    <value>The minimum value ({0}) you entered is greater than the maximum value ({1}). Please enter a valid range of values.</value>
+  </data>
+  <data name="PreventStringInjectionMinLengthException" xml:space="preserve">
+    <value>Please enter a valid value for the minimum character length.</value>
+  </data>
+  <data name="ProcessCompletedSuccessfully" xml:space="preserve">
+    <value>The process was successfully completed</value>
+  </data>
+  <data name="PropertyIsRequired" xml:space="preserve">
+    <value>{0} is required.</value>
+  </data>
+  <data name="RegexErrorMessage" xml:space="preserve">
+    <value>{0} is not in the correct format. Please enter in this format: {1}</value>
+  </data>
+  <data name="RegexExampleAccountNo" xml:space="preserve">
+    <value>12345678</value>
+  </data>
+  <data name="RegexExampleCreditCardNo" xml:space="preserve">
+    <value>1234 1234 1234 1234</value>
+  </data>
+  <data name="RegexExampleEmail" xml:space="preserve">
+    <value>sample@milvasoft.com</value>
+  </data>
+  <data name="RegexExampleIBANNO" xml:space="preserve">
+    <value>29 NWBK 6016 1331 9268 19</value>
+  </data>
+  <data name="RegexExampleIsoCode" xml:space="preserve">
+    <value>en-US</value>
+  </data>
+  <data name="RegexExamplePhoneNumber" xml:space="preserve">
+    <value>207 711 6209</value>
+  </data>
+  <data name="RegexPatternAccountNo" xml:space="preserve">
+    <value>^((\d{8}))$</value>
+  </data>
+  <data name="RegexPatternCreditCardNo" xml:space="preserve">
+    <value>^((\d{4}) (\d{4}) (\d{4}) (\d{4}))$</value>
+  </data>
+  <data name="RegexPatternEmail" xml:space="preserve">
+    <value>^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</value>
+  </data>
+  <data name="RegexPatternIBANNO" xml:space="preserve">
+    <value>^((\d{2}) ([A-Z]{4}) (\d{4}) (\d{4}) (\d{4}) (\d{2}))$</value>
+  </data>
+  <data name="RegexPatternIsoCode" xml:space="preserve">
+    <value>^[a-z]{2}-[a-zA-Z]{2}$</value>
+  </data>
+  <data name="RegexPatternPhoneNumber" xml:space="preserve">
+    <value>^((\d{3}) (\d{3}) (\d{4}))$</value>
+  </data>
+  <data name="RolesUpdatedSuccessfully" xml:space="preserve">
+    <value>User roles have been successfully updated.</value>
+  </data>
+  <data name="AddSuccessMessage" xml:space="preserve">
+    <value>{0} was successfully added.</value>
+  </data>
+  <data name="SuccessfullyLoginMessage" xml:space="preserve">
+    <value>Successfully logged in.</value>
+  </data>
+  <data name="SuccessfullyLoguotMessage" xml:space="preserve">
+    <value>Successfully logged out.</value>
+  </data>
+  <data name="SuccessfullyOperationMessage" xml:space="preserve">
+    <value>The operation was completed successfully.</value>
+  </data>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>{0} was successfully updated.</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Access is denied due to invalid credentials.</value>
+  </data>
+  <data name="UnknownLoginProblemMessage" xml:space="preserve">
+    <value>Could not login. An unknown problem has occurred.</value>
+  </data>
+  <data name="UnknownLogoutProblemMessage" xml:space="preserve">
+    <value>Could not logout. An unknown problem has occurred.</value>
+  </data>
+  <data name="UnsupportedFileTypeMessage" xml:space="preserve">
+    <value>This file type is not supported. Please upload a valid file type. Supported file types: {0}.</value>
+  </data>
+  <data name="UpdatingInvalidEntityException" xml:space="preserve">
+    <value>Update failed.</value>
+  </data>
+  <data name="UserValidationEmailLength" xml:space="preserve">
+    <value>Mail address can contain up to {0} characters.</value>
+  </data>
+  <data name="UserValidationUserNameLength" xml:space="preserve">
+    <value>UserName can contain a minimum of {0} and a maximum of {1} characters.</value>
+  </data>
+  <data name="UserValidationUserNameNumberStartWith" xml:space="preserve">
+    <value>UserName cannot start with a numeric character.</value>
+  </data>
+  <data name="MilvaValidationException" xml:space="preserve">
+    <value>Invalid model state. Please enter a valid model state.</value>
+  </data>
+  <data name="ValidationIdParameterGeneralError" xml:space="preserve">
+    <value>Please enter all required parameters completely.</value>
+  </data>
+  <data name="ValidationIdPropertyError" xml:space="preserve">
+    <value>Please select a valid {0}.</value>
+  </data>
+  <data name="WantedWasNotFound" xml:space="preserve">
+    <value>The requested {0} could not be found.</value>
+  </data>
+  <data name="MilvaUserFriendlyException" xml:space="preserve">
+    <value>An error occurred. The error may be related to wrong parameter or url. Please check the request parameters or url.</value>
+  </data>
+  <data name="MiddlewareGeneralErrorMessage" xml:space="preserve">
+    <value>An error occurred. The error may be related to wrong parameter or url. Please check the request parameters or url.</value>
+  </data>
+  <data name="WrongPaginationParamsException" xml:space="preserve">
+    <value>The number of pages requested is greater than the page generated. Maximum number of pages should be {0}.</value>
+  </data>
+  <data name="AddUserRolesIsNullOrEmptyListExeption" xml:space="preserve">
+    <value>You must choose at least one role.</value>
+  </data>
+  <data name="EarlyPayIsNullOrEmptyException" xml:space="preserve">
+    <value>You must choose at least one order.</value>
+  </data>
+  <data name="ExpensesToBeDeletedWereNotFound" xml:space="preserve">
+    <value>No expense to delete was found.</value>
+  </data>
+  <data name="ExpensesToBeUpdatedWereNotFound" xml:space="preserve">
+    <value>No expense to update was found.</value>
+  </data>
+  <data name="ExpiredDemo" xml:space="preserve">
+    <value>The demo version has expired. Contact Milvasoft Software to view our offers.</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>{0} hours</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>There is no user with this email address.</value>
+  </data>
+  <data name="InvalidLogin" xml:space="preserve">
+    <value>Your login information could not be verified.</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid password was entered.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>There is no user with this username.</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Your account has been locked due to repeated unsuccessful login attempts. Try again after {0}.</value>
+  </data>
+  <data name="LockWarning" xml:space="preserve">
+    <value>The session will be locked after {0} invalid attempts.</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="NotAllowed" xml:space="preserve">
+    <value>Your login appears to be blocked for some reason. If you think this is a mistake, please contact us.</value>
+  </data>
+  <data name="OldVersion" xml:space="preserve">
+    <value>Your app version is outdated. Please wait for the application to be updated to continue using.</value>
+  </data>
+  <data name="PleaseEnterValidUserInfo" xml:space="preserve">
+    <value>Please enter valid user information.</value>
+  </data>
+  <data name="RequiresTwoFactor" xml:space="preserve">
+    <value>Two factor verification is required.</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>{0} seconds</value>
+  </data>
+  <data name="TokenCouldNotBeGenerated" xml:space="preserve">
+    <value>The token could not be generated.</value>
+  </data>
+  <data name="UserRoleAddNotFoundException" xml:space="preserve">
+    <value>Role not found.</value>
+  </data>
+  <data name="UserRoleNotFound" xml:space="preserve">
+    <value>An active role for the user was not found.</value>
+  </data>
+  <data name="UserWasNotFoundException" xml:space="preserve">
+    <value>No user found.</value>
+  </data>
+  <data name="ExistsDatabaseError" xml:space="preserve">
+    <value>There is a data store of this customer ID. Please contact with milvasoft officials.</value>
+  </data>
+  <data name="ErrorWhenMigratingDatabase" xml:space="preserve">
+    <value>An error occurred while updating the database. Error message : {0}</value>
+  </data>
+  <data name="FileCannotBeEmpty" xml:space="preserve">
+    <value>Please select a file to upload.</value>
+  </data>
+</root>

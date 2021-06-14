@@ -1,0 +1,995 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MilvaTemplate.API</name>
+    </assembly>
+    <members>
+        <member name="T:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions">
+            <summary>
+            Application builder extension helpers.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.UseDirectoryBrowser(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Static file definitions.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Static file definitions
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.UseEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            <para> Adds a Microsoft.AspNetCore.Routing.EndpointMiddleware middleware to the specified
+                   Microsoft.AspNetCore.Builder.IApplicationBuilder with the Microsoft.AspNetCore.Routing.EndpointDataSource
+                   instances built from configured Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.
+                   The Microsoft.AspNetCore.Routing.EndpointMiddleware will execute the Microsoft.AspNetCore.Http.Endpoint
+                   associated with the current request. </para>
+            </summary>
+            <param name="app"> The Microsoft.AspNetCore.Builder.IApplicationBuilder to add the middleware to. </param>
+            <returns>  A reference to this instance after the operation has completed. </returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.UseSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Static file definitions.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.LoadLanguageCodesAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Loads static languages from database to static Language-IsoCode pairs list on startup.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.UseRequestLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds the required middleware to use the localization. Configures the options before add.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.AppStartup.Program">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Program.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Configures web api configurations.
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions">
+            <summary>
+            Service collection helpers.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Applies configuration to cors.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddControllers(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddVersioning(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddIdentity(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures AspNetCore Identity modules.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+            <summary>
+            JWT Token configurations
+            </summary>
+            <param name="services"></param>
+            <param name="jSONFile"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+            <summary>
+            Migration database connection clause.
+            </summary>
+            <param name="services"></param>
+            <param name="jSONFile"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Applies dependency injection to repositories.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Applies dependency injection to services.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Swagger Configuration
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.CustomErrorResponse(Microsoft.AspNetCore.Mvc.ActionContext)">
+            <summary>
+            Prepares custom validation model for response.
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.AppStartup.Startup">
+            <summary>
+            Application configuration.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.AppStartup.Startup._jsonOperations">
+            <summary> Configuration value. </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.AppStartup.Startup.WebHostEnvironment">
+            <summary> WebHostEnvironment value. </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.AppStartup.Startup.SharedStringLocalizer">
+            <summary>
+            For access shared resources.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Initializes new instance of <see cref="T:MilvaTemplate.API.AppStartup.Startup"/>.
+            </summary>
+            <param name="env"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource},Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="sharedStringLocalizer"></param>
+            <param name="applicationLifetime"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.Startup.ConfigureAppStartupAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            This method provides async configure process which configure() called by the runtime.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.AppStartup.StartupConfiguration">
+            <summary>
+            Class in which initial configurations are specified.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.CheckPublicFiles">
+            <summary>
+            Checks media library folders. If folders not exists creates that folders.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.EncryptFile">
+            <summary>
+            For development.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.DecryptFile">
+            <summary>
+            For development.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillStringBlacklistAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+            <summary>
+            Fills <c> GlobalConstants.StringBlackList </c> list from stringblacklist.json file.
+            </summary>
+            <param name="jsonOperations"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillAllowedFileExtensionsAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+            <summary>
+            Fills <c> GlobalConstants.AllowedFileExtensions </c> list from allowedfileextensions.json file.
+            </summary>
+            <param name="jsonOperations"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Controllers.AccountController">
+            <summary>
+            This controller uses the properties of the .NET core Identity library . We can call this the controller where API's lease agreements are made.
+            </summary>
+            
+            <remarks>
+            <para><b>EN:</b> </para>
+            <para> This controller uses the properties of the .NET core Identity library . We can call this the controller where API's lease agreements are made.</para> 
+            <br></br>
+            <para><b>TR:</b></para>
+            <para>Ops!yon projesinin giriş çıkış (Login Logout) işlemleri ile ilgili yönetimini sağlar.</para>
+            
+            </remarks>
+            
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.AccountController.#ctor(Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource},MilvaTemplate.API.Services.Abstract.IAccountService)">
+            <summary>
+            Constructor of <c>AccountController</c>
+            </summary>
+            <param name="sharedLocalizer"></param>
+            <param name="accountService"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.AccountController.LoginAsync(MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO)">
+            <summary>
+            Login method. This endpoint is accessible for anyone.
+            </summary>
+            <returns></returns>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.AccountController.LogoutAsync">
+            <summary>
+            Logout method. This endpoint is accessible for anyone.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO">
+            <summary>
+            Login and sign up processes are happens with this dto.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO.UserName">
+            <summary>
+            UserName of user.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO.Email">
+            <summary>
+            Email of user.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO.Password">
+            <summary>
+            Password of user.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO.Persistent">
+            <summary>
+            Remember me option.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.MilvaTemplateUserDTO">
+            <summary>
+            MilvaTemplate user.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.MilvaTemplateUserDTO.UserName">
+            <summary>
+            UserName of MilvaTemplate user.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.AllowedFileExtensions">
+            <summary>
+            Allowed file extensions for media files.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.AllowedFileExtensions.FileType">
+            <summary>
+            File type of media file.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.AllowedFileExtensions.AllowedExtensions">
+            <summary>
+            Allowed extensions for this media type.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.GlobalConstants">
+            <summary>
+            Global constants.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RoutePrefix">
+            <summary>
+            Route prefix of api.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RouteBase">
+            <summary>
+            Base route path of api.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.FullRoute">
+            <summary>
+            Full route path of api. It includes <see cref="F:MilvaTemplate.API.Helpers.GlobalConstants.RouteBase"/> and controller name. 
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RoutePrefixAndVersion">
+            <summary>
+            Base route with "/" at the beginning.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.RootPath">
+            <summary>
+            Rootpath of application.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.AllowedFileExtensions">
+            <summary>
+            Allowed file extensions for media files.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.StringBlacklist">
+            <summary>
+            Invalid strings for prevent hacking or someting ;)
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MediaLibraryPath">
+            <summary>
+            Path of "Media Library" folder in wwwroot folder.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.ImageLibraryPath">
+            <summary>
+            Path of "Image Library" folder in wwwroot folder.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.ARModelLibraryPath">
+            <summary>
+            Path of "ARModel Library" folder in wwwroot folder.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.VideoLibraryPath">
+            <summary>
+            Path of "Video Library" folder in wwwroot folder.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.DocumentLibraryPath">
+            <summary>
+            Path of "Video Library" folder in wwwroot folder.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.Zero">
+            <summary>
+            Zero
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MailContent">
+            <summary>
+            Mail content of injection mails.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.RoleNames">
+            <summary>
+            Constants of MilvaTemplate roles.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Extensions.HelperExtensions">
+            <summary>
+            Helper extensions methods for Ops!yon Project.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ValidateFile(Microsoft.AspNetCore.Http.IFormFile,Milvasoft.Helpers.FileOperations.Enums.FileType)">
+            <summary>
+            Validates file. 
+            </summary>
+            <param name="file"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.SaveVideoToServerAsync``2(Microsoft.AspNetCore.Http.IFormFile,``0)">
+            <summary>
+            Save uploaded IFormFile file to server. Target Path will be : ".../wwwroot/Media Library/Image Library/<paramref name="entity"></paramref>.Id".
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="file"> Uploaded file in entity. </param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetFileUrlFromPath(System.String,Milvasoft.Helpers.FileOperations.Enums.FileType)">
+            <summary>
+            Returns the path of the uploaded file.
+            </summary>
+            <param name="originalImagePath"> Uploaded file. </param>
+            <param name="fileType"> Uploaded file type. (e.g image,video,sound) </param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ConvertToFormFile(System.String)">
+            <summary>
+            Converts data URI formatted base64 string to IFormFile.
+            </summary>
+            <param name="milvaBase64"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.LanguageIdIsoPairs">
+            <summary>
+            Stores language id and iso code.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}},System.Int32)">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <param name="propertyName"></param>
+            <param name="defaultLangId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangs``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLanguageId(System.Int32)">
+            <summary>
+            Gets language id from CultureInfo.CurrentCulture.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPaginationVariablesFromHeader(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Gets institution id from request's header. Then returns that id variable.
+            </summary>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Int32)">
+            <summary>
+            Checks <paramref name="id"/> is default record id or not.
+            </summary>
+            
+            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when <paramref name="id"/> is defult record id. </exception>
+            
+            <param name="id"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Checks <paramref name="idList"/> contains default record or not.
+            </summary>
+            
+            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when contents contains defult record id. </exception>
+            
+            <param name="idList"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsDefaultRecord(System.Int32)">
+            <summary>
+            Checks <paramref name="id"/> is default record id or not.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangPropValue(System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Get langs property in runtime.
+            </summary>
+            <param name="obj"></param>
+            <param name="langPropName"></param>
+            <param name="requestedPropName"></param>
+            <param name="defaultLanguageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String,System.Int32)">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <param name="propName"></param>
+            <param name="defaultLangId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPropertyValue(System.Object,System.String,System.Int32)">
+            <summary>
+            Gets requested property value. Method faydalı bi iş için yazmıştım fakat unuttum.
+            </summary>
+            <param name="obj"></param>
+            <param name="propertyName"> e.g : ProductLangs.Name </param>
+            <param name="defaultLangId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Checks guid list. If list is null or empty return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TDTO"></typeparam>
+            <param name="toBeCheckedList"></param>
+            <param name="returnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckIntList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Checks int list. If list is null or empty return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TDTO"></typeparam>
+            <param name="toBeCheckedList"></param>
+            <param name="returnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidObject``2(``0,System.Func{``0,``1})">
+            <summary>
+            Checks guid object. If is null return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TDTO"></typeparam>
+            <param name="toBeCheckedObject"></param>
+            <param name="returnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckIntObject``2(``0,System.Func{``0,``1})">
+            <summary>
+            Checks int object. If is null return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TDTO"></typeparam>
+            <param name="toBeCheckedObject"></param>
+            <param name="returnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByProperty"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByKeySelector"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TRepository"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByProperty"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TRepository"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByKeySelector"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfParameterIsNull(System.Object,System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="parameterObject"/> is null.
+            </summary>
+            <param name="parameterObject"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNullOrEmpty(System.Collections.Generic.List{System.Object},System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            </summary>
+            <param name="list"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfParameterIsNullOrEmpty``1(System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            </summary>
+            <param name="list"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNullOrEmpty(System.Collections.Generic.IEnumerable{System.Object},System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            </summary>
+            <param name="list"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNotNullOrEmpty(System.Collections.Generic.IEnumerable{System.Object},System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is not null or empty.
+            </summary>
+            <param name="list"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfNullForGuidObject``1(``0,System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
+            </summary>
+            <param name="entity"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfNullForIntObject``1(``0,System.String)">
+            <summary>
+            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
+            </summary>
+            <param name="entity"></param>
+            <param name="localizerKey"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsBetween(System.DateTime,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Compares <paramref name="date"/> for whether between <paramref name="startTime"/> and <paramref name="endTime"/>. 
+            </summary>
+            
+            <remarks>
+            This is a time comparison not a date comparison.
+            </remarks>
+            
+            <param name="date"></param>
+            <param name="startTime"></param>
+            <param name="endTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsBetween(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Compares <paramref name="date"/> for whether between <paramref name="startDate"/> and <paramref name="endDate"/>. 
+            </summary>
+            <param name="date"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.MapAuditData``2(``0,``1)">
+            <summary>
+            Getting cretion user datas.
+            </summary>
+            <param name="dto"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.MapAuditDataForIntTypes``2(``0,``1)">
+            <summary>
+            Getting cretion user datas.
+            </summary>
+            <param name="dto"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.MilvaTemplateLogger">
+            <summary>
+            The 'option' project logger class.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.#ctor(Milvasoft.Helpers.Mail.IMilvaMailSender)">
+            <summary>
+            Initializes new instance of <see cref="T:MilvaTemplate.API.Helpers.MilvaTemplateLogger"/>
+            </summary>
+            <param name="milvaMailSender"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogVerbose(System.String)">
+            <summary>
+            Saves the log at debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogDebug(System.String)">
+            <summary>
+            Saves the log at debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogError(System.String)">
+            <summary>
+            Saves the log at error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogInfo(System.String)">
+            <summary>
+            Saves the log at info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogWarning(System.String)">
+            <summary>
+            Saves the log at warn level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatal(System.String)">
+            <summary>
+            Saves the log at fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatal(System.String,Milvasoft.Helpers.Enums.MailSubject)">
+            <summary>
+            Saves the log at fatal level. And sends mail to producer.
+            </summary>
+            <param name="message"></param>
+            <param name="mailSubjectsEnum"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatalAsync(System.String,Milvasoft.Helpers.Enums.MailSubject)">
+            <summary>
+            Saves the log at fatal level. And sends mail to producer.
+            </summary>
+            <param name="message"></param>
+            <param name="mailSubjectsEnum"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatal(System.String,System.String)">
+            <summary>
+            Saves the log at fatal level. And sends mail to producer.
+            </summary>
+            <param name="message"></param>
+            <param name="mailSubjectsEnum"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatalAsync(System.String,System.String)">
+            <summary>
+            Saves the log at fatal level. And sends mail to producer.
+            </summary>
+            <param name="message"></param>
+            <param name="mailSubjectsEnum"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.CustomAttributeOperationFilter">
+            <summary>
+            Swagger document creation utility class.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Swagger.CustomAttributeOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies filter on swagger document.
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.CustomAttributeSchemaFilter">
+            <summary>
+            Swagger document creation utility class.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Swagger.CustomAttributeSchemaFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)">
+            <summary>
+            Applies filter on swagger document.
+            </summary>
+            <param name="swaggerSchema"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.RequestHeaderFilter">
+            <summary>
+            Operation filter to add the requirement of the custom header
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute">
+            <summary>
+            Specifies that the class or method that this attribute is applied to requires the specified the valid id.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute.#ctor">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute"/> for localization.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute">
+            <summary>
+            Specifies that the class or method that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute"/> for localization.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidationFilterAttribute">
+            <summary>
+             Provides the attribute validation exclude opportunity.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidationFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute">
+            <summary>
+            Determines minimum decimal value.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="minValue"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateIdAttribute">
+            <summary>
+            Specifies that the class or property that this attribute is applied to requires the specified the valid id.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateIdAttribute.#ctor">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute">
+            <summary>
+            Specifies that the class or property that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
+        </member>
+        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+            <param name="minimumLength">The minimum length, inclusive.  It may not be negative.</param>
+            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
+        </member>
+        <member name="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware">
+            <summary>
+            Catches errors occurring elsewhere in the project.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ExceptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware"/> class.
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ExceptionMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invokes the method or constructor reflected by this MethodInfo instance.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Middlewares.ErrorMiddlewareExtension">
+            <summary>
+            With the extension method, we ensure that our custom method is added under IApplicationBuilder.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ErrorMiddlewareExtension.UseMilvaTemplateExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Extension method of <see cref="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware"/> class.
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Migrations.DataSeed">
+            <summary>
+            Defines the <see cref="T:MilvaTemplate.API.Migrations.DataSeed" />.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Migrations.DataSeed.ResetAnyway">
+            <summary>
+            Resets the tables data even if table is not empty when any method called.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Migrations.DataSeed.Services">
+            <summary>
+            Contains dipendency injection services.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Migrations.DataSeed.InitializeTableAsync``2(System.Collections.Generic.List{``0})">
+            <summary>
+            Resets the data of type of T. This method is only calls from Reset extension method of indelible tables.
+            </summary>
+            <param name="entityList">The entityList<see cref="T:System.Collections.Generic.List`1"/>.</param>
+        </member>
+        <member name="T:MilvaTemplate.API.Migrations.MilvaTemplateDbBuilder">
+            <summary>
+            Static class that runs while the project is up and running the reset methods to fake data on the tables.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Services.Abstract.IAccountService">
+            <summary>
+            The class in which user transactions are entered and exited
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.LoginAsync(MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO)">
+            <summary>
+            Login for incoming user. Returns a token if login informations are valid or the user is not lockedout. Otherwise returns the error list.
+            </summary>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.LogoutAsync">
+            <summary>
+            Logout process for current logged in user..
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Services.Concrete.AccountService">
+            <summary>
+            Provides sign-in,sign-up and sign-out process for user.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Concrete.ITokenManagement,Milvasoft.Helpers.DataAccess.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
+            <summary>
+            Performs constructor injection for repository interfaces used in this service.
+            </summary>
+            <param name="userManager"></param>
+            <param name="signInManager"></param>
+            <param name="tokenManagement"></param>
+            <param name="contextRepository"></param>
+            <param name="httpContextAccessor"></param>
+            <param name="sharedLocalizer"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.LoginAsync(MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO)">
+            <summary>
+            Login for incoming user. Returns a token if login informations are valid or the user is not lockedout. Otherwise returns the error list.
+            </summary>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.LogoutAsync">
+            <summary>
+            Logout process for current logged in user..
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

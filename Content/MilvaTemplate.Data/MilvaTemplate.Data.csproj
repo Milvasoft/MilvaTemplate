@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\MilvaTemplate.Data\MilvaTemplate.Data.xml</DocumentationFile>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Milvasoft.Helpers" Version="6.3.1" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="MilvaTemplate.Data.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+
+
+	
+	
+	
+
+	<ItemGroup>
+		<ProjectReference Include="..\MilvaTemplate.Entity\MilvaTemplate.Entity.csproj" />
+	</ItemGroup>
+<ItemGroup>
+		<ProjectReference Include="..\MilvaTemplate.Entity\MilvaTemplate.Entity.csproj" />
+	</ItemGroup>
+
+
+</Project>
