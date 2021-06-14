@@ -17,16 +17,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Setup .NET Core @ Latest
+      - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          source-url: https://nuget.pkg.github.com/Milvasoft/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}        
+         dotnet-version: 5.0.101
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
           
       - name: Build solution and generate NuGet package
         run: dotnet pack -c Release -o out  
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true
+        run: dotnet nuget push ./out/*.nupkg -k ${{secrets.NUGET_API_KEY}} --skip-duplicate --no-symbols true
   
