@@ -25,5 +25,5 @@ jobs:
     - name: Publish NuGet
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:   
-       PROJECT_FILE_PATH: .  
+       PROJECT_FILE_PATH: ./Milvasoft.Templates.Web.Ef.nuspec  
        NUGET_KEY: ${{secrets.NUGET_API_KEY}} 
