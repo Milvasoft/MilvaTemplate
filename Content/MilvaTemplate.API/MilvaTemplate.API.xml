@@ -257,6 +257,34 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:MilvaTemplate.API.Controllers.ContentsController">
+            <summary>
+            Provides get contents which independent anywhere.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.ContentsController.#ctor(Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource},MilvaTemplate.API.Services.Abstract.IContentService)">
+            <summary>
+            Constructor of <c>ContentsController</c>
+            </summary>
+            <param name="sharedLocalizer"></param>
+            <param name="contentService"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+            <summary>
+            Gets required content by <paramref name="contentParameters"/>.EntityName.
+            </summary>
+            <param name="contentParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetMaxValueOfContent(System.String,System.String)">
+            <summary>
+            Gets required content by <paramref name="entityName"/>.
+            </summary>
+            <param name="entityName"></param>
+            <param name="propName"></param>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO">
             <summary>
             Login and sign up processes are happens with this dto.
@@ -282,6 +310,21 @@
             Remember me option.
             </summary>
         </member>
+        <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.LoginResultDTO">
+            <summary>
+            Login result information.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginResultDTO.ErrorMessages">
+            <summary>
+            If login not success.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.LoginResultDTO.Token">
+            <summary>
+            If login is success.
+            </summary>
+        </member>
         <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.MilvaTemplateUserDTO">
             <summary>
             MilvaTemplate user.
@@ -290,6 +333,76 @@
         <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.MilvaTemplateUserDTO.UserName">
             <summary>
             UserName of MilvaTemplate user.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.Content">
+            <summary>
+            Any content.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.Id">
+            <summary>
+            Requested content id.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp">
+            <summary>
+            Requested content's property.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp1">
+            <summary>
+            Requested content's property.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp2">
+            <summary>
+            Requested content's property.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.ContentLangProp">
+            <summary>
+            Requested content's language property.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Content.ContentLangProp1">
+            <summary>
+            Requested content's language property.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.ContentParameters">
+            <summary>
+            For request content. 
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.EntityName">
+            <summary>
+            Requested entity name.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.RequestedProps">
+            <summary>
+            Requested properties.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.RequestedLangProps">
+            <summary>
+            Requested language properties.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.Contents">
+            <summary>
+            Content map object.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Contents.Key">
+            <summary>
+            Content key. (e.g. Product)
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.Contents.ContentList">
+            <summary>
+            Contents.
             </summary>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.AllowedFileExtensions">
@@ -306,6 +419,93 @@
             <summary>
             Allowed extensions for this media type.
             </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateIdParameterAttribute">
+            <summary>
+            Specifies that the class or method that this attribute is applied to requires the specified the valid id.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateIdParameterAttribute.#ctor">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateIdParameterAttribute"/> for localization.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateIdParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateStringParameterAttribute">
+            <summary>
+            Specifies that the class or method that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateStringParameterAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateStringParameterAttribute"/> for localization.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateStringParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidationFilterAttribute">
+            <summary>
+             Provides the attribute validation exclude opportunity.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidationFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Performs when action executing.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateDecimalAttribute">
+            <summary>
+            Determines minimum decimal value.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="minValue"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateIdAttribute">
+            <summary>
+            Specifies that the class or property that this attribute is applied to requires the specified the valid id.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateIdAttribute.#ctor">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateStringAttribute">
+            <summary>
+            Specifies that the class or property that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor that accepts the maximum length of the string.
+            </summary>
+            <param name="minimumLength">The minimum length, inclusive.  It may not be negative.</param>
+            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.GlobalConstants">
             <summary>
@@ -428,13 +628,12 @@
             Stores language id and iso code.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}},System.Int32)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}})">
             <summary>
             Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
             </summary>
             <param name="langs"></param>
             <param name="propertyName"></param>
-            <param name="defaultLangId"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangs``2(System.Collections.Generic.IEnumerable{``0})">
@@ -479,32 +678,29 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangPropValue(System.Object,System.String,System.String,System.Int32)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangPropValue(System.Object,System.String,System.String)">
             <summary>
             Get langs property in runtime.
             </summary>
             <param name="obj"></param>
             <param name="langPropName"></param>
             <param name="requestedPropName"></param>
-            <param name="defaultLanguageId"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String,System.Int32)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String)">
             <summary>
             Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
             </summary>
             <param name="langs"></param>
             <param name="propName"></param>
-            <param name="defaultLangId"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPropertyValue(System.Object,System.String,System.Int32)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPropertyValue(System.Object,System.String)">
             <summary>
-            Gets requested property value. Method faydalı bi iş için yazmıştım fakat unuttum.
+            Gets requested property value.
             </summary>
             <param name="obj"></param>
             <param name="propertyName"> e.g : ProductLangs.Name </param>
-            <param name="defaultLangId"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
@@ -801,93 +997,6 @@
             Operation filter to add the requirement of the custom header
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute">
-            <summary>
-            Specifies that the class or method that this attribute is applied to requires the specified the valid id.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute.#ctor">
-            <summary>
-            Constructor of <see cref="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute"/> for localization.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateIdParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
-            <summary>
-            Performs when action executing.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute">
-            <summary>
-            Specifies that the class or method that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Constructor of <see cref="T:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute"/> for localization.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidateStringParameterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
-            <summary>
-            Performs when action executing.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="T:MilvaTemplate.API.Attributes.ActionFilters.MValidationFilterAttribute">
-            <summary>
-             Provides the attribute validation exclude opportunity.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ActionFilters.MValidationFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
-            <summary>
-            Performs when action executing.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute">
-            <summary>
-            Determines minimum decimal value.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor">
-            <summary>
-            Constructor of atrribute.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor(System.Int32)">
-            <summary>
-            Constructor of atrribute.
-            </summary>
-            <param name="minValue"></param>
-        </member>
-        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateIdAttribute">
-            <summary>
-            Specifies that the class or property that this attribute is applied to requires the specified the valid id.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateIdAttribute.#ctor">
-            <summary>
-            Constructor that accepts the maximum length of the string.
-            </summary>
-        </member>
-        <member name="T:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute">
-            <summary>
-            Specifies that the class or property that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32)">
-            <summary>
-            Constructor that accepts the maximum length of the string.
-            </summary>
-            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
-        </member>
-        <member name="M:MilvaTemplate.API.Attributes.ValidationAttributes.MValidateStringAttribute.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Constructor that accepts the maximum length of the string.
-            </summary>
-            <param name="minimumLength">The minimum length, inclusive.  It may not be negative.</param>
-            <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
-        </member>
         <member name="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware">
             <summary>
             Catches errors occurring elsewhere in the project.
@@ -956,10 +1065,24 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.LogoutAsync">
+        <member name="T:MilvaTemplate.API.Services.Abstract.IContentService">
             <summary>
-            Logout process for current logged in user..
+            An intermediate layer for data that the interface needs independent from anywhere..
             </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+            <summary>
+            Gets required content by <paramref name="contentParameterList"/>.EntityName.
+            </summary>
+            <param name="contentParameterList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetSpecMaxValue(System.String,System.String)">
+            <summary>
+            Gets the requested property's(<paramref name="propName"/>) max value in requested entity by <paramref name="entityName"/>.
+            </summary>
+            <param name="entityName"></param>
+            <param name="propName"></param>
             <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.Services.Concrete.AccountService">
@@ -989,6 +1112,32 @@
             <summary>
             Logout process for current logged in user..
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Services.Concrete.ContentService">
+            <summary>
+            An intermediate layer for data that the interface needs independent from anywhere.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.#ctor(MilvaTemplate.Data.MilvaTemplateDbContext)">
+            <summary>
+            Performs constructor injection for repository interfaces used in this service.
+            </summary>
+            <param name="dbContext"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+            <summary>
+            Gets required content by <paramref name="contentParameterList"/>.EntityName.
+            </summary>
+            <param name="contentParameterList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetSpecMaxValue(System.String,System.String)">
+            <summary>
+            Gets the requested property's(<paramref name="propName"/>) max value in requested entity by <paramref name="entityName"/>.
+            </summary>
+            <param name="entityName"></param>
+            <param name="propName"></param>
             <returns></returns>
         </member>
     </members>

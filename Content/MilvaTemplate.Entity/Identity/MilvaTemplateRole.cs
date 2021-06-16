@@ -11,6 +11,7 @@ namespace MilvaTemplate.Entity.Identity
     [Table("MilvaTemplateRole")]
     public class MilvaTemplateRole : IdentityRole<Guid>, IFullAuditable<Guid>
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public DateTime? LastModificationDate { get; set; }
         public DateTime CreationDate { get; set; }
         public Guid? CreatorUserId { get; set; }
@@ -18,5 +19,6 @@ namespace MilvaTemplate.Entity.Identity
         public DateTime? DeletionDate { get; set; }
         public bool IsDeleted { get; set; }
         public Guid? DeleterUserId { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

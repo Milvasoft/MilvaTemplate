@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
-using MilvaTemplate.API.Attributes.ActionFilters;
+using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Linq;

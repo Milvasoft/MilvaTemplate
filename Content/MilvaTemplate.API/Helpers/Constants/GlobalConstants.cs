@@ -87,5 +87,7 @@ namespace MilvaTemplate.API.Helpers
         /// </summary>
         public static string MailContent { get; } = $"Injection warning from MilvaTemplate.";
 
+        public static sbyte DefaultLanguageId { get; set; }
+
     }
 }

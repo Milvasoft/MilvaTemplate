@@ -200,11 +200,10 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// </summary>
         /// <param name="langs"></param>
         /// <param name="propertyName"></param>
-        /// <param name="defaultLangId"></param>
         /// <returns></returns>
-        public static string GetLang<TEntity>(this IEnumerable<TEntity> langs, Expression<Func<TEntity, string>> propertyName, int defaultLangId)
+        public static string GetLang<TEntity>(this IEnumerable<TEntity> langs, Expression<Func<TEntity, string>> propertyName)
         {
-            var requestedLangId = GetLanguageId(defaultLangId);
+            var requestedLangId = GetLanguageId(GlobalConstants.DefaultLanguageId);
 
             if (langs.IsNullOrEmpty()) return "";
 
@@ -212,10 +211,10 @@ namespace MilvaTemplate.API.Helpers.Extensions
 
             TEntity requestedLang;
 
-            if (requestedLangId != defaultLangId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
-                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == defaultLangId);
+            if (requestedLangId != GlobalConstants.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
+                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
 
-            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == defaultLangId);
+            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
 
             requestedLang ??= langs.FirstOrDefault();
 
@@ -344,9 +343,8 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="obj"></param>
         /// <param name="langPropName"></param>
         /// <param name="requestedPropName"></param>
-        /// <param name="defaultLanguageId"></param>
         /// <returns></returns>
-        public static dynamic GetLangPropValue(this object obj, string langPropName, string requestedPropName, int defaultLanguageId)
+        public static dynamic GetLangPropValue(this object obj, string langPropName, string requestedPropName)
         {
             var langValues = obj.GetType().GetProperty(langPropName)?.GetValue(obj, null) ?? throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 
@@ -356,7 +354,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
 
             MethodInfo langMethod = typeof(HelperExtensions).GetMethod("GetLang", BindingFlags.Static | BindingFlags.NonPublic).MakeGenericMethod(entityType);
 
-            return langMethod.Invoke(langValues, new object[] { langValues, requestedPropName, defaultLanguageId });
+            return langMethod.Invoke(langValues, new object[] { langValues, requestedPropName });
         }
 
         /// <summary>
@@ -364,20 +362,19 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// </summary>
         /// <param name="langs"></param>
         /// <param name="propName"></param>
-        /// <param name="defaultLangId"></param>
         /// <returns></returns>
-        private static string GetLang<TEntity>(this HashSet<TEntity> langs, string propName, int defaultLangId)
+        private static string GetLang<TEntity>(this HashSet<TEntity> langs, string propName)
         {
-            var requestedLangId = GetLanguageId(defaultLangId);
+            var requestedLangId = GetLanguageId(GlobalConstants.DefaultLanguageId);
 
             if (langs.IsNullOrEmpty()) return "";
 
             TEntity requestedLang;
 
-            if (requestedLangId != defaultLangId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
-                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == defaultLangId);
+            if (requestedLangId != GlobalConstants.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
+                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
 
-            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == defaultLangId);
+            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
 
             requestedLang ??= langs.FirstOrDefault();
 
@@ -385,13 +382,12 @@ namespace MilvaTemplate.API.Helpers.Extensions
         }
 
         /// <summary>
-        /// Gets requested property value. Method faydalı bi iş için yazmıştım fakat unuttum.
+        /// Gets requested property value.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="propertyName"> e.g : ProductLangs.Name </param>
-        /// <param name="defaultLangId"></param>
         /// <returns></returns>
-        public static object GetPropertyValue(this object obj, string propertyName, int defaultLangId)
+        public static object GetPropertyValue(this object obj, string propertyName)
         {
             var propNames = propertyName.Split('.').ToList();
 
@@ -418,7 +414,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
                         {
                             var langId = (int)currentValue.GetType().GetProperty("SystemLanguageId").GetValue(currentValue, null);
 
-                            if (langId == GetLanguageId(defaultLangId))
+                            if (langId == GetLanguageId(GlobalConstants.DefaultLanguageId))
                             {
                                 obj = currentValue.GetType().GetProperty(propName).GetValue(currentValue, null);
                                 break;

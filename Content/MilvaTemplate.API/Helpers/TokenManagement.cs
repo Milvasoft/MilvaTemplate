@@ -1,5 +1,5 @@
 ﻿using Milvasoft.Helpers.Identity.Concrete;
-using MilvaTemplate.API.Attributes.ValidationAttributes;
+using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 using Newtonsoft.Json;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

@@ -99,7 +99,7 @@ namespace MilvaTemplate.API.Services.Concrete
         /// Logout process for current logged in user..
         /// </summary>
         /// <returns></returns>
-        public async Task LogoutAsync()
+        public new async Task LogoutAsync()
         {
             var logoutResult = await base.LogoutAsync();
 

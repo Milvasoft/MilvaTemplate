@@ -1,9 +1,8 @@
 ﻿using Milvasoft.Helpers.Attributes.Validation;
-using MilvaTemplate.API.Helpers;
 using MilvaTemplate.Localization;
 using System;
 
-namespace MilvaTemplate.API.Attributes.ValidationAttributes
+namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes
 {
     /// <summary>
     /// Specifies that the class or property that this attribute is applied to requires the specified prevent string injection attacks and min/max length checks.

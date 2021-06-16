@@ -2,7 +2,7 @@
 using MilvaTemplate.Localization;
 using System;
 
-namespace MilvaTemplate.API.Attributes.ValidationAttributes
+namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes
 {
     /// <summary>
     /// Determines minimum decimal value.

@@ -3,7 +3,7 @@ using Milvasoft.Helpers.Attributes.ActionFilter;
 using MilvaTemplate.Localization;
 using System;
 
-namespace MilvaTemplate.API.Attributes.ActionFilters
+namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters
 {
     /// <summary>
     /// Specifies that the class or method that this attribute is applied to requires the specified the valid id.

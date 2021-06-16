@@ -4,5 +4,10 @@
         <name>MilvaTemplate.Localization</name>
     </assembly>
     <members>
+        <member name="T:MilvaTemplate.Localization.SharedResource">
+            <summary>
+            Dummy class for localization.
+            </summary>
+        </member>
     </members>
 </doc>

@@ -2,7 +2,7 @@
 using Milvasoft.Helpers.Attributes.Validation;
 using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.AppStartup;
-using MilvaTemplate.API.Attributes.ValidationAttributes;
+using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Reflection;

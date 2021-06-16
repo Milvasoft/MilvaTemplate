@@ -9,6 +9,7 @@ namespace MilvaTemplate.Entity.Identity
     /// </summary>
     public class MilvaTemplateUser : IdentityUser<Guid>, IFullAuditable<MilvaTemplateUser, Guid, Guid>
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public DateTime? LastModificationDate { get; set; }
         public DateTime CreationDate { get; set; }
         public Guid? CreatorUserId { get; set; }
@@ -19,5 +20,6 @@ namespace MilvaTemplate.Entity.Identity
         public virtual MilvaTemplateUser DeleterUser { get; set; }
         public virtual MilvaTemplateUser LastModifierUser { get; set; }
         public virtual MilvaTemplateUser CreatorUser { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

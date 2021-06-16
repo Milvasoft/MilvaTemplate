@@ -21,11 +21,5 @@ namespace MilvaTemplate.API.Services.Abstract
         /// <param name="loginDTO"></param>
         /// <returns></returns>
         Task<LoginResultDTO> LoginAsync(LoginDTO loginDTO);
-
-        /// <summary>
-        /// Logout process for current logged in user..
-        /// </summary>
-        /// <returns></returns>
-        Task LogoutAsync();
     }
 }

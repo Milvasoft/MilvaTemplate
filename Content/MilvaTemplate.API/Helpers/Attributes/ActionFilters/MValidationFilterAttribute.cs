@@ -3,7 +3,7 @@ using Milvasoft.Helpers.Attributes.ActionFilter;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using System;
 
-namespace MilvaTemplate.API.Attributes.ActionFilters
+namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters
 {
     /// <summary>
     ///  Provides the attribute validation exclude opportunity.
