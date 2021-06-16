@@ -80,6 +80,8 @@ namespace MilvaTemplate.API.AppStartup
 
             services.AddControllers();
 
+            //services.AddMilvaRedisCaching();
+
             services.AddVersioning();
 
             services.AddCors();

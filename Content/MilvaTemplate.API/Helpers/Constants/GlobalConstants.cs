@@ -71,23 +71,31 @@ namespace MilvaTemplate.API.Helpers
         /// </summary>
         public static string DocumentLibraryPath { get; } = Path.Combine(MediaLibraryPath, "Document Library");
 
-        public const string MilvaTemplateKey = "w!z%C*F-JaNdRgUk";
+        /// <summary>
+        /// Default language id of system.
+        /// </summary>
+        public static sbyte DefaultLanguageId { get; set; }
 
         /// <summary>
         /// Zero
         /// </summary>
         public const int Zero = 0;
 
-        public const string WebsiteAddress = "https://www.opsiyonerp.com/Purchase/Table";
-
-        public const string ApplicationName = "MilvaTemplate";
-
         /// <summary>
         /// Mail content of injection mails.
         /// </summary>
         public static string MailContent { get; } = $"Injection warning from MilvaTemplate.";
 
-        public static sbyte DefaultLanguageId { get; set; }
+        /// <summary>
+        /// Name of application.
+        /// </summary>
+        public const string ApplicationName = "MilvaTemplate";
 
+        /// <summary>
+        /// Mail of application.
+        /// </summary>
+        public const string AppMail = "app@milvasoft.com";
+       
+        public const string MilvaTemplateKey = "w!z%C*F-JaNdRgUk";
     }
 }

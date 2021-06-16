@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Milvasoft.Helpers.Caching;
 using Milvasoft.Helpers.DataAccess.Abstract;
 using Milvasoft.Helpers.DataAccess.Concrete;
 using Milvasoft.Helpers.DataAccess.MilvaContext;
@@ -20,6 +21,8 @@ using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.Helpers;
 using MilvaTemplate.API.Helpers.Identity;
 using MilvaTemplate.API.Helpers.Swagger;
+using MilvaTemplate.API.Services.Abstract;
+using MilvaTemplate.API.Services.Concrete;
 using MilvaTemplate.Data;
 using MilvaTemplate.Data.Abstract;
 using MilvaTemplate.Data.Concrete;
@@ -88,6 +91,26 @@ namespace MilvaTemplate.API.AppStartup
                       return CustomErrorResponse(actionContext);
                   };
               }).AddDataAnnotationsLocalization();
+        }
+
+        /// <summary>
+        /// Configures API versioning.
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddMilvaRedisCaching(this IServiceCollection services)
+        {
+            var connectionString = Startup.WebHostEnvironment.EnvironmentName == "Development" ? "127.0.0.1:6379" : "redis";
+
+            var cacheOptions = new RedisCacheServiceOptions(connectionString)
+            {
+                Lifetime = ServiceLifetime.Scoped,
+                ConnectWhenCreatingNewInstance = false
+            };
+
+            cacheOptions.ConfigurationOptions.AbortOnConnectFail = false;
+            cacheOptions.ConfigurationOptions.ConnectTimeout = 2000;
+
+            services.AddMilvaRedisCaching(cacheOptions);
         }
 
         /// <summary>
@@ -276,13 +299,21 @@ namespace MilvaTemplate.API.AppStartup
             services.AddHttpClient();
             services.AddHttpContextAccessor();
 
-            services.AddSingleton<IMilvaMailSender>(new MilvaMailSender("websitelogs@milvasoft.com",
-                                                                        new NetworkCredential("websitelogs@milvasoft.com", ""),
+            services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstants.AppMail,
+                                                                        new NetworkCredential(GlobalConstants.AppMail, ""),
                                                                         587,
                                                                         "mail.milvasoft.com"));
 
             //Validation hatalarını optimize ettiğimiz için .net tarafından hata fırlatılmasını engelliyor.
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+            #region Services
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IContentService, ContentService>();
+
+            #endregion
+
         }
 
         /// <summary>
