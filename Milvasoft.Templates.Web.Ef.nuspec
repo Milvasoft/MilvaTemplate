@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Milvasoft.Templates.Web.Ef</id>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <description>
       Template for web application with ef core with npsql.
     </description>

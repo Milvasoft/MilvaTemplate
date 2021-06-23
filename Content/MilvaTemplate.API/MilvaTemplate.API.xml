@@ -90,6 +90,12 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaRedisCaching(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures API versioning.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddVersioning(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
@@ -133,13 +139,6 @@
             Swagger Configuration
             </summary>
             <param name="services"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.CustomErrorResponse(Microsoft.AspNetCore.Mvc.ActionContext)">
-            <summary>
-            Prepares custom validation model for response.
-            </summary>
-            <param name="actionContext"></param>
-            <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.AppStartup.Startup">
             <summary>
@@ -405,6 +404,42 @@
             Contents.
             </summary>
         </member>
+        <member name="T:MilvaTemplate.API.DTOs.PaginationParams">
+            <summary>
+            Paginatination params
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.PaginationParams.PageIndex">
+            <summary>
+            Requested page number.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.PaginationParams.RequestedItemCount">
+            <summary>
+            Requested item count in requested page.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.PaginationParams.OrderByProperty">
+            <summary>
+            If order by column requested then Property name of entity.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.PaginationParams.OrderByAscending">
+            <summary>
+            If order by column requested then ascending or descending.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.PaginationParamsWithSpec`1">
+            <summary>
+            Pagination parameters with specification object(<typeparamref name="TSpec"/>).
+            </summary>
+            <typeparam name="TSpec"></typeparam>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.PaginationParamsWithSpec`1.Spec">
+            <summary>
+            Specification object.
+            </summary>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.AllowedFileExtensions">
             <summary>
             Allowed file extensions for media files.
@@ -572,14 +607,34 @@
             Path of "Video Library" folder in wwwroot folder.
             </summary>
         </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MailContent">
+            <summary>
+            Mail content of injection mails.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.DefaultLanguageId">
+            <summary>
+            Default language id of system.
+            </summary>
+        </member>
         <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.Zero">
             <summary>
             Zero
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MailContent">
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.ApplicationName">
             <summary>
-            Mail content of injection mails.
+            Name of application.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.AppMail">
+            <summary>
+            Mail of application.
+            </summary>
+        </member>
+        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.MilvaTemplateKey">
+            <summary>
+            Key of project.
             </summary>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.RoleNames">
@@ -992,10 +1047,46 @@
             <param name="swaggerSchema"></param>
             <param name="context"></param>
         </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.ReplaceVersionWithExactValueInPathFilter">
+            <summary>
+            Replaces app version from header.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Swagger.ReplaceVersionWithExactValueInPathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Triggered event.
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="context"></param>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.Swagger.RequestHeaderFilter">
             <summary>
             Operation filter to add the requirement of the custom header
             </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Swagger.RequestHeaderFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Triggered event.
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.SwaggerExcludeAttribute">
+            <summary>
+            Excludes property from swagger documentation.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Swagger.SwaggerExcludeFilter">
+            <summary>
+            It allows excluding the desired property from the swagger documentation.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Swagger.SwaggerExcludeFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)">
+            <summary>
+            Triggered event.
+            </summary>
+            <param name="schema"></param>
+            <param name="context"></param>
         </member>
         <member name="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware">
             <summary>
@@ -1052,6 +1143,13 @@
             <summary>
             Static class that runs while the project is up and running the reset methods to fake data on the tables.
             </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Migrations.MilvaTemplateDbBuilder.SeedDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Seeds database.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.Services.Abstract.IAccountService">
             <summary>

@@ -3,8 +3,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MilvaTemplate.API.Helpers.Swagger
 {
+    /// <summary>
+    /// Replaces app version from header.
+    /// </summary>
     public class ReplaceVersionWithExactValueInPathFilter : IDocumentFilter
     {
+        /// <summary>
+        /// Triggered event.
+        /// </summary>
+        /// <param name="swaggerDoc"></param>
+        /// <param name="context"></param>
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
             var paths = swaggerDoc.Paths;

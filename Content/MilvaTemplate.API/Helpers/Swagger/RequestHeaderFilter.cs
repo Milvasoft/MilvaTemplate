@@ -11,6 +11,11 @@ namespace MilvaTemplate.API.Helpers.Swagger
     /// </summary>
     public class RequestHeaderFilter : IOperationFilter
     {
+        /// <summary>
+        /// Triggered event.
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="context"></param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (operation.Parameters == null) operation.Parameters = new List<OpenApiParameter>();

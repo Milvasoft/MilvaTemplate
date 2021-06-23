@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Milvasoft.Helpers;
 using Milvasoft.Helpers.Caching;
 using Milvasoft.Helpers.DataAccess.Abstract;
 using Milvasoft.Helpers.DataAccess.Concrete;
@@ -30,11 +31,9 @@ using MilvaTemplate.Entity.Identity;
 using MilvaTemplate.Localization;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
@@ -88,7 +87,7 @@ namespace MilvaTemplate.API.AppStartup
               {
                   options.InvalidModelStateResponseFactory = actionContext =>
                   {
-                      return CustomErrorResponse(actionContext);
+                      return CommonHelper.CustomErrorResponse(actionContext);
                   };
               }).AddDataAnnotationsLocalization();
         }
@@ -378,42 +377,5 @@ namespace MilvaTemplate.API.AppStartup
                 options.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
             });
         }
-
-        #region Private Methods 
-
-        /// <summary>
-        /// Prepares custom validation model for response.
-        /// </summary>
-        /// <param name="actionContext"></param>
-        /// <returns></returns>
-        private static ObjectResult CustomErrorResponse(ActionContext actionContext)
-        {
-            var validationErrors = actionContext.ModelState.Where(modelError => modelError.Value.Errors.Count > GlobalConstants.Zero)
-                                                           .Select(modelError => new ValidationError
-                                                           {
-                                                               ValidationFieldName = modelError.Key,
-                                                               ErrorMessageList = modelError.Value.Errors.Select(i => i.ErrorMessage).ToList()
-                                                           }).ToList();
-
-            List<string> errorMessageList = new();
-
-            validationErrors.ForEach(e => e.ErrorMessageList.ForEach(emg => errorMessageList.Add(emg)));
-
-            var validationResponse = new ExceptionResponse
-            {
-                Success = false,
-                Message = string.Join('~', errorMessageList),
-                StatusCode = MilvaStatusCodes.Status600Exception,
-                Result = new object(),
-                ErrorCodes = new List<int>()
-            };
-
-            actionContext.HttpContext.Items.Add(new KeyValuePair<object, object>("StatusCode", MilvaStatusCodes.Status600Exception));
-
-            return new OkObjectResult(validationResponse);
-        }
-
-        #endregion
-
     }
 }

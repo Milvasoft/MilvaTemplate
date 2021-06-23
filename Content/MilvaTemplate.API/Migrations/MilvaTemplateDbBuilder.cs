@@ -16,6 +16,11 @@ namespace MilvaTemplate.API.Migrations
     [ConfigureAwait(false)]
     public static class MilvaTemplateDbBuilder
     {
+        /// <summary>
+        /// Seeds database.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static async Task SeedDatabase(this IApplicationBuilder app)
         {
             var dbContext = app.ApplicationServices.GetRequiredService<MilvaTemplateDbContext>();

@@ -72,6 +72,11 @@ namespace MilvaTemplate.API.Helpers
         public static string DocumentLibraryPath { get; } = Path.Combine(MediaLibraryPath, "Document Library");
 
         /// <summary>
+        /// Mail content of injection mails.
+        /// </summary>
+        public static string MailContent { get; } = $"Injection warning from MilvaTemplate.";
+
+        /// <summary>
         /// Default language id of system.
         /// </summary>
         public static sbyte DefaultLanguageId { get; set; }
@@ -82,11 +87,6 @@ namespace MilvaTemplate.API.Helpers
         public const int Zero = 0;
 
         /// <summary>
-        /// Mail content of injection mails.
-        /// </summary>
-        public static string MailContent { get; } = $"Injection warning from MilvaTemplate.";
-
-        /// <summary>
         /// Name of application.
         /// </summary>
         public const string ApplicationName = "MilvaTemplate";
@@ -95,7 +95,10 @@ namespace MilvaTemplate.API.Helpers
         /// Mail of application.
         /// </summary>
         public const string AppMail = "app@milvasoft.com";
-       
+
+        /// <summary>
+        /// Key of project.
+        /// </summary>
         public const string MilvaTemplateKey = "w!z%C*F-JaNdRgUk";
     }
 }
