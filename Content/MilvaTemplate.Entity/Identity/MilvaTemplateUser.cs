@@ -9,6 +9,11 @@ namespace MilvaTemplate.Entity.Identity
     /// </summary>
     public class MilvaTemplateUser : IdentityUser<Guid>, IFullAuditable<MilvaTemplateUser, Guid, Guid>
     {
+        /// <summary>
+        /// Refresh token of user.
+        /// </summary>
+        public string RefreshToken { get; set; }
+
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public DateTime? LastModificationDate { get; set; }
         public DateTime CreationDate { get; set; }

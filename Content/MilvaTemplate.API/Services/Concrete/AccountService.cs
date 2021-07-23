@@ -1,6 +1,7 @@
 ﻿using Fody;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers.DataAccess.Abstract;
 using Milvasoft.Helpers.Exceptions;
@@ -11,6 +12,7 @@ using MilvaTemplate.Data;
 using MilvaTemplate.Entity.Identity;
 using MilvaTemplate.Localization;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +26,7 @@ namespace MilvaTemplate.API.Services.Concrete
     {
         private readonly UserManager<MilvaTemplateUser> _userManager;
         private readonly SignInManager<MilvaTemplateUser> _signInManager;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
         /// <summary>
         /// Performs constructor injection for repository interfaces used in this service.
@@ -49,6 +52,7 @@ namespace MilvaTemplate.API.Services.Concrete
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _sharedLocalizer = sharedLocalizer;
         }
 
         /// <summary>
@@ -74,7 +78,7 @@ namespace MilvaTemplate.API.Services.Concrete
             //Kimlik doğrulama başarılı ise
             if (signInResult.Succeeded)
             {
-                loginResult.Token = await GenerateTokenWithRoleAsync(user: user, tokenExpireDate);
+                loginResult.Token = (MilvaToken)await GenerateTokenWithRoleAsync(user: user, tokenExpireDate);
 
                 return loginResult;
             }
@@ -93,6 +97,34 @@ namespace MilvaTemplate.API.Services.Concrete
             #endregion
 
             return loginResult;
+        }
+
+        /// <summary>
+        /// Refresh token login for all users.
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
+        public async Task<LoginResultDTO> RefreshTokenLogin(string refreshToken)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+
+            if (user != null)
+            {
+                var token = (MilvaToken)await GenerateTokenWithRoleAsync(user: user, DateTime.Now.AddHours(12));
+
+                user.RefreshToken = token.RefreshToken;
+
+                await _userManager.UpdateAsync(user);
+
+                return new LoginResultDTO
+                {
+                    Token = token,
+                };
+            }
+            return new LoginResultDTO
+            {
+                ErrorMessages = new List<IdentityError>() { new IdentityError { Code = "TokenExpired", Description = _sharedLocalizer["TokenExpired"] } }
+            };
         }
 
         /// <summary>

@@ -14,6 +14,11 @@
             Defines the <see cref="T:MilvaTemplate.Entity.Identity.MilvaTemplateUser" />. This user is used to authentication in MilvaTemplate api.
             </summary>
         </member>
+        <member name="P:MilvaTemplate.Entity.Identity.MilvaTemplateUser.RefreshToken">
+            <summary>
+            Refresh token of user.
+            </summary>
+        </member>
         <member name="T:MilvaTemplate.Entity.SystemLanguage">
             <summary>
             Busines Logic based information : Languages added to the system.

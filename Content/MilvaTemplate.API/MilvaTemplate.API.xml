@@ -250,6 +250,13 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.Controllers.AccountController.RefreshTokenLogin(System.String)">
+            <summary>
+            Refresh token login for all users.
+            </summary>
+            <param name="refreshLogin"></param>
+            <returns></returns>
+        </member>
         <member name="M:MilvaTemplate.API.Controllers.AccountController.LogoutAsync">
             <summary>
             Logout method. This endpoint is accessible for anyone.
@@ -1163,6 +1170,13 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.RefreshTokenLogin(System.String)">
+            <summary>
+            Refresh token login for all users.
+            </summary>
+            <param name="refreshToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.Services.Abstract.IContentService">
             <summary>
             An intermediate layer for data that the interface needs independent from anywhere..
@@ -1204,6 +1218,13 @@
             Login for incoming user. Returns a token if login informations are valid or the user is not lockedout. Otherwise returns the error list.
             </summary>
             <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.RefreshTokenLogin(System.String)">
+            <summary>
+            Refresh token login for all users.
+            </summary>
+            <param name="refreshToken"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.LogoutAsync">

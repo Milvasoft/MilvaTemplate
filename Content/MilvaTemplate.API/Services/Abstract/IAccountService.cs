@@ -21,5 +21,12 @@ namespace MilvaTemplate.API.Services.Abstract
         /// <param name="loginDTO"></param>
         /// <returns></returns>
         Task<LoginResultDTO> LoginAsync(LoginDTO loginDTO);
+
+        /// <summary>
+        /// Refresh token login for all users.
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
+        Task<LoginResultDTO> RefreshTokenLogin(string refreshToken);
     }
 }

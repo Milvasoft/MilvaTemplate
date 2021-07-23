@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers;
+using Milvasoft.Helpers.Extensions;
+using Milvasoft.Helpers.Identity.Concrete;
+using Milvasoft.Helpers.Models.Response;
+using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.API.Helpers;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
@@ -60,6 +64,45 @@ namespace MilvaTemplate.API.Controllers
         public async Task<IActionResult> LoginAsync([FromBody] LoginDTO loginDTO)
         {
             return await _accountService.LoginAsync(loginDTO).GetObjectResponseAsync(_sharedLocalizer["SuccessfullyLoginMessage"]);
+        }
+
+        /// <summary>
+        /// Refresh token login for all users.
+        /// </summary>
+        /// <param name="refreshLogin"></param>
+        /// <returns></returns>
+        [HttpPost("Login/{*refreshLogin}")]
+        [AllowAnonymous]
+        [MValidateStringParameter(10, 1000)]
+        public async Task<IActionResult> RefreshTokenLogin(string refreshLogin)
+        {
+            ObjectResponse<LoginResultDTO> response = new()
+            {
+                Result = await _accountService.RefreshTokenLogin(refreshLogin)
+            };
+
+            if (!response.Result.ErrorMessages.IsNullOrEmpty())
+            {
+
+                response.Message = response.Result.ErrorMessages.DescriptionJoin();
+
+                response.StatusCode = MilvaStatusCodes.Status401Unauthorized;
+                response.Success = false;
+            }
+            else if (response.Result.Token == null)
+            {
+                response.Message = _sharedLocalizer["UnknownLoginProblemMessage"];
+                response.StatusCode = MilvaStatusCodes.Status400BadRequest;
+                response.Success = false;
+            }
+            else
+            {
+                response.Message = _sharedLocalizer["SuccessfullyLoginMessage"];
+                response.StatusCode = MilvaStatusCodes.Status200OK;
+                response.Success = true;
+            }
+
+            return Ok(response);
         }
 
         /// <summary>
