@@ -26,14 +26,18 @@ namespace MilvaTemplate.Data.Concrete
         {
         }
 
-
         /// <summary>
         /// Returns one entity by entity Id from database asynchronously.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="conditionExpression"></param>
+        /// <param name="projectionExpression"></param>
+        /// <param name="tracking"></param>
         /// <returns> The entity found or null. </returns>
-        public override async Task<TEntity> GetByIdAsync(TKey id, Expression<Func<TEntity, bool>> conditionExpression = null)
+        public async Task<TEntity> GetByIdWithAuditAsync(TKey id,
+                                                         Expression<Func<TEntity, bool>> conditionExpression = null,
+                                                         Expression<Func<TEntity, TEntity>> projectionExpression = null,
+                                                         bool tracking = false)
         {
             var mainCondition = CreateKeyEqualityExpression(id, conditionExpression);
 
@@ -45,17 +49,20 @@ namespace MilvaTemplate.Data.Concrete
             else return await _dbContext.Set<TEntity>().SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
         }
 
-
         /// <summary>
         /// Returns one entity which IsDeleted condition is true by entity Id with includes from database asynchronously. If the condition is requested, it also provides that condition. 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="includes"></param>
         /// <param name="conditionExpression"></param>
+        /// <param name="projectionExpression"></param>
+        /// <param name="tracking"></param>
         /// <returns> The entity found or null. </returns>
-        public override async Task<TEntity> GetByIdAsync(TKey id,
+        public async Task<TEntity> GetByIdWithAuditAsync(TKey id,
                                                         Func<IIncludable<TEntity>, IIncludable> includes,
-                                                        Expression<Func<TEntity, bool>> conditionExpression = null)
+                                                        Expression<Func<TEntity, bool>> conditionExpression = null,
+                                                        Expression<Func<TEntity, TEntity>> projectionExpression = null,
+                                                        bool tracking = false)
         {
             var mainCondition = CreateKeyEqualityExpression(id, conditionExpression);
 

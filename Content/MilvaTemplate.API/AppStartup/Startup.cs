@@ -78,13 +78,13 @@ namespace MilvaTemplate.API.AppStartup
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+            services.AddCors();
+
             services.AddControllers();
 
             //services.AddMilvaRedisCaching();
 
             services.AddVersioning();
-
-            services.AddCors();
 
             services.AddIdentity();
 

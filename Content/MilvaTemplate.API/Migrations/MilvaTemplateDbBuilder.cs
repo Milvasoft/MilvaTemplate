@@ -25,18 +25,6 @@ namespace MilvaTemplate.API.Migrations
         {
             var dbContext = app.ApplicationServices.GetRequiredService<MilvaTemplateDbContext>();
 
-            var redisCacheService = app.ApplicationServices.GetRequiredService<IRedisCacheService>();
-
-            try
-            {
-                await redisCacheService.ConnectAsync();
-                if (redisCacheService.IsConnected())
-                    await redisCacheService.FlushDatabaseAsync();
-            }
-            catch (Exception)
-            {
-            }
-
             DataSeed.Services = app.ApplicationServices;
 
             if (Startup.WebHostEnvironment.EnvironmentName == "Production")
@@ -47,6 +35,8 @@ namespace MilvaTemplate.API.Migrations
             await dbContext.Database.MigrateAsync();
 
             DataSeed.ResetAnyway = false;
+
+            //TODO reset methods will be here...
 
             MilvaTemplateDbContext.ActivateSoftDelete();
         }

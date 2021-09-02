@@ -56,7 +56,6 @@ namespace MilvaTemplate.API.AppStartup
             {
                 options.AddPolicy("ApiCorsPolicy", builder =>
                 {
-                    //builder.WithOrigins("https://localhost:3000")
                     builder.AllowAnyOrigin()
                            .AllowAnyMethod()
                            .AllowAnyHeader()

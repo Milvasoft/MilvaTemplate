@@ -26,15 +26,15 @@ namespace MilvaTemplate.Data
         /// <param name="httpContextAccessor"></param>
         /// <param name="auditConfiguration"></param>
         public MilvaTemplateDbContext(DbContextOptions<MilvaTemplateDbContext> options,
-                                IHttpContextAccessor httpContextAccessor,
-                                IAuditConfiguration auditConfiguration) : base(options, httpContextAccessor, auditConfiguration)
+                                      IHttpContextAccessor httpContextAccessor,
+                                      IAuditConfiguration auditConfiguration) : base(options, httpContextAccessor, auditConfiguration)
                                 => _provider = new MilvaEncryptionProvider(_key);
 
         #region DbSets
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-        public DbSet<SystemLanguage> Bills { get; set; }
+        public DbSet<SystemLanguage> SystemLanguages { get; set; }
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
