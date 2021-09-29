@@ -5,15 +5,11 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Milvasoft/Milvasoft/blob/master/LICENSE)  [![NuGet](https://img.shields.io/nuget/v/Milvasoft.Templates.Web.Ef)](https://www.nuget.org/packages/Milvasoft.Helpers/)   [![NuGet](https://img.shields.io/nuget/dt/Milvasoft.Templates.Web.Ef)](https://www.nuget.org/packages/Milvasoft.Templates.Web.Ef/) 
 
 </div>
-
-![](https://i.hizliresim.com/12q7jh2.gif)
-<br></br>
 <h3 align="center">Create ready made project with <a href="https://github.com/Milvasoft/Milvasoft" rel="nofollow" target="_blank" >Milvasoft.Helpers</a></h3>
 <h3 align="center">This template contains integration with PostgreSQL but you can change what you want</h3>
 
 ***
 
-<br></br>
 # How can I create project with CLI?
 
 <ol> 
