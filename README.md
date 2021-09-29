@@ -28,8 +28,9 @@
 <li>Close all Visual Studio instances.</li>
 <li>Open Visual Studio and click "Create New Project". Search for Milva, select template and click next.</li>
 <li>After that, steps are same as create project.</li>
-<li>If you select "Place solution and project in same directory" box, you need add project to solution with "Add New Existing Project")</li>
 <br></br>
+
+> <b>Note:</b>If you select "Place solution and project in same directory" box, you need add project to solution with "Add New Existing Project")</li>
 
 ![Capture](https://user-images.githubusercontent.com/32344242/135268651-227dc8ed-24a1-4e02-bb53-e1af9edd0c36.PNG)
 
