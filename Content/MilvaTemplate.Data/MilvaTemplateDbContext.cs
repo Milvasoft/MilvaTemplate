@@ -13,7 +13,7 @@ namespace MilvaTemplate.Data
     /// <summary>
     /// DbContext class of MilvaTemplate project. This class handles all database operations.
     /// </summary>
-    public class MilvaTemplateDbContext : MilvaDbContextBase<MilvaTemplateUser, MilvaTemplateRole, Guid>
+    public class MilvaTemplateDbContext : MilvaDbContext<MilvaTemplateUser, MilvaTemplateRole, Guid>
     {
 
         private const string _key = "5u8x/A?D(G+KbPeS";
@@ -35,6 +35,7 @@ namespace MilvaTemplate.Data
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
         public DbSet<SystemLanguage> SystemLanguages { get; set; }
+        public DbSet<UserActivityLog> UserActivityLogs { get; set; }
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
@@ -55,26 +56,9 @@ namespace MilvaTemplate.Data
 
             #endregion
 
-            modelBuilder.Entity<MilvaTemplateUser>()
-               .HasOne(p => p.DeleterUser)
-               .WithMany()
-               .HasForeignKey(p => p.DeleterUserId);
-
-            modelBuilder.Entity<MilvaTemplateUser>()
-                .HasOne(p => p.CreatorUser)
-                .WithMany()
-                .HasForeignKey(p => p.CreatorUserId);
-
-            modelBuilder.Entity<MilvaTemplateUser>()
-                .HasOne(p => p.LastModifierUser)
-                .WithMany()
-                .HasForeignKey(p => p.LastModifierUserId);
-
             //modelBuilder.UseEncryption(_provider);
             modelBuilder.ConfigureDecimalProperties();
-            //modelBuilder.IgnoreDefaultRecords();
             modelBuilder.AddIndexToIndelibleEntities();
-            modelBuilder.ConfigureDefaultValue();
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -34,5 +34,25 @@
             Defines the ISO code of that language. (e.g. en-US)
             </summary>
         </member>
+        <member name="T:MilvaTemplate.Entity.UserActivityLog">
+            <summary>
+            Busines Logic based information : User activity log. Which is Add-Update-Delete process.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Entity.UserActivityLog.UserName">
+            <summary>
+            UserName of the user who performed the activity
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Entity.UserActivityLog.Activity">
+            <summary>
+            User performed activity.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.Entity.TableNames">
+            <summary>
+            The reason this class has a nameof(Entity.z) at the beginning of the filename is because we want it to located at the very end of folder.
+            </summary>
+        </member>
     </members>
 </doc>

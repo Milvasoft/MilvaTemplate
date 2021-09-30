@@ -16,5 +16,15 @@ namespace MilvaTemplate.API.Middlewares
         {
             return builder.UseMiddleware<ExceptionMiddleware>();
         }
+
+        /// <summary>
+        /// Extension method of <see cref="ActivityLoggerMiddleware"/> class.
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseActivityLogger(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<ActivityLoggerMiddleware>();
+        }
     }
 }

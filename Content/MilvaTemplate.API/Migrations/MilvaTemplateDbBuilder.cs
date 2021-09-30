@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Milvasoft.Helpers.Caching;
 using MilvaTemplate.API.AppStartup;
 using MilvaTemplate.Data;
-using System;
 using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Migrations
@@ -21,7 +19,7 @@ namespace MilvaTemplate.API.Migrations
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>
-        public static async Task SeedDatabase(this IApplicationBuilder app)
+        public static async Task SeedDatabaseAsync(this IApplicationBuilder app)
         {
             var dbContext = app.ApplicationServices.GetRequiredService<MilvaTemplateDbContext>();
 
@@ -33,8 +31,6 @@ namespace MilvaTemplate.API.Migrations
             await dbContext.Database.EnsureDeletedAsync();
 
             await dbContext.Database.MigrateAsync();
-
-            DataSeed.ResetAnyway = false;
 
             //TODO reset methods will be here...
 

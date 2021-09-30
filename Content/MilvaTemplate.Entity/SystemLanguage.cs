@@ -8,7 +8,7 @@ namespace MilvaTemplate.Entity
     /// <summary>
     /// Busines Logic based information : Languages added to the system.
     /// </summary>
-    [Table("SystemLanguage")]
+    [Table(TableNames.SystemLanguage)]
     public class SystemLanguage : FullAuditableEntity<MilvaTemplateUser, Guid, int>
     {
         /// <summary>

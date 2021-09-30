@@ -37,6 +37,11 @@ namespace MilvaTemplate.API.Helpers
         public static string RootPath { get; } = Environment.CurrentDirectory;
 
         /// <summary>
+        /// Rootpath of application.  
+        /// </summary>
+        public static string JsonFilesPath { get; } = Path.Combine(RootPath, "StaticFiles", "JSON");
+
+        /// <summary>
         /// Allowed file extensions for media files.
         /// </summary>
         public static List<AllowedFileExtensions> AllowedFileExtensions { get; set; }

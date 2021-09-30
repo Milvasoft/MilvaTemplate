@@ -8,4 +8,8 @@
     <DocumentationFile>..\MilvaTemplate.Localization\MilvaTemplate.Localization.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Milvasoft.Helpers" Version="6.6.8" />
+  </ItemGroup>
+
 </Project>

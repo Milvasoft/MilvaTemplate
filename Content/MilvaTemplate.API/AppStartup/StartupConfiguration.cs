@@ -3,7 +3,7 @@ using Milvasoft.Helpers.Encryption.Concrete;
 using Milvasoft.Helpers.FileOperations.Abstract;
 using Milvasoft.Helpers.Models;
 using MilvaTemplate.API.Helpers;
-using System.Globalization;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -77,28 +77,36 @@ namespace MilvaTemplate.API.AppStartup
             await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "connectionstring.Production.json"));
         }
 
+
         /// <summary>
-        /// Fills <c> GlobalConstants.StringBlackList </c> list from stringblacklist.json file.
+        /// Fill constants from json files.
         /// </summary>
         /// <param name="jsonOperations"></param>
         /// <returns></returns>
-        public static async Task FillStringBlacklistAsync(IJsonOperations jsonOperations)
+        public static async Task FillConstansAsync(this IJsonOperations jsonOperations)
         {
-            GlobalConstants.StringBlacklist = await jsonOperations.GetRequiredContentFromCryptedJsonFileAsync<InvalidString>(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "stringblacklist.json"),
-                                                                                                                            GlobalConstants.MilvaTemplateKey,
-                                                                                                                                new CultureInfo("tr-TR"));
+            await jsonOperations.FillAllowedFileExtensionsAsync();
+            await jsonOperations.FillStringBlacklistAsync();
         }
 
         /// <summary>
-        /// Fills <c> GlobalConstants.AllowedFileExtensions </c> list from allowedfileextensions.json file.
+        /// Fills <see cref="GlobalConstants.StringBlacklist"/> list from stringblacklist.json file.
         /// </summary>
         /// <param name="jsonOperations"></param>
         /// <returns></returns>
-        public static async Task FillAllowedFileExtensionsAsync(IJsonOperations jsonOperations)
+        public static async Task FillStringBlacklistAsync(this IJsonOperations jsonOperations)
         {
-            GlobalConstants.AllowedFileExtensions = await jsonOperations.GetRequiredContentFromCryptedJsonFileAsync<AllowedFileExtensions>(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "allowedfileextensions.json"),
-                                                                                                                                            GlobalConstants.MilvaTemplateKey,
-                                                                                                                                                new CultureInfo("tr-TR"));
+            GlobalConstants.StringBlacklist = await jsonOperations.GetCryptedContentAsync<List<InvalidString>>("stringblacklist.json");
+        }
+
+        /// <summary>
+        /// Fills <see cref="GlobalConstants.AllowedFileExtensions"/> list from allowedfileextensions.json file.
+        /// </summary>
+        /// <param name="jsonOperations"></param>
+        /// <returns></returns>
+        public static async Task FillAllowedFileExtensionsAsync(this IJsonOperations jsonOperations)
+        {
+            GlobalConstants.AllowedFileExtensions = await jsonOperations.GetCryptedContentAsync<List<AllowedFileExtensions>>("allowedfileextensions.json");
         }
     }
 }

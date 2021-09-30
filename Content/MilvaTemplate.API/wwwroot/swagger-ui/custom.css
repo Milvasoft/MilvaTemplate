@@ -11,7 +11,7 @@
     border: 2px solid #e09520;
     outline: none;
     box-shadow: none;
-    background: #e09520;
+    background: linear-gradient(90deg, #F38424 0%, #FBC419 36.47%, #7C7C7C 64.97%, #383D3B 100%);
 }
 
 .swagger-ui .info .title small {
@@ -23,7 +23,7 @@
     padding: 2px 4px;
     vertical-align: super;
     border-radius: 57px;
-    background: #e09520;
+    background: linear-gradient(90deg, #383D3B 0%, #7C7C7C 33.45%, #FBC419 68.99%, #F38424 100%);
 }
 
 
@@ -81,7 +81,7 @@
     .swagger-ui .scheme-container {
         margin: 0 0 20px;
         padding: 30px 0;
-        background: #e09520;
+        background: linear-gradient(90deg, #383D3B 0%, #7C7C7C 33.45%, #FBC419 68.99%, #F38424 100%);;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
     }
 

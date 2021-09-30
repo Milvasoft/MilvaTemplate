@@ -13,8 +13,10 @@ using Milvasoft.Helpers.DataAccess.Abstract;
 using Milvasoft.Helpers.DataAccess.Concrete;
 using Milvasoft.Helpers.DataAccess.MilvaContext;
 using Milvasoft.Helpers.DependencyInjection;
+using Milvasoft.Helpers.FileOperations;
 using Milvasoft.Helpers.FileOperations.Abstract;
 using Milvasoft.Helpers.FileOperations.Concrete;
+using Milvasoft.Helpers.Identity.Abstract;
 using Milvasoft.Helpers.Identity.Concrete;
 using Milvasoft.Helpers.Mail;
 using Milvasoft.Helpers.Models.Response;
@@ -31,7 +33,6 @@ using MilvaTemplate.Entity.Identity;
 using MilvaTemplate.Localization;
 using Newtonsoft.Json;
 using System;
-using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Net;
@@ -76,12 +77,7 @@ namespace MilvaTemplate.API.AppStartup
                 //opt.ModelBinderProviders.Insert(0, new JsonModelBinderProvider());
                 opt.SuppressAsyncSuffixInActionNames = false;
                 opt.EnableEndpointRouting = true;
-            }).AddNewtonsoftJson(opt =>
-            {
-                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            }).SetCompatibilityVersion(CompatibilityVersion.Latest)
               .ConfigureApiBehaviorOptions(options =>
               {
                   options.InvalidModelStateResponseFactory = actionContext =>
@@ -95,20 +91,20 @@ namespace MilvaTemplate.API.AppStartup
         /// Configures API versioning.
         /// </summary>
         /// <param name="services"></param>
-        public static void AddMilvaRedisCaching(this IServiceCollection services)
+        public static IServiceCollection AddMilvaRedisCaching(this IServiceCollection services)
         {
             var connectionString = Startup.WebHostEnvironment.EnvironmentName == "Development" ? "127.0.0.1:6379" : "redis";
 
-            var cacheOptions = new RedisCacheServiceOptions(connectionString)
-            {
-                Lifetime = ServiceLifetime.Scoped,
-                ConnectWhenCreatingNewInstance = false
-            };
+            var cacheOptions = new RedisCacheServiceOptions(connectionString);
 
             cacheOptions.ConfigurationOptions.AbortOnConnectFail = false;
-            cacheOptions.ConfigurationOptions.ConnectTimeout = 2000;
+            cacheOptions.ConfigurationOptions.ConnectTimeout = 10000;
+            cacheOptions.ConfigurationOptions.SyncTimeout = 10000;
+            cacheOptions.ConfigurationOptions.ConnectRetry = 1;
+            //cacheOptions.ConfigurationOptions.Ssl = true;
+            //cacheOptions.ConfigurationOptions.SslProtocols = SslProtocols.Tls12;
 
-            services.AddMilvaRedisCaching(cacheOptions);
+            return services.AddMilvaRedisCaching(cacheOptions);
         }
 
         /// <summary>
@@ -158,15 +154,10 @@ namespace MilvaTemplate.API.AppStartup
         /// JWT Token configurations
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="jSONFile"></param>
-        public static void AddJwtBearer(this IServiceCollection services, IJsonOperations jSONFile)
+        /// <param name="jsonOperations"></param>
+        public static void AddJwtBearer(this IServiceCollection services, IJsonOperations jsonOperations)
         {
-            var tokenManagement = jSONFile.GetRequiredSingleContentCryptedFromJsonFileAsync<TokenManagement>(Path.Combine(GlobalConstants.RootPath,
-                                                                                                                          "StaticFiles",
-                                                                                                                          "JSON",
-                                                                                                                          "tokenmanagement.json"),
-                                                                                                             GlobalConstants.MilvaTemplateKey,
-                                                                                                             new CultureInfo("tr-TR")).Result;
+            var tokenManagement = jsonOperations.GetCryptedContentAsync<TokenManagement>("tokenmanagement.json").Result;
 
             services.AddSingleton<ITokenManagement>(tokenManagement);
 
@@ -254,18 +245,35 @@ namespace MilvaTemplate.API.AppStartup
         }
 
         /// <summary>
+        /// Adds json operations to service collection.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IJsonOperations AddJsonOperations(this IServiceCollection services)
+        {
+            var jsonOperationsConfig = new JsonOperationsConfig
+            {
+                EncryptionKey = GlobalConstants.MilvaTemplateKey,
+                BasePath = GlobalConstants.JsonFilesPath
+            };
+
+            services.AddJsonOperations(options: opt =>
+            {
+                opt.BasePath = jsonOperationsConfig.BasePath;
+                opt.EncryptionKey = jsonOperationsConfig.EncryptionKey;
+            });
+
+            return new JsonOperations(jsonOperationsConfig);
+        }
+
+        /// <summary>
         /// Migration database connection clause.
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="jSONFile"></param>
-        public static void AddMilvaTemplateDbContext(this IServiceCollection services, IJsonOperations jSONFile)
+        /// <param name="jsonOperations"></param>
+        public static void AddMilvaTemplateDbContext(this IServiceCollection services, IJsonOperations jsonOperations)
         {
-            string connectionString = jSONFile.GetRequiredSingleContentCryptedFromJsonFileAsync<string>(Path.Combine(GlobalConstants.RootPath,
-                                                                                                                     "StaticFiles",
-                                                                                                                     "JSON",
-                                                                                                                     $"connectionstring.{Startup.WebHostEnvironment.EnvironmentName}.json"),
-                                                                                                        GlobalConstants.MilvaTemplateKey,
-                                                                                                        new CultureInfo("tr-TR")).Result;
+            string connectionString = jsonOperations.GetCryptedContentAsync<string>($"connectionstring.{Startup.WebHostEnvironment.EnvironmentName}.json").Result;
 
             services.AddSingleton<IAuditConfiguration>(new AuditConfiguration(true, true, true, true, true, true));
 

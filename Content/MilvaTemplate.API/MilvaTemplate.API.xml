@@ -55,6 +55,14 @@
             <param name="app"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ApplicationBuilderExtensions.ConfigureAppStartupAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method provides async configure process which configure() called by the runtime.
+            </summary>
+            <param name="app"></param>
+            <param name="serviceCollection"></param>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.AppStartup.Program">
             <summary>
             The main entry point for the application.
@@ -113,14 +121,21 @@
             JWT Token configurations
             </summary>
             <param name="services"></param>
-            <param name="jSONFile"></param>
+            <param name="jsonOperations"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddJsonOperations(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds json operations to service collection.
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
             <summary>
             Migration database connection clause.
             </summary>
             <param name="services"></param>
-            <param name="jSONFile"></param>
+            <param name="jsonOperations"></param>
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -144,9 +159,6 @@
             <summary>
             Application configuration.
             </summary>
-        </member>
-        <member name="F:MilvaTemplate.API.AppStartup.Startup._jsonOperations">
-            <summary> Configuration value. </summary>
         </member>
         <member name="P:MilvaTemplate.API.AppStartup.Startup.WebHostEnvironment">
             <summary> WebHostEnvironment value. </summary>
@@ -176,13 +188,6 @@
             <param name="sharedStringLocalizer"></param>
             <param name="applicationLifetime"></param>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.Startup.ConfigureAppStartupAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            This method provides async configure process which configure() called by the runtime.
-            </summary>
-            <param name="app"></param>
-            <returns></returns>
-        </member>
         <member name="T:MilvaTemplate.API.AppStartup.StartupConfiguration">
             <summary>
             Class in which initial configurations are specified.
@@ -205,16 +210,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillConstansAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+            <summary>
+            Fill constants from json files.
+            </summary>
+            <param name="jsonOperations"></param>
+            <returns></returns>
+        </member>
         <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillStringBlacklistAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
             <summary>
-            Fills <c> GlobalConstants.StringBlackList </c> list from stringblacklist.json file.
+            Fills <see cref="P:MilvaTemplate.API.Helpers.GlobalConstants.StringBlacklist"/> list from stringblacklist.json file.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillAllowedFileExtensionsAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
             <summary>
-            Fills <c> GlobalConstants.AllowedFileExtensions </c> list from allowedfileextensions.json file.
+            Fills <see cref="P:MilvaTemplate.API.Helpers.GlobalConstants.AllowedFileExtensions"/> list from allowedfileextensions.json file.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
@@ -462,6 +474,27 @@
             Allowed extensions for this media type.
             </summary>
         </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MethodContentAttribute">
+            <summary>
+            Specifies that the class or method that this attribute is applied to requires the specified OPS!TON API authorization.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MethodContentAttribute.ActionContent">
+            <summary>
+            The content in which the method performs the transaction.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MethodContentAttribute.LogMessage">
+            <summary>
+            If this value is true, attribute will not add "ActionContent" to Http.Items.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MethodContentAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Performs when action executed.
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MValidateIdParameterAttribute">
             <summary>
             Specifies that the class or method that this attribute is applied to requires the specified the valid id.
@@ -521,6 +554,13 @@
             </summary>
             <param name="minValue"></param>
         </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateDecimalAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="minValue"></param>
+            <param name="maxValue"></param>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateIdAttribute">
             <summary>
             Specifies that the class or property that this attribute is applied to requires the specified the valid id.
@@ -530,6 +570,29 @@
             <summary>
             Constructor that accepts the maximum length of the string.
             </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateListCountAttribute">
+            <summary>
+            Specifies that the class or property that this attribute is applied to requires the specified the valid list count.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateListCountAttribute.#ctor">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateListCountAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="minValue"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateListCountAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="minValue"></param>
+            <param name="maxValue"></param>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateStringAttribute">
             <summary>
@@ -577,6 +640,11 @@
         <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.RootPath">
             <summary>
             Rootpath of application.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.JsonFilesPath">
+            <summary>
+            Rootpath of application.  
             </summary>
         </member>
         <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.AllowedFileExtensions">
@@ -1095,6 +1163,24 @@
             <param name="schema"></param>
             <param name="context"></param>
         </member>
+        <member name="T:MilvaTemplate.API.Middlewares.ActivityLoggerMiddleware">
+            <summary>
+            Checks if the title is suitable for the conditions.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ActivityLoggerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Initializes new instance of <see cref="T:MilvaTemplate.API.Middlewares.ActivityLoggerMiddleware"/>.
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ActivityLoggerMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invokes the method or constructor reflected by this MethodInfo instance.
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.Middlewares.ExceptionMiddleware">
             <summary>
             Catches errors occurring elsewhere in the project.
@@ -1125,14 +1211,16 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.Middlewares.ErrorMiddlewareExtension.UseActivityLogger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Extension method of <see cref="T:MilvaTemplate.API.Middlewares.ActivityLoggerMiddleware"/> class.
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.Migrations.DataSeed">
             <summary>
             Defines the <see cref="T:MilvaTemplate.API.Migrations.DataSeed" />.
-            </summary>
-        </member>
-        <member name="P:MilvaTemplate.API.Migrations.DataSeed.ResetAnyway">
-            <summary>
-            Resets the tables data even if table is not empty when any method called.
             </summary>
         </member>
         <member name="P:MilvaTemplate.API.Migrations.DataSeed.Services">
@@ -1151,7 +1239,7 @@
             Static class that runs while the project is up and running the reset methods to fake data on the tables.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Migrations.MilvaTemplateDbBuilder.SeedDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:MilvaTemplate.API.Migrations.MilvaTemplateDbBuilder.SeedDatabaseAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Seeds database.
             </summary>
@@ -1202,7 +1290,7 @@
             Provides sign-in,sign-up and sign-out process for user.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Concrete.ITokenManagement,Milvasoft.Helpers.DataAccess.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Abstract.ITokenManagement,Milvasoft.Helpers.DataAccess.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
             <summary>
             Performs constructor injection for repository interfaces used in this service.
             </summary>

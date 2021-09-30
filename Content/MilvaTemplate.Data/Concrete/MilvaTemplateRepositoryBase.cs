@@ -6,6 +6,7 @@ using Milvasoft.Helpers.DataAccess.IncludeLibrary;
 using MilvaTemplate.Data.Abstract;
 using MilvaTemplate.Entity.Identity;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -45,8 +46,8 @@ namespace MilvaTemplate.Data.Concrete
             var lastModifierUserPredicate = SelectProperty<MilvaTemplateUser>("LastModifierUser");
 
             if (creatorUserPredicate != null || lastModifierUserPredicate != null)
-                return await _dbContext.Set<TEntity>().IncludeMultiple(i => i.Include(creatorUserPredicate).Include(lastModifierUserPredicate)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
-            else return await _dbContext.Set<TEntity>().SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
+                return await _dbContext.Set<TEntity>().AsTracking(GetQueryTrackingBehavior(tracking)).IncludeMultiple(i => i.Include(creatorUserPredicate).Include(lastModifierUserPredicate)).Select(projectionExpression ?? (entity => entity)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
+            else return await _dbContext.Set<TEntity>().AsTracking(GetQueryTrackingBehavior(tracking)).Select(projectionExpression ?? (entity => entity)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -70,8 +71,8 @@ namespace MilvaTemplate.Data.Concrete
             var lastModifierUserPredicate = SelectProperty<MilvaTemplateUser>("LastModifierUser");
 
             if (creatorUserPredicate != null || lastModifierUserPredicate != null)
-                return await _dbContext.Set<TEntity>().IncludeMultiple(includes).IncludeMultiple(i => i.Include(creatorUserPredicate).Include(lastModifierUserPredicate)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
-            else return await _dbContext.Set<TEntity>().IncludeMultiple(includes).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
+                return await _dbContext.Set<TEntity>().AsTracking(GetQueryTrackingBehavior(tracking)).IncludeMultiple(includes).IncludeMultiple(i => i.Include(creatorUserPredicate).Include(lastModifierUserPredicate)).Select(projectionExpression ?? (entity => entity)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
+            else return await _dbContext.Set<TEntity>().AsTracking(GetQueryTrackingBehavior(tracking)).IncludeMultiple(includes).Select(projectionExpression ?? (entity => entity)).SingleOrDefaultAsync(mainCondition).ConfigureAwait(false);
         }
 
         private static Expression<Func<TEntity, TPropertyType>> SelectProperty<TPropertyType>(string propertyName)

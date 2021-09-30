@@ -5,12 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
-using Milvasoft.Helpers.FileOperations.Abstract;
-using Milvasoft.Helpers.FileOperations.Concrete;
-using MilvaTemplate.API.Helpers;
+using Milvasoft.Helpers.Middlewares;
 using MilvaTemplate.API.Middlewares;
 using MilvaTemplate.Localization;
-using System.Threading.Tasks;
 #endregion
 
 namespace MilvaTemplate.API.AppStartup
@@ -39,8 +36,7 @@ namespace MilvaTemplate.API.AppStartup
     {
         #region Fields
 
-        /// <summary> Configuration value. </summary>
-        private readonly IJsonOperations _jsonOperations;
+        private static IServiceCollection _serviceCollection;
 
         #endregion
 
@@ -63,7 +59,6 @@ namespace MilvaTemplate.API.AppStartup
         public Startup(IWebHostEnvironment env)
         {
             WebHostEnvironment = env;
-            _jsonOperations = new JsonOperations();
         }
 
         /// <summary>
@@ -75,6 +70,7 @@ namespace MilvaTemplate.API.AppStartup
             //Will be remove production.
             //StartupConfiguration.EncryptFile().Wait();
             //StartupConfiguration.DecryptFile().Wait();
+            _serviceCollection = services;
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -88,19 +84,17 @@ namespace MilvaTemplate.API.AppStartup
 
             services.AddIdentity();
 
-            services.AddJwtBearer(_jsonOperations);
+            var jsonOperations = services.AddJsonOperations();
 
-            services.AddMilvaTemplateDbContext(_jsonOperations);
+            services.AddJwtBearer(jsonOperations);
+
+            services.AddMilvaTemplateDbContext(jsonOperations);
 
             services.AddMilvaTemplateRepositories();
 
             services.AddMilvaTemplateServices();
 
             services.AddSwagger();
-
-            StartupConfiguration.FillStringBlacklistAsync(_jsonOperations).Wait();
-
-            services.AddSingleton(GlobalConstants.StringBlacklist);
         }
 
         /// <summary>
@@ -117,9 +111,15 @@ namespace MilvaTemplate.API.AppStartup
             applicationLifetime.ApplicationStopped.Register(OnShutdown);
 
             if (WebHostEnvironment.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
 
+                app.UseMilvaResponseTimeCalculator();
+            }
+
             app.UseRequestLocalization();
+
+            app.UseActivityLogger();
 
             app.UseMilvaTemplateExceptionHandler();
 
@@ -141,23 +141,7 @@ namespace MilvaTemplate.API.AppStartup
 
             app.UseSwagger();
 
-            ConfigureAppStartupAsync(app).Wait();
-        }
-
-        /// <summary>
-        /// This method provides async configure process which configure() called by the runtime.
-        /// </summary>
-        /// <param name="app"></param>
-        /// <returns></returns>
-        public async Task ConfigureAppStartupAsync(IApplicationBuilder app)
-        {
-            //await app.SeedDatabase();
-
-            //await app.LoadLanguageCodesAsync();
-
-            await StartupConfiguration.FillAllowedFileExtensionsAsync(_jsonOperations);
-
-            await StartupConfiguration.FillStringBlacklistAsync(_jsonOperations);
+            app.ConfigureAppStartupAsync(_serviceCollection).Wait();
         }
 
         private void OnShutdown()

@@ -5,27 +5,27 @@ using System;
 namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes
 {
     /// <summary>
-    /// Determines minimum decimal value.
+    /// Specifies that the class or property that this attribute is applied to requires the specified the valid list count.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class MValidateDecimalAttribute : ValidateDecimalAttribute
+    public class MValidateListCountAttribute : ValidateListCountAttribute
     {
         /// <summary>
         /// Constructor of atrribute.
         /// </summary>
-        public MValidateDecimalAttribute() : base(typeof(SharedResource)) { }
+        public MValidateListCountAttribute() : base(typeof(SharedResource)) { }
 
         /// <summary>
         /// Constructor of atrribute.
         /// </summary>
         /// <param name="minValue"></param>
-        public MValidateDecimalAttribute(int minValue) : base(minValue, typeof(SharedResource)) { }
+        public MValidateListCountAttribute(int minValue) : base(minValue, typeof(SharedResource)) { }
 
         /// <summary>
         /// Constructor of atrribute.
         /// </summary>
         /// <param name="minValue"></param>
         /// <param name="maxValue"></param>
-        public MValidateDecimalAttribute(int minValue, int maxValue) : base(minValue, maxValue, typeof(SharedResource)) { }
+        public MValidateListCountAttribute(int minValue, int maxValue) : base(minValue, maxValue, typeof(SharedResource)) { }
     }
 }

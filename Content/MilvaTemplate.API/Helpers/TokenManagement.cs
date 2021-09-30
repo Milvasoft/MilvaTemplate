@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.Identity.Concrete;
+﻿using Milvasoft.Helpers.Identity.Abstract;
 using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 using Newtonsoft.Json;
 
