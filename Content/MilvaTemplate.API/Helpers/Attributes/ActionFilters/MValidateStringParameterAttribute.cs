@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Milvasoft.Helpers.Attributes.ActionFilter;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.Localization;
 using System;
 
@@ -17,7 +18,7 @@ namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters
         public MValidateStringParameterAttribute(int minimumLength, int maximumLength) : base(minimumLength, maximumLength)
         {
             base.ResourceType = typeof(SharedResource);
-            base.MailContent = GlobalConstants.MailContent;
+            base.MailContent = GlobalConstant.MailContent;
         }
 
         /// <summary>

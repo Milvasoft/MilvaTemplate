@@ -8,8 +8,8 @@ using Milvasoft.Helpers.Extensions;
 using Milvasoft.Helpers.Mail;
 using Milvasoft.Helpers.Models.Response;
 using Milvasoft.Helpers.Utils;
-using MilvaTemplate.API.Helpers;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.Localization;
 using Newtonsoft.Json;
 using Serilog;
@@ -48,7 +48,7 @@ namespace MilvaTemplate.API.Middlewares
         {
             var sharedLocalizer = context.RequestServices.GetLocalizerInstance<SharedResource>();
 
-            string message = sharedLocalizer["MiddlewareGeneralErrorMessage"];
+            string message = sharedLocalizer[nameof(ResourceKey.MiddlewareGeneralErrorMessage)];
 
             List<int> errorCodes = new();
 
@@ -82,7 +82,7 @@ namespace MilvaTemplate.API.Middlewares
                 }
                 else
                 {
-                    if (GlobalConstants.RealProduction)
+                    if (GlobalConstant.RealProduction)
                     {
                         if (ex is OverflowException || ex is StackOverflowException) message = sharedLocalizer[nameof(ResourceKey.PleaseEnterAValidValue)];
                         else message = sharedLocalizer[nameof(ResourceKey.AnErrorOccured)];
@@ -128,7 +128,7 @@ namespace MilvaTemplate.API.Middlewares
 
                 var stackTraceFirstLine = sr.ReadLine();
 
-                await mailSender.MilvaSendMailAsync("errors@opsiyonerp.com", "Unhandled Exception From Ops!yon ERP", $"{path}|{ex.Message}|{stackTraceFirstLine}");
+                await mailSender.MilvaSendMailAsync("errors@yours.com", "Unhandled Exception From MilvaTemplate", $"{path}|{ex.Message}|{stackTraceFirstLine}");
             }
         }
     }

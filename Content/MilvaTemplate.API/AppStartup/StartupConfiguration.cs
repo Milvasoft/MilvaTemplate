@@ -2,7 +2,8 @@
 using Milvasoft.Helpers.Encryption.Concrete;
 using Milvasoft.Helpers.FileOperations.Abstract;
 using Milvasoft.Helpers.Models;
-using MilvaTemplate.API.Helpers;
+using MilvaTemplate.API.Helpers.Constants;
+using MilvaTemplate.API.Helpers.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -21,29 +22,29 @@ namespace MilvaTemplate.API.AppStartup
         /// </summary>
         public static void CheckPublicFiles()
         {
-            if (!Directory.Exists(GlobalConstants.MediaLibraryPath))
+            if (!Directory.Exists(GlobalConstant.MediaLibraryPath))
             {
-                Directory.CreateDirectory(GlobalConstants.MediaLibraryPath);
-                Directory.CreateDirectory(GlobalConstants.ImageLibraryPath);
-                Directory.CreateDirectory(GlobalConstants.ARModelLibraryPath);
-                Directory.CreateDirectory(GlobalConstants.VideoLibraryPath);
-                Directory.CreateDirectory(GlobalConstants.DocumentLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.MediaLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.ImageLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.ARModelLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.VideoLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.DocumentLibraryPath);
             }
-            if (!Directory.Exists(GlobalConstants.ImageLibraryPath))
+            if (!Directory.Exists(GlobalConstant.ImageLibraryPath))
             {
-                Directory.CreateDirectory(GlobalConstants.ImageLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.ImageLibraryPath);
             }
-            if (!Directory.Exists(GlobalConstants.ARModelLibraryPath))
+            if (!Directory.Exists(GlobalConstant.ARModelLibraryPath))
             {
-                Directory.CreateDirectory(GlobalConstants.ARModelLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.ARModelLibraryPath);
             }
-            if (!Directory.Exists(GlobalConstants.VideoLibraryPath))
+            if (!Directory.Exists(GlobalConstant.VideoLibraryPath))
             {
-                Directory.CreateDirectory(GlobalConstants.VideoLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.VideoLibraryPath);
             }
-            if (!Directory.Exists(GlobalConstants.DocumentLibraryPath))
+            if (!Directory.Exists(GlobalConstant.DocumentLibraryPath))
             {
-                Directory.CreateDirectory(GlobalConstants.DocumentLibraryPath);
+                Directory.CreateDirectory(GlobalConstant.DocumentLibraryPath);
             }
         }
 
@@ -53,13 +54,13 @@ namespace MilvaTemplate.API.AppStartup
         /// <returns></returns>
         public static async Task EncryptFile()
         {
-            var provider = new MilvaEncryptionProvider(GlobalConstants.MilvaTemplateKey);
+            var provider = new MilvaEncryptionProvider(GlobalConstant.MilvaTemplateKey);
 
-            await provider.EncryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "stringblacklist.json"));
-            await provider.EncryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "allowedfileextensions.json"));
-            await provider.EncryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "tokenmanagement.json"));
-            await provider.EncryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "connectionstring.Development.json"));
-            await provider.EncryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "connectionstring.Production.json"));
+            await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "stringblacklist.json"));
+            await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "allowedfileextensions.json"));
+            await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "tokenmanagement.json"));
+            await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Development.json"));
+            await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Production.json"));
         }
 
         /// <summary>
@@ -68,15 +69,14 @@ namespace MilvaTemplate.API.AppStartup
         /// <returns></returns>
         public static async Task DecryptFile()
         {
-            var provider = new MilvaEncryptionProvider(GlobalConstants.MilvaTemplateKey);
+            var provider = new MilvaEncryptionProvider(GlobalConstant.MilvaTemplateKey);
 
-            await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "stringblacklist.json"));
-            await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "allowedfileextensions.json"));
-            await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "tokenmanagement.json"));
-            await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "connectionstring.Development.json"));
-            await provider.DecryptFileAsync(Path.Combine(GlobalConstants.RootPath, "StaticFiles", "JSON", "connectionstring.Production.json"));
+            await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "stringblacklist.json"));
+            await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "allowedfileextensions.json"));
+            await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "tokenmanagement.json"));
+            await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Development.json"));
+            await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Production.json"));
         }
-
 
         /// <summary>
         /// Fill constants from json files.
@@ -90,23 +90,23 @@ namespace MilvaTemplate.API.AppStartup
         }
 
         /// <summary>
-        /// Fills <see cref="GlobalConstants.StringBlacklist"/> list from stringblacklist.json file.
+        /// Fills <see cref="GlobalConstant.StringBlacklist"/> list from stringblacklist.json file.
         /// </summary>
         /// <param name="jsonOperations"></param>
         /// <returns></returns>
         public static async Task FillStringBlacklistAsync(this IJsonOperations jsonOperations)
         {
-            GlobalConstants.StringBlacklist = await jsonOperations.GetCryptedContentAsync<List<InvalidString>>("stringblacklist.json");
+            GlobalConstant.StringBlacklist = await jsonOperations.GetCryptedContentAsync<List<InvalidString>>("stringblacklist.json");
         }
 
         /// <summary>
-        /// Fills <see cref="GlobalConstants.AllowedFileExtensions"/> list from allowedfileextensions.json file.
+        /// Fills <see cref="GlobalConstant.AllowedFileExtensions"/> list from allowedfileextensions.json file.
         /// </summary>
         /// <param name="jsonOperations"></param>
         /// <returns></returns>
         public static async Task FillAllowedFileExtensionsAsync(this IJsonOperations jsonOperations)
         {
-            GlobalConstants.AllowedFileExtensions = await jsonOperations.GetCryptedContentAsync<List<AllowedFileExtensions>>("allowedfileextensions.json");
+            GlobalConstant.AllowedFileExtensions = await jsonOperations.GetCryptedContentAsync<List<AllowedFileExtensions>>("allowedfileextensions.json");
         }
     }
 }

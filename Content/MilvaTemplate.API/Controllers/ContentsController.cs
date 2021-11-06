@@ -5,12 +5,13 @@ using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers;
 using Milvasoft.Helpers.Enums;
 using MilvaTemplate.API.DTOs;
-using MilvaTemplate.API.Helpers;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.Localization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Controllers
 {
@@ -18,11 +19,11 @@ namespace MilvaTemplate.API.Controllers
     /// Provides get contents which independent anywhere.
     /// </summary>
     /// <returns></returns>
-    [Route(GlobalConstants.FullRoute)]
+    [Route(GlobalConstant.FullRoute)]
     [ApiController]
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "v1.0")]
-    [Authorize(Roles = RoleNames.Administrator)]
+    [Authorize(Roles = RoleName.Administrator)]
     [ConfigureAwait(false)]
     public class ContentsController : ControllerBase
     {
@@ -41,7 +42,7 @@ namespace MilvaTemplate.API.Controllers
         }
 
         /// <summary>
-        /// Gets required content by <paramref name="contentParameters"/>.EntityName.
+        /// Gets required content by contentParameters.EntityName.
         /// </summary>
         /// <param name="contentParameters"></param>
         /// <returns></returns>
@@ -49,13 +50,15 @@ namespace MilvaTemplate.API.Controllers
         [MValidationFilter]
         public async Task<IActionResult> GetRequiredContent([FromBody] List<ContentParameters> contentParameters)
         {
-            var errorMessage = _sharedLocalizer.GetErrorMessage("Content", CrudOperation.GetAll);
-            var contents = await _contentService.GetRequiredContent(contentParameters);
-            return contents.GetObjectResponse(_sharedLocalizer["SuccessfullyOperationMessage"], errorMessage);
+            var contents = await _contentService.GetRequiredContentAsync(contentParameters);
+
+            var errorMessage = _sharedLocalizer.GetErrorMessage(MilvaTemplateStringKey.Content, CrudOperation.GetAll);
+
+            return contents.GetObjectResponse(_sharedLocalizer[nameof(ResourceKey.SuccessfullyOperationMessage)], errorMessage);
         }
 
         /// <summary>
-        /// Gets required content by <paramref name="entityName"/>.
+        /// Gets required content by entityName.
         /// </summary>
         /// <param name="entityName"></param>
         /// <param name="propName"></param>
@@ -64,9 +67,11 @@ namespace MilvaTemplate.API.Controllers
         [MValidateStringParameter(0, 100)]
         public async Task<IActionResult> GetMaxValueOfContent(string entityName, string propName)
         {
-            var errorMessage = _sharedLocalizer.GetErrorMessage("Content", CrudOperation.GetAll);
-            var contents = await _contentService.GetSpecMaxValue(entityName, propName);
-            return contents.GetObjectResponse(_sharedLocalizer["SuccessfullyOperationMessage"], errorMessage);
+            var contents = await _contentService.GetSpecMaxValueAsync(entityName, propName);
+
+            var errorMessage = _sharedLocalizer.GetErrorMessage(MilvaTemplateStringKey.Content, CrudOperation.GetAll);
+
+            return contents.GetObjectResponse(_sharedLocalizer[nameof(ResourceKey.SuccessfullyOperationMessage)], errorMessage);
         }
     }
 }

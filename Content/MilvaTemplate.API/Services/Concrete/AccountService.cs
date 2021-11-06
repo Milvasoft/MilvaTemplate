@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Services.Concrete
 {
@@ -90,10 +91,10 @@ namespace MilvaTemplate.API.Services.Concrete
             await _userManager.AccessFailedAsync(user);
 
             if (signInResult.RequiresTwoFactor)
-                throw new MilvaUserFriendlyException("IdentityRequiresTwoFactor");
+                throw new MilvaUserFriendlyException(nameof(ResourceKey.RequiresTwoFactor));
 
             if (signInResult.IsNotAllowed)
-                throw new MilvaUserFriendlyException("IdentityNotAllowed");
+                throw new MilvaUserFriendlyException(nameof(ResourceKey.NotAllowed));
 
             #endregion
 
@@ -124,7 +125,7 @@ namespace MilvaTemplate.API.Services.Concrete
             }
             return new LoginResultDTO
             {
-                ErrorMessages = new List<IdentityError>() { new IdentityError { Code = "TokenExpired", Description = _sharedLocalizer["TokenExpired"] } }
+                ErrorMessages = new List<IdentityError>() { new IdentityError { Code = nameof(ResourceKey.TokenExpired), Description = _sharedLocalizer[nameof(ResourceKey.TokenExpired)] } }
             };
         }
 

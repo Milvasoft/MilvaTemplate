@@ -2,6 +2,7 @@ using Fody;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MilvaTemplate.API.Helpers.Extensions;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -33,11 +34,13 @@ namespace MilvaTemplate.API.AppStartup
 
                 Log.Information("MilvaTemplate API starting.");
 
-                await CreateWebHostBuilder(args).Build().RunAsync();
+                await Console.Out.WriteAppInfoAsync("Logger created and MilvaTemplate API starting.");
 
+                await CreateWebHostBuilder(args).Build().RunAsync();
             }
             catch (Exception ex)
             {
+                await Console.Out.WriteAppInfoAsync(ex.Message);
                 Log.Fatal(ex, "MilvaTemplate API Host terminated unexpectedly");
             }
             finally

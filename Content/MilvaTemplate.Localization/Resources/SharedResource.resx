@@ -501,4 +501,7 @@
   <data name="AnErrorOccured" xml:space="preserve">
     <value>İşlem sırasında beklenmeyen bir hata oluştu lütfen tekrar deneyiniz. Sorun çözülmezse lütfen teknik ekip ile iletişime geçiniz.</value>
   </data>
+  <data name="TokenExpired" xml:space="preserve">
+    <value>Oturumunuz zaman aşımına uğradı lütfen tekrar giriş yapınız.</value>
+  </data>
 </root>

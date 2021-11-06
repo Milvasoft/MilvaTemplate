@@ -10,6 +10,7 @@ using Milvasoft.Helpers.FileOperations.Concrete;
 using Milvasoft.Helpers.FileOperations.Enums;
 using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.DTOs.AccountDTOs;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.Data;
 using MilvaTemplate.Data.Abstract;
 using MilvaTemplate.Entity.Identity;
@@ -22,6 +23,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Helpers.Extensions
 {
@@ -42,7 +44,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         {
             int maxFileLength = 14000000;
 
-            var allowedFileExtensions = GlobalConstants.AllowedFileExtensions.Find(i => i.FileType == fileType.ToString()).AllowedExtensions;
+            var allowedFileExtensions = GlobalConstant.AllowedFileExtensions.Find(i => i.FileType == fileType.ToString()).AllowedExtensions;
 
             var validationResult = file.ValidateFile(maxFileLength, allowedFileExtensions, fileType);
 
@@ -57,11 +59,11 @@ namespace MilvaTemplate.API.Helpers.Extensions
                     double fileSizeInKB = fileSizeInBytes / 1024;
                     // Convert the KB to MegaBytes (1 MB = 1024 KBytes)
                     double fileSizeInMB = fileSizeInKB / 1024;
-                    throw new MilvaUserFriendlyException("FileIsTooBigMessage", fileSizeInMB.ToString("0.#"));
+                    throw new MilvaUserFriendlyException(nameof(ResourceKey.FileIsTooBigMessage), fileSizeInMB.ToString("0.#"));
                 case FileValidationResult.InvalidFileExtension:
-                    throw new MilvaUserFriendlyException("UnsupportedFileTypeMessage", string.Join(", ", allowedFileExtensions));
+                    throw new MilvaUserFriendlyException(nameof(ResourceKey.UnsupportedFileTypeMessage), string.Join(", ", allowedFileExtensions));
                 case FileValidationResult.NullFile:
-                    throw new MilvaUserFriendlyException("FileCannotBeEmpty"); ;
+                    throw new MilvaUserFriendlyException(nameof(ResourceKey.FileCannotBeEmpty));
             }
         }
 
@@ -75,7 +77,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <returns></returns>
         public static async Task<string> SaveVideoToServerAsync<TEntity, TKey>(this IFormFile file, TEntity entity)
         {
-            string basePath = GlobalConstants.VideoLibraryPath;
+            string basePath = GlobalConstant.VideoLibraryPath;
 
             FormFileOperations.FilesFolderNameCreator imagesFolderNameCreator = CreateVideoFolderNameFromDTO;
 
@@ -83,7 +85,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
 
             int maxFileLength = 140000000;
 
-            var allowedFileExtensions = GlobalConstants.AllowedFileExtensions.Find(i => i.FileType == FileType.Video.ToString()).AllowedExtensions;
+            var allowedFileExtensions = GlobalConstant.AllowedFileExtensions.Find(i => i.FileType == FileType.Video.ToString()).AllowedExtensions;
 
             var validationResult = file.ValidateFile(maxFileLength, allowedFileExtensions, FileType.Video);
 
@@ -98,11 +100,11 @@ namespace MilvaTemplate.API.Helpers.Extensions
                     double fileSizeInKB = fileSizeInBytes / 1024;
                     // Convert the KB to MegaBytes (1 MB = 1024 KBytes)
                     double fileSizeInMB = fileSizeInKB / 1024;
-                    throw new MilvaUserFriendlyException("FileIsTooBigMessage", fileSizeInMB.ToString("0.#"));
+                    throw new MilvaUserFriendlyException(nameof(ResourceKey.FileIsTooBigMessage), fileSizeInMB.ToString("0.#"));
                 case FileValidationResult.InvalidFileExtension:
-                    throw new MilvaUserFriendlyException("UnsupportedFileTypeMessage", string.Join(", ", allowedFileExtensions));
+                    throw new MilvaUserFriendlyException(nameof(ResourceKey.UnsupportedFileTypeMessage), string.Join(", ", allowedFileExtensions));
                 case FileValidationResult.NullFile:
-                    return "";
+                    return string.Empty;
             }
 
             var path = await file.SaveFileToPathAsync(entity, basePath, imagesFolderNameCreator, propertyName);
@@ -123,19 +125,19 @@ namespace MilvaTemplate.API.Helpers.Extensions
             switch (fileType)
             {
                 case FileType.Image:
-                    libraryType = $"{GlobalConstants.RoutePrefix}/ImageLibrary";
+                    libraryType = $"{GlobalConstant.RoutePrefix}/ImageLibrary";
                     break;
                 case FileType.Video:
-                    libraryType = $"{GlobalConstants.RoutePrefix}/VideoLibrary";
+                    libraryType = $"{GlobalConstant.RoutePrefix}/VideoLibrary";
                     break;
                 case FileType.ARModel:
-                    libraryType = $"{GlobalConstants.RoutePrefix}/ARModelLibrary";
+                    libraryType = $"{GlobalConstant.RoutePrefix}/ARModelLibrary";
                     break;
                 case FileType.Audio:
-                    libraryType = $"{GlobalConstants.RoutePrefix}/AudioLibrary";
+                    libraryType = $"{GlobalConstant.RoutePrefix}/AudioLibrary";
                     break;
                 case FileType.Document:
-                    libraryType = $"{GlobalConstants.RoutePrefix}/DocumentLibrary";
+                    libraryType = $"{GlobalConstant.RoutePrefix}/DocumentLibrary";
                     break;
                 default:
                     break;
@@ -204,18 +206,18 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <returns></returns>
         public static string GetLang<TEntity>(this IEnumerable<TEntity> langs, Expression<Func<TEntity, string>> propertyName)
         {
-            var requestedLangId = GetLanguageId(GlobalConstants.DefaultLanguageId);
+            var requestedLangId = GetLanguageId(GlobalConstant.DefaultLanguageId);
 
-            if (langs.IsNullOrEmpty()) return "";
+            if (langs.IsNullOrEmpty()) return string.Empty;
 
             var propName = propertyName.GetPropertyName();
 
             TEntity requestedLang;
 
-            if (requestedLangId != GlobalConstants.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
-                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
+            if (requestedLangId != GlobalConstant.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
+                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstant.DefaultLanguageId);
 
-            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
+            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstant.DefaultLanguageId);
 
             requestedLang ??= langs.FirstOrDefault();
 
@@ -277,7 +279,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
                 if (!pageIndexValue.IsNullOrEmpty())
                 {
                     pageIndex = Convert.ToInt32(pageIndexValue[0]);
-                    if (pageIndex <= GlobalConstants.Zero) throw new MilvaUserFriendlyException("InvalidPageIndexException");
+                    if (pageIndex <= GlobalConstant.Zero) throw new MilvaUserFriendlyException("InvalidPageIndexException");
                 }
                 else
                     throw new MilvaUserFriendlyException("MissingHeaderException", "PageIndex");
@@ -287,7 +289,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
                 if (!itemCountValue.IsNullOrEmpty())
                 {
                     itemCount = Convert.ToInt32(itemCountValue[0]);
-                    if (itemCount <= GlobalConstants.Zero) throw new MilvaUserFriendlyException("InvalidItemRangeException");
+                    if (itemCount <= GlobalConstant.Zero) throw new MilvaUserFriendlyException("InvalidItemRangeException");
                 }
                 else
                     throw new MilvaUserFriendlyException("MissingHeaderException", "ItemCount");
@@ -310,7 +312,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="id"></param>
         public static void CheckContentIsDefaultRecord(this int id)
         {
-            if (id is > GlobalConstants.Zero and < 50) throw new MilvaUserFriendlyException(MilvaException.CannotUpdateOrDeleteDefaultRecord);
+            if (id is > GlobalConstant.Zero and < 50) throw new MilvaUserFriendlyException(MilvaException.CannotUpdateOrDeleteDefaultRecord);
         }
 
         /// <summary>
@@ -322,7 +324,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="idList"></param>
         public static void CheckContentIsDefaultRecord(this List<int> idList)
         {
-            if (idList.Any(i => i is > GlobalConstants.Zero and < 50)) throw new MilvaUserFriendlyException(MilvaException.CannotUpdateOrDeleteDefaultRecord);
+            if (idList.Any(i => i is > GlobalConstant.Zero and < 50)) throw new MilvaUserFriendlyException(MilvaException.CannotUpdateOrDeleteDefaultRecord);
         }
 
         /// <summary>
@@ -331,7 +333,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="id"></param>
         public static bool IsDefaultRecord(this int id)
         {
-            return id is > GlobalConstants.Zero and < 50;
+            return id is > GlobalConstant.Zero and < 50;
         }
 
         #endregion
@@ -366,16 +368,16 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <returns></returns>
         private static string GetLang<TEntity>(this HashSet<TEntity> langs, string propName)
         {
-            var requestedLangId = GetLanguageId(GlobalConstants.DefaultLanguageId);
+            var requestedLangId = GetLanguageId(GlobalConstant.DefaultLanguageId);
 
-            if (langs.IsNullOrEmpty()) return "";
+            if (langs.IsNullOrEmpty()) return string.Empty;
 
             TEntity requestedLang;
 
-            if (requestedLangId != GlobalConstants.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
-                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
+            if (requestedLangId != GlobalConstant.DefaultLanguageId) requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == requestedLangId)
+                                                                                        ?? langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstant.DefaultLanguageId);
 
-            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstants.DefaultLanguageId);
+            else requestedLang = langs.FirstOrDefault(lang => (int)lang.GetType().GetProperty(SystemLanguageIdString).GetValue(lang) == GlobalConstant.DefaultLanguageId);
 
             requestedLang ??= langs.FirstOrDefault();
 
@@ -406,7 +408,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
 
                     for (int i = 0; i < count; i++)
                     {
-                        if (i == GlobalConstants.Zero) enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
+                        if (i == GlobalConstant.Zero) enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
 
                         var currentValue = enumerator.GetType().GetProperty("Current").GetValue(enumerator, null);
 
@@ -415,7 +417,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
                         {
                             var langId = (int)currentValue.GetType().GetProperty("SystemLanguageId").GetValue(currentValue, null);
 
-                            if (langId == GetLanguageId(GlobalConstants.DefaultLanguageId))
+                            if (langId == GetLanguageId(GlobalConstant.DefaultLanguageId))
                             {
                                 obj = currentValue.GetType().GetProperty(propName).GetValue(currentValue, null);
                                 break;
@@ -837,13 +839,13 @@ namespace MilvaTemplate.API.Helpers.Extensions
             dto.CreatorUser = new MilvaTemplateUserDTO
             {
                 Id = entity.CreatorUser?.Id ?? default,
-                UserName = entity.CreatorUser?.UserName ?? ""
+                UserName = entity.CreatorUser?.UserName ?? string.Empty
             };
             dto.LastModificationDate = entity.LastModificationDate;
             dto.LastModifierUser = new MilvaTemplateUserDTO
             {
                 Id = entity.LastModifierUser?.Id ?? default,
-                UserName = entity.LastModifierUser?.UserName ?? ""
+                UserName = entity.LastModifierUser?.UserName ?? string.Empty
             };
             return dto;
         }
@@ -862,17 +864,44 @@ namespace MilvaTemplate.API.Helpers.Extensions
             dto.CreatorUser = new MilvaTemplateUserDTO
             {
                 Id = entity.CreatorUser?.Id ?? default,
-                UserName = entity.CreatorUser?.UserName ?? ""
+                UserName = entity.CreatorUser?.UserName ?? string.Empty
             };
             dto.LastModificationDate = entity.LastModificationDate;
             dto.LastModifierUser = new MilvaTemplateUserDTO
             {
                 Id = entity.LastModifierUser?.Id ?? default,
-                UserName = entity.LastModifierUser?.UserName ?? ""
+                UserName = entity.LastModifierUser?.UserName ?? string.Empty
             };
             return dto;
         }
 
         #endregion
+
+        /// <summary>
+        /// Writes app start information to console.
+        /// </summary>
+        /// <param name="textWriter"></param>
+        /// <param name="message"></param>
+        public static void WriteAppInfo(this TextWriter textWriter, string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            textWriter.Write("\n\n info: ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            textWriter.Write($"{message}");
+        }
+
+        /// <summary>
+        /// Writes app start information to console.
+        /// </summary>
+        /// <param name="textWriter"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static async Task WriteAppInfoAsync(this TextWriter textWriter, string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            await textWriter.WriteAsync("\n\n info: ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            await textWriter.WriteAsync($"{message}");
+        }
     }
 }

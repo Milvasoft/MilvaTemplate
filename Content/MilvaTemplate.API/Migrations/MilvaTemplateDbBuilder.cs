@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MilvaTemplate.API.AppStartup;
+using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.Data;
+using System;
 using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Migrations
@@ -25,16 +26,19 @@ namespace MilvaTemplate.API.Migrations
 
             DataSeed.Services = app.ApplicationServices;
 
-            if (Startup.WebHostEnvironment.EnvironmentName == "Production")
-                await dbContext.Database.EnsureDeletedAsync();
-
             await dbContext.Database.EnsureDeletedAsync();
 
+            await Console.Out.WriteAppInfoAsync("Database deleted. Database creation starting...");
+
             await dbContext.Database.MigrateAsync();
+
+            await Console.Out.WriteAppInfoAsync("Database created. Seed starting...\n");
 
             //TODO reset methods will be here...
 
             dbContext.ActivateSoftDelete();
+
+            await Console.Out.WriteAppInfoAsync("Database seed successfully completed.");
         }
     }
 }

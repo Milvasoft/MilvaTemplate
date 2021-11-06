@@ -3,7 +3,7 @@ using Milvasoft.Helpers;
 using Milvasoft.Helpers.Exceptions;
 using Milvasoft.Helpers.Extensions;
 using MilvaTemplate.API.DTOs;
-using MilvaTemplate.API.Helpers;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.Data;
@@ -39,7 +39,7 @@ namespace MilvaTemplate.API.Services.Concrete
         /// </summary>
         /// <param name="contentParameterList"></param>
         /// <returns></returns>
-        public async Task<List<Contents>> GetRequiredContent(List<ContentParameters> contentParameterList)
+        public async Task<List<Contents>> GetRequiredContentAsync(List<ContentParameters> contentParameterList)
         {
             List<Contents> allContents = new();
 
@@ -119,7 +119,7 @@ namespace MilvaTemplate.API.Services.Concrete
                         }
                         else if (t.Name.Contains("String"))
                         {
-                            return "";
+                            return string.Empty;
                         }
                         else
                         {
@@ -127,7 +127,7 @@ namespace MilvaTemplate.API.Services.Concrete
                         }
                     }
 
-                    if (count > GlobalConstants.Zero)
+                    if (count > GlobalConstant.Zero)
                     {
                         var langPropName = $"{type.Name}Langs";
 
@@ -135,7 +135,7 @@ namespace MilvaTemplate.API.Services.Concrete
 
                         for (int i = 0; i < count; i++)
                         {
-                            if (i == GlobalConstants.Zero) enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
+                            if (i == GlobalConstant.Zero) enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
                             var item = enumerator.GetType().GetProperty("Current").GetValue(enumerator, null);
 
                             PropertyInfo p1 = null;
@@ -204,7 +204,7 @@ namespace MilvaTemplate.API.Services.Concrete
 
         private static readonly ImmutableList<string> ValidMaxValuesEntities = new List<string>
         {
-            "",
+            string.Empty,
         }.ToImmutableList();
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace MilvaTemplate.API.Services.Concrete
         /// <param name="entityName"></param>
         /// <param name="propName"></param>
         /// <returns></returns>
-        public async Task<decimal> GetSpecMaxValue(string entityName, string propName)
+        public async Task<decimal> GetSpecMaxValueAsync(string entityName, string propName)
         {
             if (!ValidMaxValuesEntities.Contains(entityName)) throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 

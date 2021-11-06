@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MilvaTemplate.API.Helpers
+namespace MilvaTemplate.API.Helpers.Models
 {
     /// <summary>
     /// Allowed file extensions for media files.

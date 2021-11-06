@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Milvasoft.Helpers.Utils;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
+using System.Net.Http;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters
 {
@@ -34,21 +35,24 @@ namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters
         /// <param name="context"></param>
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (!string.IsNullOrEmpty(ActionContent))
+            if (!string.IsNullOrWhiteSpace(ActionContent))
             {
-                var localizer = context.HttpContext.RequestServices.GetService<IStringLocalizer<SharedResource>>();
+                var sharedLocalizer = context.HttpContext.RequestServices.GetService<IStringLocalizer<SharedResource>>();
 
                 var requestMethod = context.HttpContext.Request.Method;
-                if (HttpMethods.IsPost(requestMethod) || HttpMethods.IsPut(requestMethod) || HttpMethods.IsDelete(requestMethod))
+
+                if (requestMethod == HttpMethod.Put.ToString() || requestMethod == HttpMethod.Post.ToString() || requestMethod == HttpMethod.Delete.ToString())
                 {
-                    var defaultLanguageIsoCode = HelperExtensions.LanguageIdIsoPairs.FirstOrDefault(i => i.Value == GlobalConstants.DefaultLanguageId).Key;
+                    var defaultLanguageIsoCode = HelperExtensions.LanguageIdIsoPairs.FirstOrDefault(i => i.Value == GlobalConstant.DefaultLanguageId).Key;
 
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("tr-TR");
+                    if (!string.IsNullOrWhiteSpace(defaultLanguageIsoCode))
+                        CultureInfo.CurrentCulture = new CultureInfo(defaultLanguageIsoCode);
 
-                    var actionContent = LogMessage ? localizer[ActionContent]
-                                                   : localizer[$"LocalizedEntityName{ActionContent}"] + " " + localizer[$"Action{requestMethod}"];
+                    var actionContent = LogMessage ? sharedLocalizer[ActionContent]
+                                                   : sharedLocalizer[$"{LocalizerKeys.LocalizedEntityName}{ActionContent}"] + " "
+                                                        + sharedLocalizer[$"{MilvaTemplateStringKey.Action}{requestMethod}"];
 
-                    context.HttpContext.Items.Add(new KeyValuePair<object, object>("ActionContent", actionContent));
+                    context.HttpContext.Items.Add(new KeyValuePair<object, object>(nameof(ActionContent), actionContent));
                 }
             }
 

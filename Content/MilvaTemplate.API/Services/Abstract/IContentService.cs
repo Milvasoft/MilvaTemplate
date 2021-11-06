@@ -14,7 +14,7 @@ namespace MilvaTemplate.API.Services.Abstract
         /// </summary>
         /// <param name="contentParameterList"></param>
         /// <returns></returns>
-        Task<List<Contents>> GetRequiredContent(List<ContentParameters> contentParameterList);
+        Task<List<Contents>> GetRequiredContentAsync(List<ContentParameters> contentParameterList);
 
         #region SpecMaxValues
 
@@ -24,7 +24,7 @@ namespace MilvaTemplate.API.Services.Abstract
         /// <param name="entityName"></param>
         /// <param name="propName"></param>
         /// <returns></returns>
-        Task<decimal> GetSpecMaxValue(string entityName, string propName);
+        Task<decimal> GetSpecMaxValueAsync(string entityName, string propName);
 
         #endregion
     }

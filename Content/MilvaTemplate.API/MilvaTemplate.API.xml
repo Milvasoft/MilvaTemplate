@@ -219,32 +219,22 @@
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillStringBlacklistAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
             <summary>
-            Fills <see cref="P:MilvaTemplate.API.Helpers.GlobalConstants.StringBlacklist"/> list from stringblacklist.json file.
+            Fills <see cref="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.StringBlacklist"/> list from stringblacklist.json file.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillAllowedFileExtensionsAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
             <summary>
-            Fills <see cref="P:MilvaTemplate.API.Helpers.GlobalConstants.AllowedFileExtensions"/> list from allowedfileextensions.json file.
+            Fills <see cref="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.AllowedFileExtensions"/> list from allowedfileextensions.json file.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.Controllers.AccountController">
             <summary>
-            This controller uses the properties of the .NET core Identity library . We can call this the controller where API's lease agreements are made.
+            This controller uses the properties of the .NET core Identity library. We can call this the controller where API's lease agreements are made.
             </summary>
-            
-            <remarks>
-            <para><b>EN:</b> </para>
-            <para> This controller uses the properties of the .NET core Identity library . We can call this the controller where API's lease agreements are made.</para> 
-            <br></br>
-            <para><b>TR:</b></para>
-            <para>Ops!yon projesinin giriş çıkış (Login Logout) işlemleri ile ilgili yönetimini sağlar.</para>
-            
-            </remarks>
-            
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Controllers.AccountController.#ctor(Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource},MilvaTemplate.API.Services.Abstract.IAccountService)">
@@ -290,14 +280,14 @@
         </member>
         <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
             <summary>
-            Gets required content by <paramref name="contentParameters"/>.EntityName.
+            Gets required content by contentParameters.EntityName.
             </summary>
             <param name="contentParameters"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetMaxValueOfContent(System.String,System.String)">
             <summary>
-            Gets required content by <paramref name="entityName"/>.
+            Gets required content by entityName.
             </summary>
             <param name="entityName"></param>
             <param name="propName"></param>
@@ -459,21 +449,6 @@
             Specification object.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.Helpers.AllowedFileExtensions">
-            <summary>
-            Allowed file extensions for media files.
-            </summary>
-        </member>
-        <member name="P:MilvaTemplate.API.Helpers.AllowedFileExtensions.FileType">
-            <summary>
-            File type of media file.
-            </summary>
-        </member>
-        <member name="P:MilvaTemplate.API.Helpers.AllowedFileExtensions.AllowedExtensions">
-            <summary>
-            Allowed extensions for this media type.
-            </summary>
-        </member>
         <member name="T:MilvaTemplate.API.Helpers.Attributes.ActionFilters.MethodContentAttribute">
             <summary>
             Specifies that the class or method that this attribute is applied to requires the specified OPS!TON API authorization.
@@ -612,107 +587,112 @@
             <param name="minimumLength">The minimum length, inclusive.  It may not be negative.</param>
             <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
         </member>
-        <member name="T:MilvaTemplate.API.Helpers.GlobalConstants">
+        <member name="T:MilvaTemplate.API.Helpers.Constants.GlobalConstant">
             <summary>
             Global constants.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RoutePrefix">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RoutePrefix">
             <summary>
             Route prefix of api.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RouteBase">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RouteBase">
             <summary>
             Base route path of api.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.FullRoute">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.FullRoute">
             <summary>
-            Full route path of api. It includes <see cref="F:MilvaTemplate.API.Helpers.GlobalConstants.RouteBase"/> and controller name. 
+            Full route path of api. It includes <see cref="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RouteBase"/> and controller name. 
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.RoutePrefixAndVersion">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RoutePrefixAndVersion">
             <summary>
             Base route with "/" at the beginning.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.RootPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RootPath">
             <summary>
-            Rootpath of application.
+            Json files path.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.JsonFilesPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.JsonFilesPath">
             <summary>
             Rootpath of application.  
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.AllowedFileExtensions">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.AllowedFileExtensions">
             <summary>
             Allowed file extensions for media files.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.StringBlacklist">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.StringBlacklist">
             <summary>
             Invalid strings for prevent hacking or someting ;)
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MediaLibraryPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.MediaLibraryPath">
             <summary>
             Path of "Media Library" folder in wwwroot folder.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.ImageLibraryPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.ImageLibraryPath">
             <summary>
             Path of "Image Library" folder in wwwroot folder.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.ARModelLibraryPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.ARModelLibraryPath">
             <summary>
             Path of "ARModel Library" folder in wwwroot folder.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.VideoLibraryPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.VideoLibraryPath">
             <summary>
             Path of "Video Library" folder in wwwroot folder.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.DocumentLibraryPath">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.DocumentLibraryPath">
             <summary>
             Path of "Video Library" folder in wwwroot folder.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.MailContent">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.MailContent">
             <summary>
             Mail content of injection mails.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.Helpers.GlobalConstants.DefaultLanguageId">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.DefaultLanguageId">
             <summary>
             Default language id of system.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.Zero">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.Zero">
             <summary>
             Zero
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.ApplicationName">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.ApplicationName">
             <summary>
             Name of application.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.AppMail">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.AppMail">
             <summary>
             Mail of application.
             </summary>
         </member>
-        <member name="F:MilvaTemplate.API.Helpers.GlobalConstants.MilvaTemplateKey">
+        <member name="F:MilvaTemplate.API.Helpers.Constants.GlobalConstant.MilvaTemplateKey">
             <summary>
             Key of project.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.Helpers.RoleNames">
+        <member name="T:MilvaTemplate.API.Helpers.Constants.MilvaTemplateStringKey">
+            <summary>
+            Constants of localizer keys.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Constants.RoleName">
             <summary>
             Constants of MilvaTemplate roles.
             </summary>
@@ -1023,6 +1003,33 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfo(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes app start information to console.
+            </summary>
+            <param name="textWriter"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfoAsync(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes app start information to console.
+            </summary>
+            <param name="textWriter"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.MilvaLazy`1">
+            <summary>
+            Custom <see cref="T:System.Lazy`1"/> class.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaLazy`1.#ctor(System.IServiceProvider)">
+            <summary>
+            Constructor of <see cref="T:MilvaTemplate.API.Helpers.MilvaLazy`1"/>.
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.MilvaTemplateLogger">
             <summary>
             The 'option' project logger class.
@@ -1129,6 +1136,21 @@
             <param name="exception"></param>
             <param name="messageTemplate"></param>
             <param name="propertyValues"></param>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Models.AllowedFileExtensions">
+            <summary>
+            Allowed file extensions for media files.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Models.AllowedFileExtensions.FileType">
+            <summary>
+            File type of media file.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Models.AllowedFileExtensions.AllowedExtensions">
+            <summary>
+            Allowed extensions for this media type.
+            </summary>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.Swagger.CustomAttributeOperationFilter">
             <summary>
@@ -1302,14 +1324,14 @@
             An intermediate layer for data that the interface needs independent from anywhere..
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
             <summary>
             Gets required content by <paramref name="contentParameterList"/>.EntityName.
             </summary>
             <param name="contentParameterList"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetSpecMaxValue(System.String,System.String)">
+        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetSpecMaxValueAsync(System.String,System.String)">
             <summary>
             Gets the requested property's(<paramref name="propName"/>) max value in requested entity by <paramref name="entityName"/>.
             </summary>
@@ -1364,19 +1386,50 @@
             </summary>
             <param name="dbContext"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
             <summary>
             Gets required content by <paramref name="contentParameterList"/>.EntityName.
             </summary>
             <param name="contentParameterList"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetSpecMaxValue(System.String,System.String)">
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetSpecMaxValueAsync(System.String,System.String)">
             <summary>
             Gets the requested property's(<paramref name="propName"/>) max value in requested entity by <paramref name="entityName"/>.
             </summary>
             <param name="entityName"></param>
             <param name="propName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Shhecret.API.Controllers.DeveloperOpsController">
+            <summary>
+            Provides competition's CRUD operations for admin and competition's operations for app users.
+            </summary>
+        </member>
+        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},MilvaTemplate.API.Services.Abstract.IAccountService,Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole})">
+            <summary>
+            Initializes new instances of <see cref="T:Shhecret.API.Controllers.DeveloperOpsController"/>.
+            </summary>
+            <param name="userManager"></param>
+            <param name="accountService"></param>
+            <param name="roleManager"></param>
+        </member>
+        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.SwitchAppEnv">
+            <summary>
+            Switch environment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.GetAnyAdminToken">
+            <summary>
+            Return any user token.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.ResetEntities">
+            <summary>
+            Reset database.
+            </summary>
             <returns></returns>
         </member>
     </members>

@@ -1,15 +1,16 @@
 ﻿using Milvasoft.Helpers.Models;
 using MilvaTemplate.API.AppStartup;
+using MilvaTemplate.API.Helpers.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MilvaTemplate.API.Helpers
+namespace MilvaTemplate.API.Helpers.Constants
 {
     /// <summary>
     /// Global constants.
     /// </summary>
-    public static class GlobalConstants
+    public static class GlobalConstant
     {
         /// <summary>
         /// Route prefix of api.
@@ -32,7 +33,7 @@ namespace MilvaTemplate.API.Helpers
         public const string RoutePrefixAndVersion = "/" + RoutePrefix + "/" + "v{version:apiVersion}";
 
         /// <summary>
-        /// Rootpath of application.
+        /// Json files path.
         /// </summary>
         public static string RootPath { get; } = Environment.CurrentDirectory;
 
@@ -99,7 +100,7 @@ namespace MilvaTemplate.API.Helpers
         /// <summary>
         /// Mail of application.
         /// </summary>
-        public const string AppMail = "app@milvasoft.com";
+        public const string AppMail = "app@yourdomain.com";
 
         /// <summary>
         /// Key of project.

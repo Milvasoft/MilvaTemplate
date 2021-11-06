@@ -23,7 +23,7 @@ namespace MilvaTemplate.API.DTOs
         /// If order by column requested then Property name of entity.
         /// </summary>
         [MValidateString(0, 200)]
-        public string OrderByProperty { get; set; } = "";
+        public string OrderByProperty { get; set; } = string.Empty;
 
         /// <summary>
         /// If order by column requested then ascending or descending.

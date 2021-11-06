@@ -1060,6 +1060,15 @@ namespace MilvaTemplate.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oturumunuz zaman aşımına uğradı lütfen tekrar giriş yapınız..
+        /// </summary>
+        public static string TokenExpired {
+            get {
+                return ResourceManager.GetString("TokenExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geçersiz kimlik bilgileri nedeniyle erişim engellendi..
         /// </summary>
         public static string Unauthorized {

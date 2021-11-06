@@ -575,6 +575,11 @@
               Looks up a localized string similar to Token üretilemedi..
             </summary>
         </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.TokenExpired">
+            <summary>
+              Looks up a localized string similar to Oturumunuz zaman aşımına uğradı lütfen tekrar giriş yapınız..
+            </summary>
+        </member>
         <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Unauthorized">
             <summary>
               Looks up a localized string similar to Geçersiz kimlik bilgileri nedeniyle erişim engellendi..

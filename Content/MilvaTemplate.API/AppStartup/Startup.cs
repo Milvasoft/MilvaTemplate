@@ -6,8 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers.Middlewares;
+using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.API.Middlewares;
 using MilvaTemplate.Localization;
+using System;
 #endregion
 
 namespace MilvaTemplate.API.AppStartup
@@ -15,7 +17,7 @@ namespace MilvaTemplate.API.AppStartup
     /*
      
      TODO What to do in step by step;
-        - Check the GlobalConstants.cs for unnecessary variables for this project.
+        - Check the GlobalConstant.cs for unnecessary variables for this project.
         - Check the HelperExtensions.cs for unnecessary extensions for this project.
         - Check services and middlewares in this file.
         - Change the running port on IIS of the api in launchsetting.json.
@@ -72,6 +74,8 @@ namespace MilvaTemplate.API.AppStartup
             //StartupConfiguration.DecryptFile().Wait();
             _serviceCollection = services;
 
+            Console.Out.WriteAppInfo("Service collection registration starting...");
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddCors();
@@ -95,6 +99,8 @@ namespace MilvaTemplate.API.AppStartup
             services.AddMilvaTemplateServices();
 
             services.AddSwagger();
+
+            Console.Out.WriteAppInfo("All services registered to service collection.");
         }
 
         /// <summary>
@@ -142,6 +148,9 @@ namespace MilvaTemplate.API.AppStartup
             app.UseSwagger();
 
             app.ConfigureAppStartupAsync(_serviceCollection).Wait();
+
+            Console.Out.WriteAppInfo($"Hosting environment : {WebHostEnvironment.EnvironmentName}");
+            Console.Out.WriteAppInfo($"Application started. Press Ctrl+C to shut down.");
         }
 
         private void OnShutdown()

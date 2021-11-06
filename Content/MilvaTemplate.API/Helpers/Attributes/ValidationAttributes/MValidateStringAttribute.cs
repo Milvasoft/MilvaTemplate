@@ -1,4 +1,5 @@
 ﻿using Milvasoft.Helpers.Attributes.Validation;
+using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.Localization;
 using System;
 
@@ -16,7 +17,7 @@ namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes
         /// <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
         public MValidateStringAttribute(int maximumLength) : base(maximumLength)
         {
-            base.MailContent = GlobalConstants.MailContent;
+            base.MailContent = GlobalConstant.MailContent;
             base.ResourceType = typeof(SharedResource);
         }
 
@@ -27,7 +28,7 @@ namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes
         /// <param name="maximumLength">The maximum length, inclusive.  It may not be negative.</param>
         public MValidateStringAttribute(int minimumLength, int maximumLength) : base(minimumLength, maximumLength)
         {
-            base.MailContent = GlobalConstants.MailContent;
+            base.MailContent = GlobalConstant.MailContent;
             base.ResourceType = typeof(SharedResource);
         }
     }

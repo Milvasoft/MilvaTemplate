@@ -22,7 +22,8 @@ using Milvasoft.Helpers.Mail;
 using Milvasoft.Helpers.Models.Response;
 using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.Helpers;
-using MilvaTemplate.API.Helpers.Identity;
+using MilvaTemplate.API.Helpers.Constants;
+using MilvaTemplate.API.Helpers.Models;
 using MilvaTemplate.API.Helpers.Swagger;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.API.Services.Concrete;
@@ -39,6 +40,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.AppStartup
 {
@@ -172,7 +174,7 @@ namespace MilvaTemplate.API.AppStartup
                     return httpContext.RequestServices.GetRequiredService<IStringLocalizer<SharedResource>>();
                 }
 
-                Task ReturnResponse(HttpContext httpContext, string localizerKey, int statusCode)
+                Task ReturnResponseAsync(HttpContext httpContext, string localizerKey, int statusCode)
                 {
                     if (!httpContext.Response.HasStarted)
                     {
@@ -185,7 +187,7 @@ namespace MilvaTemplate.API.AppStartup
                             StatusCode = statusCode
                         };
 
-                        httpContext.Response.ContentType = "application/json";
+                        httpContext.Response.ContentType = MimeTypeNames.ApplicationJson;
                         httpContext.Response.StatusCode = MilvaStatusCodes.Status200OK;
                         return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(validationResponse));
                     }
@@ -197,35 +199,35 @@ namespace MilvaTemplate.API.AppStartup
                     //Token içinde name kontrol etme
                     OnTokenValidated = (context) =>
                     {
-                        if (string.IsNullOrEmpty(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
+                        if (string.IsNullOrWhiteSpace(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
                         {
                             var localizer = GetLocalizerInstance(context.HttpContext);
 
-                            context.Fail(localizer["Unauthorized"]);
-                            return ReturnResponse(context.HttpContext, "Unauthorized", MilvaStatusCodes.Status401Unauthorized);
+                            context.Fail(localizer[nameof(ResourceKey.Unauthorized)]);
+                            return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
                         }
 
                         return Task.CompletedTask;
                     },
                     OnForbidden = context =>
                     {
-                        return ReturnResponse(context.HttpContext, "Forbidden", MilvaStatusCodes.Status403Forbidden);
+                        return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Forbidden), MilvaStatusCodes.Status403Forbidden);
                     },
                     OnChallenge = context =>
                     {
                         // Skip the default logic.
                         context.HandleResponse();
 
-                        return ReturnResponse(context.HttpContext, "Unauthorized", MilvaStatusCodes.Status401Unauthorized);
+                        return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
                     },
                     OnAuthenticationFailed = context =>
                     {
-                        string localizerKey = "Unauthorized";
+                        string localizerKey = nameof(ResourceKey.Unauthorized);
 
                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                            localizerKey = "TokenExpired";
+                            localizerKey = nameof(ResourceKey.TokenExpired);
 
-                        return ReturnResponse(context.HttpContext, localizerKey, MilvaStatusCodes.Status401Unauthorized);
+                        return ReturnResponseAsync(context.HttpContext, localizerKey, MilvaStatusCodes.Status401Unauthorized);
                     }
                 };
 
@@ -253,8 +255,8 @@ namespace MilvaTemplate.API.AppStartup
         {
             var jsonOperationsConfig = new JsonOperationsConfig
             {
-                EncryptionKey = GlobalConstants.MilvaTemplateKey,
-                BasePath = GlobalConstants.JsonFilesPath
+                EncryptionKey = GlobalConstant.MilvaTemplateKey,
+                BasePath = GlobalConstant.JsonFilesPath
             };
 
             services.AddJsonOperations(options: opt =>
@@ -305,13 +307,15 @@ namespace MilvaTemplate.API.AppStartup
             services.AddHttpClient();
             services.AddHttpContextAccessor();
 
-            services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstants.AppMail,
-                                                                        new NetworkCredential(GlobalConstants.AppMail, ""),
+            services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstant.AppMail,
+                                                                        new NetworkCredential(GlobalConstant.AppMail, string.Empty),
                                                                         587,
-                                                                        "mail.milvasoft.com"));
+                                                                        "mail.yourdomain.com"));
 
             //Validation hatalarını optimize ettiğimiz için .net tarafından hata fırlatılmasını engelliyor.
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+            services.AddTransient(typeof(Lazy<>), typeof(MilvaLazy<>));
 
             #region Services
 

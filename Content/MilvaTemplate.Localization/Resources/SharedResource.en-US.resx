@@ -525,4 +525,7 @@
   <data name="AnErrorOccured" xml:space="preserve">
     <value>An unexpected error occurred during the process, please try again. If the problem is not resolved, please contact the technical team.</value>
   </data>
+  <data name="TokenExpired" xml:space="preserve">
+    <value>Your session has timed out, please login again.</value>
+  </data>
 </root>
