@@ -51,7 +51,7 @@ namespace MilvaTemplate.API.Middlewares
 
                         var userActivityLogRepository = (IMilvaTemplateRepositoryBase<UserActivityLog, Guid>)httpContext.RequestServices.GetService(typeof(IMilvaTemplateRepositoryBase<UserActivityLog, Guid>));
 
-                        _ = userActivityLogRepository.AddAsync(new UserActivityLog
+                        await userActivityLogRepository.AddAsync(new UserActivityLog
                         {
                             UserName = username,
                             Activity = $"{actionContent}"

@@ -8,6 +8,7 @@ using Milvasoft.Helpers.Exceptions;
 using Milvasoft.Helpers.Extensions;
 using Milvasoft.Helpers.FileOperations.Concrete;
 using Milvasoft.Helpers.FileOperations.Enums;
+using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.Data;
 using MilvaTemplate.Data.Abstract;
@@ -509,25 +510,23 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="condition"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)> PreparePaginationDTO<TEntity, TKey>(this IMilvaTemplateRepositoryBase<TEntity, TKey> repository,
-                                                                                                                                         int pageIndex,
-                                                                                                                                         int requestedItemCount,
-                                                                                                                                         string orderByProperty = null,
-                                                                                                                                         bool orderByAscending = false,
-                                                                                                                                         Expression<Func<TEntity, bool>> condition = null,
-                                                                                                                                         Func<IIncludable<TEntity>, IIncludable> includes = null)
+        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)>
+            PreparePagination<TEntity, TKey>(this IMilvaTemplateRepositoryBase<TEntity, TKey> repository,
+                                             int pageIndex,
+                                             int requestedItemCount,
+                                             string orderByProperty = null,
+                                             bool orderByAscending = false,
+                                             Expression<Func<TEntity, bool>> condition = null,
+                                             Func<IIncludable<TEntity>, IIncludable> includes = null)
             where TKey : struct, IEquatable<TKey>
             where TEntity : class, IBaseEntity<TKey>
-        {
-
-            return await PreparePaginationDTO<IMilvaTemplateRepositoryBase<TEntity, TKey>, TEntity, TKey>(repository,
-                                                                                                    pageIndex,
-                                                                                                    requestedItemCount,
-                                                                                                    orderByProperty,
-                                                                                                    orderByAscending,
-                                                                                                    condition,
-                                                                                                    includes);
-        }
+            => await PreparePagination<IMilvaTemplateRepositoryBase<TEntity, TKey>, TEntity, TKey>(repository,
+                                                                                                   pageIndex,
+                                                                                                   requestedItemCount,
+                                                                                                   orderByProperty,
+                                                                                                   orderByAscending,
+                                                                                                   condition,
+                                                                                                   includes);
 
         /// <summary>
         /// Prepares pagination dto according to pagination parameters.
@@ -542,24 +541,23 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="condition"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)> PreparePaginationDTO<TEntity, TKey>(this IMilvaTemplateRepositoryBase<TEntity, TKey> repository,
-                                                                                                                                         int pageIndex,
-                                                                                                                                         int requestedItemCount,
-                                                                                                                                         Expression<Func<TEntity, object>> orderByKeySelector = null,
-                                                                                                                                         bool orderByAscending = false,
-                                                                                                                                         Expression<Func<TEntity, bool>> condition = null,
-                                                                                                                                         Func<IIncludable<TEntity>, IIncludable> includes = null)
+        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)>
+            PreparePagination<TEntity, TKey>(this IMilvaTemplateRepositoryBase<TEntity, TKey> repository,
+                                             int pageIndex,
+                                             int requestedItemCount,
+                                             Expression<Func<TEntity, object>> orderByKeySelector = null,
+                                             bool orderByAscending = false,
+                                             Expression<Func<TEntity, bool>> condition = null,
+                                             Func<IIncludable<TEntity>, IIncludable> includes = null)
             where TKey : struct, IEquatable<TKey>
             where TEntity : class, IBaseEntity<TKey>
-        {
-            return await PreparePaginationDTO<IMilvaTemplateRepositoryBase<TEntity, TKey>, TEntity, TKey>(repository,
-                                                                                                    pageIndex,
-                                                                                                    requestedItemCount,
-                                                                                                    orderByKeySelector,
-                                                                                                    orderByAscending,
-                                                                                                    condition,
-                                                                                                    includes);
-        }
+            => await PreparePagination<IMilvaTemplateRepositoryBase<TEntity, TKey>, TEntity, TKey>(repository,
+                                                                                                   pageIndex,
+                                                                                                   requestedItemCount,
+                                                                                                   orderByKeySelector,
+                                                                                                   orderByAscending,
+                                                                                                   condition,
+                                                                                                   includes);
 
         /// <summary>
         /// Prepares pagination dto according to pagination parameters.
@@ -575,31 +573,27 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="condition"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)> PreparePaginationDTO<TRepository, TEntity, TKey>(this TRepository repository,
-                                                                                                                                                      int pageIndex,
-                                                                                                                                                      int requestedItemCount,
-                                                                                                                                                      string orderByProperty = null,
-                                                                                                                                                      bool orderByAscending = false,
-                                                                                                                                                      Expression<Func<TEntity, bool>> condition = null,
-                                                                                                                                                      Func<IIncludable<TEntity>, IIncludable> includes = null)
-
-
+        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)>
+            PreparePagination<TRepository, TEntity, TKey>(this TRepository repository,
+                                                          int pageIndex,
+                                                          int requestedItemCount,
+                                                          string orderByProperty = null,
+                                                          bool orderByAscending = false,
+                                                          Expression<Func<TEntity, bool>> condition = null,
+                                                          Func<IIncludable<TEntity>, IIncludable> includes = null)
             where TRepository : IBaseRepository<TEntity, TKey, MilvaTemplateDbContext>
             where TKey : struct, IEquatable<TKey>
             where TEntity : class, IBaseEntity<TKey>
-        {
-
-            return string.IsNullOrEmpty(orderByProperty) ? await repository.GetAsPaginatedAsync(pageIndex,
-                                                                                                requestedItemCount,
-                                                                                                includes,
-                                                                                                condition)
-                                                         : await repository.GetAsPaginatedAndOrderedAsync(pageIndex,
-                                                                                                          requestedItemCount,
-                                                                                                          includes,
-                                                                                                          orderByProperty,
-                                                                                                          orderByAscending,
-                                                                                                          condition);
-        }
+            => string.IsNullOrWhiteSpace(orderByProperty) ? await repository.GetAsPaginatedAsync(pageIndex,
+                                                                                            requestedItemCount,
+                                                                                            includes,
+                                                                                            condition)
+                                                     : await repository.GetAsPaginatedAndOrderedAsync(pageIndex,
+                                                                                                      requestedItemCount,
+                                                                                                      includes,
+                                                                                                      orderByProperty,
+                                                                                                      orderByAscending,
+                                                                                                      condition);
 
         /// <summary>
         /// Prepares pagination dto according to pagination parameters.
@@ -615,31 +609,27 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="condition"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)> PreparePaginationDTO<TRepository, TEntity, TKey>(this TRepository repository,
-                                                                                                                                                      int pageIndex,
-                                                                                                                                                      int requestedItemCount,
-                                                                                                                                                      Expression<Func<TEntity, object>> orderByKeySelector = null,
-                                                                                                                                                      bool orderByAscending = false,
-                                                                                                                                                      Expression<Func<TEntity, bool>> condition = null,
-                                                                                                                                                      Func<IIncludable<TEntity>, IIncludable> includes = null)
-
-
+        public static async Task<(IEnumerable<TEntity> entities, int pageCount, int totalDataCount)>
+            PreparePagination<TRepository, TEntity, TKey>(this TRepository repository,
+                                                          int pageIndex,
+                                                          int requestedItemCount,
+                                                          Expression<Func<TEntity, object>> orderByKeySelector = null,
+                                                          bool orderByAscending = false,
+                                                          Expression<Func<TEntity, bool>> condition = null,
+                                                          Func<IIncludable<TEntity>, IIncludable> includes = null)
             where TRepository : IBaseRepository<TEntity, TKey, MilvaTemplateDbContext>
             where TKey : struct, IEquatable<TKey>
             where TEntity : class, IBaseEntity<TKey>
-        {
-
-            return orderByKeySelector == null ? await repository.GetAsPaginatedAsync(pageIndex,
-                                                                                     requestedItemCount,
-                                                                                     includes,
-                                                                                     condition)
-                                              : await repository.GetAsPaginatedAndOrderedAsync(pageIndex,
-                                                                                               requestedItemCount,
-                                                                                               includes,
-                                                                                               orderByKeySelector,
-                                                                                               orderByAscending,
-                                                                                               condition);
-        }
+            => orderByKeySelector == null ? await repository.GetAsPaginatedAsync(pageIndex,
+                                                                                 requestedItemCount,
+                                                                                 includes,
+                                                                                 condition)
+                                          : await repository.GetAsPaginatedAndOrderedAsync(pageIndex,
+                                                                                           requestedItemCount,
+                                                                                           includes,
+                                                                                           orderByKeySelector,
+                                                                                           orderByAscending,
+                                                                                           condition);
 
         #endregion
 
@@ -654,7 +644,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         {
             if (parameterObject == null)
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
                     throw new MilvaUserFriendlyException(MilvaException.NullParameter);
                 }
@@ -674,7 +664,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         {
             if (list.IsNullOrEmpty())
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
                     throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity);
                 }
@@ -694,7 +684,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         {
             if (list.IsNullOrEmpty())
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
                     throw new MilvaUserFriendlyException(MilvaException.NullParameter);
                 }
@@ -714,7 +704,7 @@ namespace MilvaTemplate.API.Helpers.Extensions
         {
             if (list.IsNullOrEmpty())
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
                     throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity);
                 }
@@ -732,9 +722,9 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="message"></param>
         public static void ThrowIfListIsNotNullOrEmpty(this IEnumerable<object> list, string message = null)
         {
-            if (!list.IsNullOrEmpty())
+            if (list.IsNullOrEmpty())
             {
-                if (string.IsNullOrEmpty(message))
+                if (string.IsNullOrWhiteSpace(message))
                 {
                     throw new MilvaUserFriendlyException(MilvaException.NullParameter);
                 }
@@ -752,12 +742,11 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="localizerKey"></param>
         public static void ThrowIfNullForGuidObject<TEntity>(this TEntity entity, string localizerKey = null) where TEntity : class, IBaseEntity<Guid>
         {
-
             if (entity == null)
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
-                    throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity);
+                    throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity, $"{LocalizerKeys.LocalizedEntityName}{nameof(TEntity)}");
                 }
                 else
                 {
@@ -773,12 +762,11 @@ namespace MilvaTemplate.API.Helpers.Extensions
         /// <param name="localizerKey"></param>
         public static void ThrowIfNullForIntObject<TEntity>(this TEntity entity, string localizerKey = null) where TEntity : class, IBaseEntity<int>
         {
-
             if (entity == null)
             {
-                if (string.IsNullOrEmpty(localizerKey))
+                if (string.IsNullOrWhiteSpace(localizerKey))
                 {
-                    throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity);
+                    throw new MilvaUserFriendlyException(MilvaException.CannotFindEntity, $"{LocalizerKeys.LocalizedEntityName}{nameof(TEntity)}");
                 }
                 else
                 {

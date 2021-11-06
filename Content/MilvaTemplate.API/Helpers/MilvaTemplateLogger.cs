@@ -3,6 +3,8 @@ using Milvasoft.Helpers.DependencyInjection;
 using Milvasoft.Helpers.Enums;
 using Milvasoft.Helpers.Mail;
 using Serilog;
+using Serilog.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Helpers
@@ -113,5 +115,41 @@ namespace MilvaTemplate.API.Helpers
 
             await _milvaMailSender.MilvaSendMailAsync("errors@milvasoft.com", mailSubjectsEnum, message);
         }
+
+        /// <summary>
+        /// Write a log event with the specified level.
+        /// </summary>
+        /// <param name="seriLogEventLevel"></param>
+        /// <param name="messageTemplate"></param>
+        public void Write(SeriLogEventLevel seriLogEventLevel, string messageTemplate)
+            => _logger.Write((LogEventLevel)seriLogEventLevel, messageTemplate);
+
+        /// <summary>
+        /// Write a log event with the specified level.
+        /// </summary>
+        /// <param name="seriLogEventLevel"></param>
+        /// <param name="exception"></param>
+        /// <param name="messageTemplate"></param>
+        public void Write(SeriLogEventLevel seriLogEventLevel, Exception exception, string messageTemplate)
+            => _logger.Write((LogEventLevel)seriLogEventLevel, exception, messageTemplate);
+
+        /// <summary>
+        /// Write a log event with the specified level.
+        /// </summary>
+        /// <param name="seriLogEventLevel"></param>
+        /// <param name="messageTemplate"></param>
+        /// <param name="propertyValues"></param>
+        public void Write(SeriLogEventLevel seriLogEventLevel, string messageTemplate, params object[] propertyValues)
+            => _logger.Write((LogEventLevel)seriLogEventLevel, messageTemplate, propertyValues);
+
+        /// <summary>
+        /// Write a log event with the specified level and associated exception.
+        /// </summary>
+        /// <param name="seriLogEventLevel"></param>
+        /// <param name="exception"></param>
+        /// <param name="messageTemplate"></param>
+        /// <param name="propertyValues"></param>
+        public void Write(SeriLogEventLevel seriLogEventLevel, Exception exception, string messageTemplate, params object[] propertyValues)
+            => _logger.Write((LogEventLevel)seriLogEventLevel, exception, messageTemplate, propertyValues);
     }
 }

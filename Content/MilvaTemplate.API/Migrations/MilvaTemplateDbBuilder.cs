@@ -34,7 +34,7 @@ namespace MilvaTemplate.API.Migrations
 
             //TODO reset methods will be here...
 
-            MilvaTemplateDbContext.ActivateSoftDelete();
+            dbContext.ActivateSoftDelete();
         }
     }
 }

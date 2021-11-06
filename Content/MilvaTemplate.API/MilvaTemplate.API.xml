@@ -873,7 +873,7 @@
             <param name="returnFunc"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -888,7 +888,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -903,7 +903,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -919,7 +919,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePaginationDTO``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1097,6 +1097,38 @@
             </summary>
             <param name="message"></param>
             <param name="mailSubjectsEnum"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.String)">
+            <summary>
+            Write a log event with the specified level.
+            </summary>
+            <param name="seriLogEventLevel"></param>
+            <param name="messageTemplate"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.Exception,System.String)">
+            <summary>
+            Write a log event with the specified level.
+            </summary>
+            <param name="seriLogEventLevel"></param>
+            <param name="exception"></param>
+            <param name="messageTemplate"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.String,System.Object[])">
+            <summary>
+            Write a log event with the specified level.
+            </summary>
+            <param name="seriLogEventLevel"></param>
+            <param name="messageTemplate"></param>
+            <param name="propertyValues"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.Exception,System.String,System.Object[])">
+            <summary>
+            Write a log event with the specified level and associated exception.
+            </summary>
+            <param name="seriLogEventLevel"></param>
+            <param name="exception"></param>
+            <param name="messageTemplate"></param>
+            <param name="propertyValues"></param>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.Swagger.CustomAttributeOperationFilter">
             <summary>

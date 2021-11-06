@@ -519,4 +519,10 @@
   <data name="FileCannotBeEmpty" xml:space="preserve">
     <value>Please select a file to upload.</value>
   </data>
+  <data name="CannotFoundMessage" xml:space="preserve">
+    <value>Cannot found {0}.</value>
+  </data>
+  <data name="AnErrorOccured" xml:space="preserve">
+    <value>An unexpected error occurred during the process, please try again. If the problem is not resolved, please contact the technical team.</value>
+  </data>
 </root>

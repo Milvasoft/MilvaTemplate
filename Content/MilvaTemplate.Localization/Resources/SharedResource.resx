@@ -495,4 +495,10 @@
   <data name="RegexExampleAccountNo" xml:space="preserve">
     <value>7975-777666</value>
   </data>
+  <data name="CannotFoundMessage" xml:space="preserve">
+    <value>{0} bulunamadı.</value>
+  </data>
+  <data name="AnErrorOccured" xml:space="preserve">
+    <value>İşlem sırasında beklenmeyen bir hata oluştu lütfen tekrar deneyiniz. Sorun çözülmezse lütfen teknik ekip ile iletişime geçiniz.</value>
+  </data>
 </root>

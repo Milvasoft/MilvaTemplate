@@ -105,5 +105,7 @@ namespace MilvaTemplate.API.Helpers
         /// Key of project.
         /// </summary>
         public const string MilvaTemplateKey = "w!z%C*F-JaNdRgUk";
+
+        public static bool RealProduction { get; set; } = false;
     }
 }

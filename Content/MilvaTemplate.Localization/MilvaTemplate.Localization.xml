@@ -4,6 +4,662 @@
         <name>MilvaTemplate.Localization</name>
     </assembly>
     <members>
+        <member name="T:MilvaTemplate.Localization.Resources.SharedResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AccountTimeOut">
+            <summary>
+              Looks up a localized string similar to Oturumunuz zaman aşımına uğradı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ActionDELETE">
+            <summary>
+              Looks up a localized string similar to Silindi.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ActionPOST">
+            <summary>
+              Looks up a localized string similar to Eklendi.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ActionPUT">
+            <summary>
+              Looks up a localized string similar to Güncellendi.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AddingNewEntityWithExistsIdException">
+            <summary>
+              Looks up a localized string similar to Varolan veri kimliği ile aynı veri kimliğine sahip bir veri ekleyemezsiniz!.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AddSuccessMessage">
+            <summary>
+              Looks up a localized string similar to {0} başarıyla eklendi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AddUserRolesIsNullOrEmptyListExeption">
+            <summary>
+              Looks up a localized string similar to En az bir tane rol seçmelisiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AlreadyLoggedOutMessage">
+            <summary>
+              Looks up a localized string similar to Zaten sistemden çıkış yapılmış..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AnErrorOccured">
+            <summary>
+              Looks up a localized string similar to İşlem sırasında beklenmeyen bir hata oluştu lütfen tekrar deneyiniz. Sorun çözülmezse lütfen teknik ekip ile iletişime geçiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AnyEntityWasNotFound">
+            <summary>
+              Looks up a localized string similar to Herhangi bir {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.AppStoppedSuccessfully">
+            <summary>
+              Looks up a localized string similar to Uygulama başarıyla durduruldu..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.CannotFoundMessage">
+            <summary>
+              Looks up a localized string similar to {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.CannotGetSignedInUserInfo">
+            <summary>
+              Looks up a localized string similar to Bilgilerinizi alamıyoruz. Lütfen tekrar giriş yapmayı deneyin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.CannotUpdateOrDeleteDefaultRecord">
+            <summary>
+              Looks up a localized string similar to Veritabanındaki varsayılan verileri güncelleyemez veya silemezsiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ControllersSingleObjectWasNotFound">
+            <summary>
+              Looks up a localized string similar to {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.DeleteErrorMessage">
+            <summary>
+              Looks up a localized string similar to Silinecek herhangi bir {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.DeletingEntityWithRelationsException">
+            <summary>
+              Looks up a localized string similar to Bir ilişkisi olan verileri silmeye çalışıyorsunuz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.DeletingInvalidEntityException">
+            <summary>
+              Looks up a localized string similar to Geçersiz silme işlemi!.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.FeatureNotImplementedException">
+            <summary>
+              Looks up a localized string similar to Bu özellik henüz kullanımda değil..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.FileCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to Lütfen yüklemek için bir dosya seçiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.FileIsTooBigMessage">
+            <summary>
+              Looks up a localized string similar to Dosya boyutu çok büyük. Lütfen {0} MB veya daha küçük boyutlu bir dosya yükleyin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.FilteringErrorMessage">
+            <summary>
+              Looks up a localized string similar to Arama kriterlerine uygun bir {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Forbidden">
+            <summary>
+              Looks up a localized string similar to Erişim izniniz yok..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.GetAllErrorMessage">
+            <summary>
+              Looks up a localized string similar to Herhangi bir {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Hours">
+            <summary>
+              Looks up a localized string similar to {0} saat.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityConcurrencyFailure">
+            <summary>
+              Looks up a localized string similar to Eşzamanlılık hatası, veri değiştirildi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityDefaultError">
+            <summary>
+              Looks up a localized string similar to Bilinmeyen bir hata meydana geldi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityDuplicateEmail">
+            <summary>
+              Looks up a localized string similar to Bu email hesabına sahip başka bir kullanıcı bulunuyor..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityDuplicateRoleName">
+            <summary>
+              Looks up a localized string similar to Bu rol zaten var..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityDuplicateUsername">
+            <summary>
+              Looks up a localized string similar to Bu kullanıcı adına sahip başka bir kullanıcı bulunuyor..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityInvalidEmail">
+            <summary>
+              Looks up a localized string similar to Geçersiz email hesabı girdiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityInvalidRoleName">
+            <summary>
+              Looks up a localized string similar to Geçersiz bir rol adı girdiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityInvalidToken">
+            <summary>
+              Looks up a localized string similar to Geçersiz kimlik bilgisi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityInvalidUsername">
+            <summary>
+              Looks up a localized string similar to Geçersiz bir kullanıcı adı girdiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityLoginAlreadyAssociated">
+            <summary>
+              Looks up a localized string similar to Bu kullanıcı zaten giriş yapmış..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordMismatch">
+            <summary>
+              Looks up a localized string similar to Yanlış şifre girdiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordRequiresDigit">
+            <summary>
+              Looks up a localized string similar to Şifre en az bir rakam içermelidir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordRequiresLower">
+            <summary>
+              Looks up a localized string similar to Şifre en az bir küçük harf içermelidir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordRequiresNonAlphanumeric">
+            <summary>
+              Looks up a localized string similar to Parola en az bir alfanümerik karakter içermelidir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordRequiresUniqueChars">
+            <summary>
+              Looks up a localized string similar to Parola en az bir özel karakter içermelidir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordRequiresUpper">
+            <summary>
+              Looks up a localized string similar to Şifre en az bir büyük harf içermelidir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityPasswordTooShort">
+            <summary>
+              Looks up a localized string similar to Şifre uzunluğu çok kısa..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityRecoveryCodeRedemptionFailed">
+            <summary>
+              Looks up a localized string similar to Kurtarma başarısız oldu..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityResultException">
+            <summary>
+              Looks up a localized string similar to Kullanıcı işlemlerinde bir hata gerçekleşti..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityUserAlreadyHasPassword">
+            <summary>
+              Looks up a localized string similar to Kullanıcının zaten bir şifresi var..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityUserAlreadyInRole">
+            <summary>
+              Looks up a localized string similar to Kullanıcı zaten bu role atanmış..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityUserLockoutNotEnabled">
+            <summary>
+              Looks up a localized string similar to Bu kullanıcı için kilitleme etkinleştirilmedi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.IdentityUserNotInRole">
+            <summary>
+              Looks up a localized string similar to Kullanıcı bu role atanmamış..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidEmail">
+            <summary>
+              Looks up a localized string similar to Bu mail adresine sahip kullanıcı yok..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidItemRangeException">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir &apos;listelenecek eleman&apos; sayısı giriniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidLicenceException">
+            <summary>
+              Looks up a localized string similar to Geçersiz lisans!.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidLogin">
+            <summary>
+              Looks up a localized string similar to Giriş bilgileriniz doğrulanamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidNumericValueException">
+            <summary>
+              Looks up a localized string similar to Girilen {0} sayısal değeri bu işlem için geçersiz bir değerdir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidOrderType">
+            <summary>
+              Looks up a localized string similar to Seçilen sipariş tipi ile uyuşan herhangi bir sipariş tipi bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidPageIndexException">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir sayfa numarası giriniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidParameterException">
+            <summary>
+              Looks up a localized string similar to Veride hata bulundu. Lütfen Milvasoft yetkilileri ile iletişime geçiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidPassword">
+            <summary>
+              Looks up a localized string similar to Geçersiz şifre girildi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidRelatedProcess">
+            <summary>
+              Looks up a localized string similar to İşlemi yapmaya çalıştığınız verilerin ilişkili olduğu bir veri bulunmakta..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidShiftType">
+            <summary>
+              Looks up a localized string similar to Seçilen vardiya tipi ile uyuşan herhangi bir vardiya tipi bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.InvalidUserName">
+            <summary>
+              Looks up a localized string similar to Bu kullanıcı adına sahip kullanıcı yok..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedEmail">
+            <summary>
+              Looks up a localized string similar to Email.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedName">
+            <summary>
+              Looks up a localized string similar to İsim.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedPassword">
+            <summary>
+              Looks up a localized string similar to Parola.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedUser">
+            <summary>
+              Looks up a localized string similar to Kullanıcı.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedUserName">
+            <summary>
+              Looks up a localized string similar to Kullanıcı adı.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LocalizedWebSiteAddress">
+            <summary>
+              Looks up a localized string similar to Web site adresi.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Locked">
+            <summary>
+              Looks up a localized string similar to Art arda başarısız giriş denemesi yaptığınızdan dolayı hesabınız kilitlenmiştir. {0} sonra tekrar deneyin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LockWarning">
+            <summary>
+              Looks up a localized string similar to {0} geçersiz deneme sonucunda oturum kilitlenecektir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LoggedInOtherInstitution">
+            <summary>
+              Looks up a localized string similar to Başka bir işletmede bu hesap ile oturum açılmış. Şifrenizi değiştirmek için lütfen mail kutunuzu kontrol edin. Diğer oturumunuz kapatılacaktır..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.LoginCustomerErrorMessageFromAPI">
+            <summary>
+              Looks up a localized string similar to Bir problem oluştu. Hata mesajı: {0}.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MiddlewareGeneralErrorMessage">
+            <summary>
+              Looks up a localized string similar to Bir hata oluştu. Hata, yanlış parametre veya url ile ilgili olabilir. Lütfen istek parametrelerini veya url&apos;yi kontrol edin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MilvaBaseException">
+            <summary>
+              Looks up a localized string similar to Beklenmeyen bir hata ile karşılaşıldı lütfen tekrar deneyiniz. Eğer sorun çözülmezse lütfen Milvasoft teknik ekibi ile iletişime geçiniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MilvaUserFriendlyException">
+            <summary>
+              Looks up a localized string similar to Bir hata oluştu. Hata, yanlış parametre veya url ile ilgili olabilir. Lütfen istek parametrelerini veya url&apos;yi kontrol edin.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MilvaValidationException">
+            <summary>
+              Looks up a localized string similar to Geçersiz model değeri. Lütfen geçerli bir model değeri giriniz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MinDecimalValueException">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir {0} girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Minutes">
+            <summary>
+              Looks up a localized string similar to {0} dakika.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.MissingHeaderException">
+            <summary>
+              Looks up a localized string similar to {0} Header bilgisini giriniz!.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.NotAllowed">
+            <summary>
+              Looks up a localized string similar to Girişiniz herhangi bir sebepten dolayı engellenmiş gözüküyor. Bunun bir yanlışlık olduğunu düşünüyorsanız lütfen Milvasoft teknik ekibi ile iletişime geçin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.NullParameterException">
+            <summary>
+              Looks up a localized string similar to Bazı verileri eksik gönderdiniz. Eğer bir hata yapmadığınızı düşünüyorsanız lütfen Milvasoft teknik ekibi ile iletişime geçin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.OldVersion">
+            <summary>
+              Looks up a localized string similar to Uygulamanızın sürümü eski. Kullanmaya devam etmek için lütfen uygulamanın güncellenmesini bekleyin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.OutOfRangePageCountMessage">
+            <summary>
+              Looks up a localized string similar to İstenen sayfa sayısı oluşan sayfa sayısından fazla. Maksimum sayfa sayısı {0} olmalıdır..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PleaseEnterAValidValue">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir değer girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PleaseEnterValidUserInfo">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir kullanıcı bilgisi girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionBellowMin">
+            <summary>
+              Looks up a localized string similar to {0}, minimum karakter sınırının altında. Lütfen en az {1} karakter girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionContainsForbiddenWordError">
+            <summary>
+              Looks up a localized string similar to {0}, geçersiz kelime içeriyor..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionLengthResultNotTrue">
+            <summary>
+              Looks up a localized string similar to {0}, {1} ile {2} aralığında bir karakter uzunluğuna sahip olmalıdır..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionMaxLengthException">
+            <summary>
+              Looks up a localized string similar to Lütfen maksimum karakter uzunluğu için geçerli bir değer girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionMinLengthBigThanMaxLengthException">
+            <summary>
+              Looks up a localized string similar to Girdiğiniz minimum değer({0}) maksimum değerden({1}) büyük. Lütfen geçerli bir değer aralığı girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PreventStringInjectionMinLengthException">
+            <summary>
+              Looks up a localized string similar to Lütfen minimum karakter uzunluğu için geçerli bir değer girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ProcessCompletedSuccessfully">
+            <summary>
+              Looks up a localized string similar to İşlem başarıyla gerçekleşti..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PropertyIsRequired">
+            <summary>
+              Looks up a localized string similar to {0} girilmesi zorunludur..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexErrorMessage">
+            <summary>
+              Looks up a localized string similar to {0}, düzgün formatta değil. Lütfen şu formatta girin: {1}.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExampleAccountNo">
+            <summary>
+              Looks up a localized string similar to 7975-777666.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExampleCreditCardNo">
+            <summary>
+              Looks up a localized string similar to 1234 1234 1234 1234.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExampleEmail">
+            <summary>
+              Looks up a localized string similar to ornek@milvasoft.com.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExampleIBANNO">
+            <summary>
+              Looks up a localized string similar to 33 0006 1005 1978 6457 8413 26.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExampleIsoCode">
+            <summary>
+              Looks up a localized string similar to tr-TR.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexExamplePhoneNumber">
+            <summary>
+              Looks up a localized string similar to 0 505 010 79 85.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternAccountNo">
+            <summary>
+              Looks up a localized string similar to ^((\d{4})-(\d{6}))$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternCreditCardNo">
+            <summary>
+              Looks up a localized string similar to ^((\d{4}) (\d{4}) (\d{4}) (\d{4}))$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternEmail">
+            <summary>
+              Looks up a localized string similar to ^\w+([-+.&apos;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternIBANNO">
+            <summary>
+              Looks up a localized string similar to ^((\d{2}) (\d{4}) (\d{4}) (\d{4}) (\d{4}) (\d{4}) (\d{2}))$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternIsoCode">
+            <summary>
+              Looks up a localized string similar to ^[a-z]{2}-[a-zA-Z]{2}$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternPhoneNumber">
+            <summary>
+              Looks up a localized string similar to ^(0 (\d{3}) (\d{3}) (\d{2}) (\d{2}))$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RequiresTwoFactor">
+            <summary>
+              Looks up a localized string similar to İki faktörlü doğrulama gerekli..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RolesUpdatedSuccessfully">
+            <summary>
+              Looks up a localized string similar to Kullanıcı rolleri başarıyla güncellendi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Seconds">
+            <summary>
+              Looks up a localized string similar to {0} saniye.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.SuccessfullyLoginMessage">
+            <summary>
+              Looks up a localized string similar to Başarıyla giriş yapıldı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.SuccessfullyLoguotMessage">
+            <summary>
+              Looks up a localized string similar to Başarıyla çıkış yapıldı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.SuccessfullyOperationMessage">
+            <summary>
+              Looks up a localized string similar to İşlem başarıyla gerçekleşti..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.TokenCouldNotBeGenerated">
+            <summary>
+              Looks up a localized string similar to Token üretilemedi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.Unauthorized">
+            <summary>
+              Looks up a localized string similar to Geçersiz kimlik bilgileri nedeniyle erişim engellendi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UnknownLoginProblemMessage">
+            <summary>
+              Looks up a localized string similar to Giriş yapılamadı. Bilinmeyen bir problem oluştu..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UnknownLogoutProblemMessage">
+            <summary>
+              Looks up a localized string similar to Çıkış yapılamadı. Bilinmeyen bir problem oluştu..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UnsupportedFileTypeMessage">
+            <summary>
+              Looks up a localized string similar to Bu dosya türü desteklenmiyor. Lütfen geçerli bir dosya türü yükleyin. Desteklenen dosya türleri: {0}..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UpdateSuccessMessage">
+            <summary>
+              Looks up a localized string similar to {0} başarıyla güncellendi..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UpdatingInvalidEntityException">
+            <summary>
+              Looks up a localized string similar to Güncelleme işlemi başarısız..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UserRoleAddNotFoundException">
+            <summary>
+              Looks up a localized string similar to Rol bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UserRoleNotFound">
+            <summary>
+              Looks up a localized string similar to Kullanıcıya ait aktif bir rol bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UserValidationEmailLength">
+            <summary>
+              Looks up a localized string similar to Mail adresi en fazla {0} karakter içerebilir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UserValidationUserNameLength">
+            <summary>
+              Looks up a localized string similar to Kullanıcı adı en az {0}, en fazla {1} karakter içerebilir..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.UserValidationUserNameNumberStartWith">
+            <summary>
+              Looks up a localized string similar to Kullanıcı adı sayısal bir karakter ile başlayamaz..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ValidationIdParameterGeneralError">
+            <summary>
+              Looks up a localized string similar to Lütfen gerekli olan bütün parametreleri eksiksiz girin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.ValidationIdPropertyError">
+            <summary>
+              Looks up a localized string similar to Lütfen geçerli bir {0} seçin..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.WantedWasNotFound">
+            <summary>
+              Looks up a localized string similar to {0} bulunamadı..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.WrongPaginationParamsException">
+            <summary>
+              Looks up a localized string similar to İstenen sayfa sayısı, oluşturulan sayfa sayfasından fazla. Maksimum sayfa sayısı {0} olmalıdır..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.WrongRequestedItemCount">
+            <summary>
+              Looks up a localized string similar to İstenen kayıt sayısının sayısı 0 veya daha az olamaz. İstenen kayıt sayısı 0&apos;dan büyük olmalıdır..
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.WrongRequestedPageNumber">
+            <summary>
+              Looks up a localized string similar to İstenen sayfa sayısı 0 olamaz. Sayfa sayısı 0&apos;dan büyük olmalıdır..
+            </summary>
+        </member>
         <member name="T:MilvaTemplate.Localization.SharedResource">
             <summary>
             Dummy class for localization.
