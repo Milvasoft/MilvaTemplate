@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 WORKDIR /app
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS=http://+:xhttpportxx
@@ -23,7 +23,7 @@ COPY MilvaTemplate.API/. MilvaTemplate.API/
 WORKDIR "/app/MilvaTemplate.API"
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-buster-slim AS runtime
 WORKDIR /app
 
 COPY --from=build /app/MilvaTemplate.API/out ./
