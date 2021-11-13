@@ -1,4 +1,4 @@
-<h2 align="center">Web API Template with EF Core for .Net 5</h2>
+<h2 align="center">Web API Template with EF Core for .Net 6</h2>
   
  <div align="center"> 
   
