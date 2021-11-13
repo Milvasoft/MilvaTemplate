@@ -1,25 +1,24 @@
-﻿using Milvasoft.Helpers.DataAccess.Concrete.Entity;
+﻿using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
 using MilvaTemplate.Entity.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MilvaTemplate.Entity
+namespace MilvaTemplate.Entity;
+
+/// <summary>
+/// Busines Logic based information : User activity log. Which is Add-Update-Delete process.
+/// </summary>
+[Table(TableNames.UserActivityLog)]
+public class UserActivityLog : FullAuditableEntity<MilvaTemplateUser, Guid, Guid>
 {
     /// <summary>
-    /// Busines Logic based information : User activity log. Which is Add-Update-Delete process.
+    /// UserName of the user who performed the activity
     /// </summary>
-    [Table(TableNames.UserActivityLog)]
-    public class UserActivityLog : FullAuditableEntity<MilvaTemplateUser, Guid, Guid>
-    {
-        /// <summary>
-        /// UserName of the user who performed the activity
-        /// </summary>
-        public string UserName { get; set; }
+    public string UserName { get; set; }
 
-        /// <summary>
-        /// User performed activity.
-        /// </summary>
-        public string Activity { get; set; }
+    /// <summary>
+    /// User performed activity.
+    /// </summary>
+    public string Activity { get; set; }
 
-    }
 }

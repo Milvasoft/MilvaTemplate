@@ -4,37 +4,36 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MilvaTemplate.API.Helpers.Swagger
+namespace MilvaTemplate.API.Helpers.Swagger;
+
+/// <summary>
+/// Operation filter to add the requirement of the custom header
+/// </summary>
+public class RequestHeaderFilter : IOperationFilter
 {
     /// <summary>
-    /// Operation filter to add the requirement of the custom header
+    /// Triggered event.
     /// </summary>
-    public class RequestHeaderFilter : IOperationFilter
+    /// <param name="operation"></param>
+    /// <param name="context"></param>
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
-        /// <summary>
-        /// Triggered event.
-        /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="context"></param>
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        if (operation.Parameters == null) operation.Parameters = new List<OpenApiParameter>();
+
+        var descriptor = context.ApiDescription.ActionDescriptor as ControllerActionDescriptor;
+
+        if (descriptor != null && !descriptor.ControllerName.StartsWith("~"))
         {
-            if (operation.Parameters == null) operation.Parameters = new List<OpenApiParameter>();
+            var versionParameter = operation.Parameters.SingleOrDefault(p => p.Name == "version");
+            if (versionParameter != null) operation.Parameters.Remove(versionParameter);
 
-            var descriptor = context.ApiDescription.ActionDescriptor as ControllerActionDescriptor;
-
-            if (descriptor != null && !descriptor.ControllerName.StartsWith("~"))
+            operation.Parameters.Add(new OpenApiParameter()
             {
-                var versionParameter = operation.Parameters.SingleOrDefault(p => p.Name == "version");
-                if (versionParameter != null) operation.Parameters.Remove(versionParameter);
-
-                operation.Parameters.Add(new OpenApiParameter()
-                {
-                    Name = "Accept-Language",
-                    In = ParameterLocation.Header,
-                    Description = "The lang iso code of system. (e.g. tr-TR)",
-                    Required = false
-                });
-            }
+                Name = "Accept-Language",
+                In = ParameterLocation.Header,
+                Description = "The lang iso code of system. (e.g. tr-TR)",
+                Required = false
+            });
         }
     }
 }

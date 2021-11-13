@@ -1,14 +1,13 @@
-﻿namespace MilvaTemplate.API.DTOs
+﻿namespace MilvaTemplate.API.DTOs;
+
+/// <summary>
+/// Pagination parameters with specification object(<typeparamref name="TSpec"/>).
+/// </summary>
+/// <typeparam name="TSpec"></typeparam>
+public class PaginationParamsWithSpec<TSpec> : PaginationParams
 {
     /// <summary>
-    /// Pagination parameters with specification object(<typeparamref name="TSpec"/>).
+    /// Specification object.
     /// </summary>
-    /// <typeparam name="TSpec"></typeparam>
-    public class PaginationParamsWithSpec<TSpec> : PaginationParams
-    {
-        /// <summary>
-        /// Specification object.
-        /// </summary>
-        public TSpec Spec { get; set; } = default;
-    }
+    public TSpec Spec { get; set; } = default;
 }

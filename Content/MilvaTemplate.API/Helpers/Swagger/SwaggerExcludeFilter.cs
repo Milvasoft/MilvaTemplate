@@ -3,39 +3,38 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
 using System.Reflection;
 
-namespace MilvaTemplate.API.Helpers.Swagger
+namespace MilvaTemplate.API.Helpers.Swagger;
+
+/// <summary>
+/// It allows excluding the desired property from the swagger documentation.
+/// </summary>
+public class SwaggerExcludeFilter : ISchemaFilter
 {
     /// <summary>
-    /// It allows excluding the desired property from the swagger documentation.
+    /// Triggered event.
     /// </summary>
-    public class SwaggerExcludeFilter : ISchemaFilter
+    /// <param name="schema"></param>
+    /// <param name="context"></param>
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {
-        /// <summary>
-        /// Triggered event.
-        /// </summary>
-        /// <param name="schema"></param>
-        /// <param name="context"></param>
-        public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+        if (schema?.Properties == null)
         {
-            if (schema?.Properties == null)
+            return;
+        }
+
+        var excludedProperties =
+            context.Type.GetProperties().Where(
+                t => t.GetCustomAttribute<SwaggerExcludeAttribute>() != null);
+
+        foreach (var excludedProperty in excludedProperties)
+        {
+            var propertyToRemove =
+                schema.Properties.Keys.SingleOrDefault(
+                    x => x.ToLower() == excludedProperty.Name.ToLower());
+
+            if (propertyToRemove != null)
             {
-                return;
-            }
-
-            var excludedProperties =
-                context.Type.GetProperties().Where(
-                    t => t.GetCustomAttribute<SwaggerExcludeAttribute>() != null);
-
-            foreach (var excludedProperty in excludedProperties)
-            {
-                var propertyToRemove =
-                    schema.Properties.Keys.SingleOrDefault(
-                        x => x.ToLower() == excludedProperty.Name.ToLower());
-
-                if (propertyToRemove != null)
-                {
-                    schema.Properties.Remove(propertyToRemove);
-                }
+                schema.Properties.Remove(propertyToRemove);
             }
         }
     }

@@ -1,38 +1,37 @@
 ﻿using Fody;
 using Microsoft.Extensions.DependencyInjection;
-using Milvasoft.Helpers.DataAccess.Abstract.Entity;
+using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
 using MilvaTemplate.Data;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MilvaTemplate.API.Migrations
+namespace MilvaTemplate.API.Migrations;
+
+/// <summary>
+/// Defines the <see cref="DataSeed" />.
+/// </summary>
+[ConfigureAwait(false)]
+public static class DataSeed
 {
     /// <summary>
-    /// Defines the <see cref="DataSeed" />.
+    /// Contains dipendency injection services.
     /// </summary>
-    [ConfigureAwait(false)]
-    public static class DataSeed
+    public static IServiceProvider Services { get; set; }
+
+    /// <summary>
+    /// Resets the data of type of T. This method is only calls from Reset extension method of indelible tables.
+    /// </summary>
+    /// <param name="entityList">The entityList<see cref="List{TEntity}"/>.</param>
+    private static async Task InitializeTableAsync<TEntity, TKey>(List<TEntity> entityList) where TEntity : class, IBaseEntity<TKey>
+                                                                                            where TKey : struct, IEquatable<TKey>
     {
-        /// <summary>
-        /// Contains dipendency injection services.
-        /// </summary>
-        public static IServiceProvider Services { get; set; }
+        var dbContext = Services.GetRequiredService<MilvaTemplateDbContext>();
 
-        /// <summary>
-        /// Resets the data of type of T. This method is only calls from Reset extension method of indelible tables.
-        /// </summary>
-        /// <param name="entityList">The entityList<see cref="List{TEntity}"/>.</param>
-        private static async Task InitializeTableAsync<TEntity, TKey>(List<TEntity> entityList) where TEntity : class, IBaseEntity<TKey>
-                                                                                                where TKey : struct, IEquatable<TKey>
+        foreach (var entity in entityList) //For development
         {
-            var dbContext = Services.GetRequiredService<MilvaTemplateDbContext>();
-
-            foreach (var entity in entityList) //For development
-            {
-                await dbContext.Set<TEntity>().AddAsync(entity);
-                await dbContext.SaveChangesAsync();
-            }
+            await dbContext.Set<TEntity>().AddAsync(entity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

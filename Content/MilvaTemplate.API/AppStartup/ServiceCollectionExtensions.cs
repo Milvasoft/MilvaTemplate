@@ -9,9 +9,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Milvasoft.Helpers;
 using Milvasoft.Helpers.Caching;
-using Milvasoft.Helpers.DataAccess.Abstract;
-using Milvasoft.Helpers.DataAccess.Concrete;
-using Milvasoft.Helpers.DataAccess.MilvaContext;
+using Milvasoft.Helpers.DataAccess.EfCore.Abstract;
+using Milvasoft.Helpers.DataAccess.EfCore.Concrete;
+using Milvasoft.Helpers.DataAccess.EfCore.MilvaContext;
 using Milvasoft.Helpers.DependencyInjection;
 using Milvasoft.Helpers.FileOperations;
 using Milvasoft.Helpers.FileOperations.Abstract;
@@ -42,328 +42,327 @@ using System.Text;
 using System.Threading.Tasks;
 using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
-namespace MilvaTemplate.API.AppStartup
+namespace MilvaTemplate.API.AppStartup;
+
+/// <summary>
+/// Service collection helpers.
+/// </summary>
+public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Service collection helpers.
+    /// Applies configuration to cors.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    /// <param name="services"></param>
+    public static void AddCors(this IServiceCollection services)
     {
-        /// <summary>
-        /// Applies configuration to cors.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddCors(this IServiceCollection services)
+        services.AddCors(options =>
         {
-            services.AddCors(options =>
+            options.AddPolicy("ApiCorsPolicy", builder =>
             {
-                options.AddPolicy("ApiCorsPolicy", builder =>
-                {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader()
-                           .Build();
-                });
-
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .Build();
             });
-        }
 
-        /// <summary>
-        /// Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddControllers(this IServiceCollection services)
+        });
+    }
+
+    /// <summary>
+    /// Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddControllers(this IServiceCollection services)
+    {
+        services.AddControllers(opt =>
         {
-            services.AddControllers(opt =>
-            {
-                //opt.ModelBinderProviders.Insert(0, new JsonModelBinderProvider());
-                opt.SuppressAsyncSuffixInActionNames = false;
-                opt.EnableEndpointRouting = true;
-            }).SetCompatibilityVersion(CompatibilityVersion.Latest)
-              .ConfigureApiBehaviorOptions(options =>
+            //opt.ModelBinderProviders.Insert(0, new JsonModelBinderProvider());
+            opt.SuppressAsyncSuffixInActionNames = false;
+            opt.EnableEndpointRouting = true;
+        }).ConfigureApiBehaviorOptions(options =>
+          {
+              options.InvalidModelStateResponseFactory = actionContext =>
               {
-                  options.InvalidModelStateResponseFactory = actionContext =>
-                  {
-                      return CommonHelper.CustomErrorResponse(actionContext);
-                  };
-              }).AddDataAnnotationsLocalization();
-        }
+                  return CommonHelper.CustomErrorResponse(actionContext);
+              };
+          }).AddDataAnnotationsLocalization();
+    }
 
-        /// <summary>
-        /// Configures API versioning.
-        /// </summary>
-        /// <param name="services"></param>
-        public static IServiceCollection AddMilvaRedisCaching(this IServiceCollection services)
+    /// <summary>
+    /// Configures API versioning.
+    /// </summary>
+    /// <param name="services"></param>
+    public static IServiceCollection AddMilvaRedisCaching(this IServiceCollection services)
+    {
+        var connectionString = Startup.WebHostEnvironment.EnvironmentName == "Development" ? "127.0.0.1:6379" : "redis";
+
+        var cacheOptions = new RedisCacheServiceOptions(connectionString);
+
+        cacheOptions.ConfigurationOptions.AbortOnConnectFail = false;
+        cacheOptions.ConfigurationOptions.ConnectTimeout = 10000;
+        cacheOptions.ConfigurationOptions.SyncTimeout = 10000;
+        cacheOptions.ConfigurationOptions.ConnectRetry = 1;
+        //cacheOptions.ConfigurationOptions.Ssl = true;
+        //cacheOptions.ConfigurationOptions.SslProtocols = SslProtocols.Tls12;
+
+        return services.AddMilvaRedisCaching(cacheOptions);
+    }
+
+    /// <summary>
+    /// Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(config =>
         {
-            var connectionString = Startup.WebHostEnvironment.EnvironmentName == "Development" ? "127.0.0.1:6379" : "redis";
+            // Specify the default API Version
+            config.DefaultApiVersion = new ApiVersion(1, 0);
+            // If the client hasn't specified the API version in the request, use the default API version number 
+            config.AssumeDefaultVersionWhenUnspecified = true;
+            // Advertise the API versions supported for the particular endpoint
+            config.ReportApiVersions = true;
+        });
+    }
 
-            var cacheOptions = new RedisCacheServiceOptions(connectionString);
-
-            cacheOptions.ConfigurationOptions.AbortOnConnectFail = false;
-            cacheOptions.ConfigurationOptions.ConnectTimeout = 10000;
-            cacheOptions.ConfigurationOptions.SyncTimeout = 10000;
-            cacheOptions.ConfigurationOptions.ConnectRetry = 1;
-            //cacheOptions.ConfigurationOptions.Ssl = true;
-            //cacheOptions.ConfigurationOptions.SslProtocols = SslProtocols.Tls12;
-
-            return services.AddMilvaRedisCaching(cacheOptions);
-        }
-
-        /// <summary>
-        /// Adds MVC services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddVersioning(this IServiceCollection services)
+    /// <summary>
+    /// Configures AspNetCore Identity modules.
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddIdentity(this IServiceCollection services)
+    {
+        Action<IdentityOptions> identityOptions = setupAction =>
         {
-            services.AddApiVersioning(config =>
-            {
-                // Specify the default API Version
-                config.DefaultApiVersion = new ApiVersion(1, 0);
-                // If the client hasn't specified the API version in the request, use the default API version number 
-                config.AssumeDefaultVersionWhenUnspecified = true;
-                // Advertise the API versions supported for the particular endpoint
-                config.ReportApiVersions = true;
-            });
-        }
+            setupAction.Lockout.DefaultLockoutTimeSpan = new TimeSpan(3, 1, 0);
+            setupAction.Lockout.MaxFailedAccessAttempts = 5;
+            setupAction.User.RequireUniqueEmail = true;
+            setupAction.Password.RequireDigit = false;
+            setupAction.Password.RequiredLength = 1;
+            setupAction.Password.RequireLowercase = false;
+            setupAction.Password.RequireNonAlphanumeric = false;
+            setupAction.Password.RequireUppercase = false;
+            setupAction.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._";
+        };
 
-        /// <summary>
-        /// Configures AspNetCore Identity modules.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddIdentity(this IServiceCollection services)
+        services.AddIdentity<MilvaTemplateUser, MilvaTemplateRole>(identityOptions)
+                .AddEntityFrameworkStores<MilvaTemplateDbContext>()
+                .AddUserValidator<MilvaUserValidation<MilvaTemplateUser, Guid, IStringLocalizer<SharedResource>>>()
+                .AddErrorDescriber<MilvaIdentityDescriber<IStringLocalizer<SharedResource>>>()
+                .AddDefaultTokenProviders();
+    }
+
+    /// <summary>
+    /// JWT Token configurations
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="jsonOperations"></param>
+    public static void AddJwtBearer(this IServiceCollection services, IJsonOperations jsonOperations)
+    {
+        var tokenManagement = jsonOperations.GetCryptedContentAsync<TokenManagement>("tokenmanagement.json").Result;
+
+        services.AddSingleton<ITokenManagement>(tokenManagement);
+
+        services.AddAuthentication(opt =>
         {
-            Action<IdentityOptions> identityOptions = setupAction =>
-            {
-                setupAction.Lockout.DefaultLockoutTimeSpan = new TimeSpan(3, 1, 0);
-                setupAction.Lockout.MaxFailedAccessAttempts = 5;
-                setupAction.User.RequireUniqueEmail = true;
-                setupAction.Password.RequireDigit = false;
-                setupAction.Password.RequiredLength = 1;
-                setupAction.Password.RequireLowercase = false;
-                setupAction.Password.RequireNonAlphanumeric = false;
-                setupAction.Password.RequireUppercase = false;
-                setupAction.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._";
-            };
-
-            services.AddIdentity<MilvaTemplateUser, MilvaTemplateRole>(identityOptions)
-                    .AddEntityFrameworkStores<MilvaTemplateDbContext>()
-                    .AddUserValidator<MilvaUserValidation<MilvaTemplateUser, Guid, IStringLocalizer<SharedResource>>>()
-                    .AddErrorDescriber<MilvaIdentityDescriber<IStringLocalizer<SharedResource>>>()
-                    .AddDefaultTokenProviders();
-        }
-
-        /// <summary>
-        /// JWT Token configurations
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="jsonOperations"></param>
-        public static void AddJwtBearer(this IServiceCollection services, IJsonOperations jsonOperations)
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(jwtOpt =>
         {
-            var tokenManagement = jsonOperations.GetCryptedContentAsync<TokenManagement>("tokenmanagement.json").Result;
-
-            services.AddSingleton<ITokenManagement>(tokenManagement);
-
-            services.AddAuthentication(opt =>
+            IStringLocalizer<SharedResource> GetLocalizerInstance(HttpContext httpContext)
             {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(jwtOpt =>
+                return httpContext.RequestServices.GetRequiredService<IStringLocalizer<SharedResource>>();
+            }
+
+            Task ReturnResponseAsync(HttpContext httpContext, string localizerKey, int statusCode)
             {
-                IStringLocalizer<SharedResource> GetLocalizerInstance(HttpContext httpContext)
+                if (!httpContext.Response.HasStarted)
                 {
-                    return httpContext.RequestServices.GetRequiredService<IStringLocalizer<SharedResource>>();
+                    var localizer = GetLocalizerInstance(httpContext);
+
+                    ExceptionResponse validationResponse = new()
+                    {
+                        Message = localizer[localizerKey],
+                        Success = false,
+                        StatusCode = statusCode
+                    };
+
+                    httpContext.Response.ContentType = MimeTypeNames.ApplicationJson;
+                    httpContext.Response.StatusCode = MilvaStatusCodes.Status200OK;
+                    return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(validationResponse));
+                }
+                return Task.CompletedTask;
+            }
+
+            jwtOpt.Events = new JwtBearerEvents()
+            {
+                //Token içinde name kontrol etme
+                OnTokenValidated = (context) =>
+            {
+                if (string.IsNullOrWhiteSpace(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
+                {
+                    var localizer = GetLocalizerInstance(context.HttpContext);
+
+                    context.Fail(localizer[nameof(ResourceKey.Unauthorized)]);
+                    return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
                 }
 
-                Task ReturnResponseAsync(HttpContext httpContext, string localizerKey, int statusCode)
+                return Task.CompletedTask;
+            },
+                OnForbidden = context =>
                 {
-                    if (!httpContext.Response.HasStarted)
-                    {
-                        var localizer = GetLocalizerInstance(httpContext);
+                    return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Forbidden), MilvaStatusCodes.Status403Forbidden);
+                },
+                OnChallenge = context =>
+                {
+                    // Skip the default logic.
+                    context.HandleResponse();
 
-                        ExceptionResponse validationResponse = new()
-                        {
-                            Message = localizer[localizerKey],
-                            Success = false,
-                            StatusCode = statusCode
-                        };
+                    return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
+                },
+                OnAuthenticationFailed = context =>
+                {
+                    string localizerKey = nameof(ResourceKey.Unauthorized);
 
-                        httpContext.Response.ContentType = MimeTypeNames.ApplicationJson;
-                        httpContext.Response.StatusCode = MilvaStatusCodes.Status200OK;
-                        return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(validationResponse));
-                    }
-                    return Task.CompletedTask;
+                    if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        localizerKey = nameof(ResourceKey.TokenExpired);
+
+                    return ReturnResponseAsync(context.HttpContext, localizerKey, MilvaStatusCodes.Status401Unauthorized);
                 }
-
-                jwtOpt.Events = new JwtBearerEvents()
-                {
-                    //Token içinde name kontrol etme
-                    OnTokenValidated = (context) =>
-                    {
-                        if (string.IsNullOrWhiteSpace(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
-                        {
-                            var localizer = GetLocalizerInstance(context.HttpContext);
-
-                            context.Fail(localizer[nameof(ResourceKey.Unauthorized)]);
-                            return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
-                        }
-
-                        return Task.CompletedTask;
-                    },
-                    OnForbidden = context =>
-                    {
-                        return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Forbidden), MilvaStatusCodes.Status403Forbidden);
-                    },
-                    OnChallenge = context =>
-                    {
-                        // Skip the default logic.
-                        context.HandleResponse();
-
-                        return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
-                    },
-                    OnAuthenticationFailed = context =>
-                    {
-                        string localizerKey = nameof(ResourceKey.Unauthorized);
-
-                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                            localizerKey = nameof(ResourceKey.TokenExpired);
-
-                        return ReturnResponseAsync(context.HttpContext, localizerKey, MilvaStatusCodes.Status401Unauthorized);
-                    }
-                };
-
-                jwtOpt.RequireHttpsMetadata = false;
-                jwtOpt.SaveToken = true;
-                jwtOpt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenManagement.Secret)),
-                    ValidateIssuer = true,
-                    ValidIssuer = tokenManagement.Issuer,
-                    ValidateAudience = true,
-                    ValidAudience = tokenManagement.Audience,
-                    ValidateLifetime = true
-                };
-            });
-        }
-
-        /// <summary>
-        /// Adds json operations to service collection.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <returns></returns>
-        public static IJsonOperations AddJsonOperations(this IServiceCollection services)
-        {
-            var jsonOperationsConfig = new JsonOperationsConfig
-            {
-                EncryptionKey = GlobalConstant.MilvaTemplateKey,
-                BasePath = GlobalConstant.JsonFilesPath
             };
 
-            services.AddJsonOperations(options: opt =>
+            jwtOpt.RequireHttpsMetadata = false;
+            jwtOpt.SaveToken = true;
+            jwtOpt.TokenValidationParameters = new TokenValidationParameters
             {
-                opt.BasePath = jsonOperationsConfig.BasePath;
-                opt.EncryptionKey = jsonOperationsConfig.EncryptionKey;
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenManagement.Secret)),
+                ValidateIssuer = true,
+                ValidIssuer = tokenManagement.Issuer,
+                ValidateAudience = true,
+                ValidAudience = tokenManagement.Audience,
+                ValidateLifetime = true
+            };
+        });
+    }
+
+    /// <summary>
+    /// Adds json operations to service collection.
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    public static IJsonOperations AddJsonOperations(this IServiceCollection services)
+    {
+        var jsonOperationsConfig = new JsonOperationsConfig
+        {
+            EncryptionKey = GlobalConstant.MilvaTemplateKey,
+            BasePath = GlobalConstant.JsonFilesPath
+        };
+
+        services.AddJsonOperations(options: opt =>
+        {
+            opt.BasePath = jsonOperationsConfig.BasePath;
+            opt.EncryptionKey = jsonOperationsConfig.EncryptionKey;
+        });
+
+        return new JsonOperations(jsonOperationsConfig);
+    }
+
+    /// <summary>
+    /// Migration database connection clause.
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="jsonOperations"></param>
+    public static void AddMilvaTemplateDbContext(this IServiceCollection services, IJsonOperations jsonOperations)
+    {
+        string connectionString = jsonOperations.GetCryptedContentAsync<string>($"connectionstring.{Startup.WebHostEnvironment.EnvironmentName}.json").Result;
+
+        services.AddSingleton<IAuditConfiguration>(new AuditConfiguration(true, true, true, true, true, true));
+
+        services.AddEntityFrameworkNpgsql().AddDbContext<MilvaTemplateDbContext>(opts =>
+        {
+            opts.UseNpgsql(connectionString, b => b.MigrationsAssembly("MilvaTemplate.API").EnableRetryOnFailure()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        });
+    }
+
+    /// <summary>
+    /// Applies dependency injection to repositories.
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddMilvaTemplateRepositories(this IServiceCollection services)
+    {
+        services.AddScoped(typeof(IMilvaTemplateRepositoryBase<,>), typeof(MilvaTemplateRepositoryBase<,>));
+        services.AddScoped<IContextRepository<MilvaTemplateDbContext>, ContextRepository<MilvaTemplateDbContext>>();
+    }
+
+    /// <summary>
+    /// Applies dependency injection to services.
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddMilvaTemplateServices(this IServiceCollection services)
+    {
+        services.AddSingleton<SharedResource>();
+        services.AddScoped<IJsonOperations, JsonOperations>();
+        services.AddSingleton<IMilvaLogger, MilvaTemplateLogger>();
+        services.AddHttpClient();
+        services.AddHttpContextAccessor();
+
+        services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstant.AppMail,
+                                                                    new NetworkCredential(GlobalConstant.AppMail, string.Empty),
+                                                                    587,
+                                                                    "mail.yourdomain.com"));
+
+        //Validation hatalarını optimize ettiğimiz için .net tarafından hata fırlatılmasını engelliyor.
+        services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+        services.AddTransient(typeof(Lazy<>), typeof(MilvaLazy<>));
+
+        #region Services
+
+        services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IContentService, ContentService>();
+
+        #endregion
+
+    }
+
+    /// <summary>
+    /// Swagger Configuration
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1.0", new OpenApiInfo
+            {
+                Version = "v1.0",
+                Title = "MilvaTemplate API",
+                Description = "MilvaTemplate API",
+                TermsOfService = new Uri("https://milvasoft.com"),
+                Contact = new OpenApiContact { Name = "Milvasoft Yazılım", Email = "info@milvasoft.com", Url = new Uri("https://milvasoft.com") },
+                License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             });
 
-            return new JsonOperations(jsonOperationsConfig);
-        }
-
-        /// <summary>
-        /// Migration database connection clause.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="jsonOperations"></param>
-        public static void AddMilvaTemplateDbContext(this IServiceCollection services, IJsonOperations jsonOperations)
-        {
-            string connectionString = jsonOperations.GetCryptedContentAsync<string>($"connectionstring.{Startup.WebHostEnvironment.EnvironmentName}.json").Result;
-
-            services.AddSingleton<IAuditConfiguration>(new AuditConfiguration(true, true, true, true, true, true));
-
-            services.AddEntityFrameworkNpgsql().AddDbContext<MilvaTemplateDbContext>(opts =>
+            options.SwaggerDoc("v1.1", new OpenApiInfo
             {
-                opts.UseNpgsql(connectionString, b => b.MigrationsAssembly("MilvaTemplate.API").EnableRetryOnFailure()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                Version = "v1.1",
+                Title = "MilvaTemplate API",
+                Description = "MilvaTemplate API",
+                TermsOfService = new Uri("https://milvasoft.com"),
+                Contact = new OpenApiContact { Name = "Milvasoft Yazılım", Email = "info@milvasoft.com", Url = new Uri("https://milvasoft.com") },
+                License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             });
-        }
 
-        /// <summary>
-        /// Applies dependency injection to repositories.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddMilvaTemplateRepositories(this IServiceCollection services)
-        {
-            services.AddScoped(typeof(IMilvaTemplateRepositoryBase<,>), typeof(MilvaTemplateRepositoryBase<,>));
-            services.AddScoped<IContextRepository<MilvaTemplateDbContext>, ContextRepository<MilvaTemplateDbContext>>();
-        }
 
-        /// <summary>
-        /// Applies dependency injection to services.
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddMilvaTemplateServices(this IServiceCollection services)
-        {
-            services.AddSingleton<SharedResource>();
-            services.AddScoped<IJsonOperations, JsonOperations>();
-            services.AddSingleton<IMilvaLogger, MilvaTemplateLogger>();
-            services.AddHttpClient();
-            services.AddHttpContextAccessor();
-
-            services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstant.AppMail,
-                                                                        new NetworkCredential(GlobalConstant.AppMail, string.Empty),
-                                                                        587,
-                                                                        "mail.yourdomain.com"));
-
-            //Validation hatalarını optimize ettiğimiz için .net tarafından hata fırlatılmasını engelliyor.
-            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
-
-            services.AddTransient(typeof(Lazy<>), typeof(MilvaLazy<>));
-
-            #region Services
-
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IContentService, ContentService>();
-
-            #endregion
-
-        }
-
-        /// <summary>
-        /// Swagger Configuration
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddSwagger(this IServiceCollection services)
-        {
-            services.AddSwaggerGen(options =>
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                options.SwaggerDoc("v1.0", new OpenApiInfo
-                {
-                    Version = "v1.0",
-                    Title = "MilvaTemplate API",
-                    Description = "MilvaTemplate API",
-                    TermsOfService = new Uri("https://milvasoft.com"),
-                    Contact = new OpenApiContact { Name = "Milvasoft Yazılım", Email = "info@milvasoft.com", Url = new Uri("https://milvasoft.com") },
-                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
-                });
+                In = ParameterLocation.Header,
+                Description = "Please insert JWT with Bearer into field",
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey
+            });
 
-                options.SwaggerDoc("v1.1", new OpenApiInfo
-                {
-                    Version = "v1.1",
-                    Title = "MilvaTemplate API",
-                    Description = "MilvaTemplate API",
-                    TermsOfService = new Uri("https://milvasoft.com"),
-                    Contact = new OpenApiContact { Name = "Milvasoft Yazılım", Email = "info@milvasoft.com", Url = new Uri("https://milvasoft.com") },
-                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
-                });
-
-
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
                   new OpenApiSecurityScheme
                   {
@@ -375,18 +374,17 @@ namespace MilvaTemplate.API.AppStartup
                   },
                   Array.Empty<string>()
                   }
-                });
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                options.IncludeXmlComments(xmlPath);
-
-                options.SchemaFilter<CustomAttributeSchemaFilter>();
-                options.SchemaFilter<SwaggerExcludeFilter>();
-                options.OperationFilter<RequestHeaderFilter>();
-                options.OperationFilter<CustomAttributeOperationFilter>();
-                options.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
             });
-        }
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
+
+            options.SchemaFilter<CustomAttributeSchemaFilter>();
+            options.SchemaFilter<SwaggerExcludeFilter>();
+            options.OperationFilter<RequestHeaderFilter>();
+            options.OperationFilter<CustomAttributeOperationFilter>();
+            options.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
+        });
     }
 }

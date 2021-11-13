@@ -8,25 +8,24 @@ using MilvaTemplate.Localization;
 using System;
 using System.Threading.Tasks;
 
-namespace MilvaTemplate.API.Services.Abstract
+namespace MilvaTemplate.API.Services.Abstract;
+
+/// <summary>
+/// The class in which user transactions are entered and exited
+/// </summary>
+public interface IAccountService : IIdentityOperations<UserManager<MilvaTemplateUser>, MilvaTemplateDbContext, IStringLocalizer<SharedResource>, MilvaTemplateUser, MilvaTemplateRole, Guid, LoginResultDTO>
 {
     /// <summary>
-    /// The class in which user transactions are entered and exited
+    /// Login for incoming user. Returns a token if login informations are valid or the user is not lockedout. Otherwise returns the error list.
     /// </summary>
-    public interface IAccountService : IIdentityOperations<UserManager<MilvaTemplateUser>, MilvaTemplateDbContext, IStringLocalizer<SharedResource>, MilvaTemplateUser, MilvaTemplateRole, Guid, LoginResultDTO>
-    {
-        /// <summary>
-        /// Login for incoming user. Returns a token if login informations are valid or the user is not lockedout. Otherwise returns the error list.
-        /// </summary>
-        /// <param name="loginDTO"></param>
-        /// <returns></returns>
-        Task<LoginResultDTO> LoginAsync(LoginDTO loginDTO);
+    /// <param name="loginDTO"></param>
+    /// <returns></returns>
+    Task<LoginResultDTO> LoginAsync(LoginDTO loginDTO);
 
-        /// <summary>
-        /// Refresh token login for all users.
-        /// </summary>
-        /// <param name="refreshToken"></param>
-        /// <returns></returns>
-        Task<LoginResultDTO> RefreshTokenLogin(string refreshToken);
-    }
+    /// <summary>
+    /// Refresh token login for all users.
+    /// </summary>
+    /// <param name="refreshToken"></param>
+    /// <returns></returns>
+    Task<LoginResultDTO> RefreshTokenLogin(string refreshToken);
 }

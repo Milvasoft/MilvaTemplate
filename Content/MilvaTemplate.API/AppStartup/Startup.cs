@@ -12,149 +12,148 @@ using MilvaTemplate.Localization;
 using System;
 #endregion
 
-namespace MilvaTemplate.API.AppStartup
+namespace MilvaTemplate.API.AppStartup;
+
+/*
+
+ TODO What to do in step by step;
+    - Check the GlobalConstant.cs for unnecessary variables for this project.
+    - Check the HelperExtensions.cs for unnecessary extensions for this project.
+    - Check services and middlewares in this file.
+    - Change the running port on IIS of the api in launchsetting.json.
+    - Check the sample controller and service. (Account)
+    - Check Migrations folder and add your necessary methods into classes.
+    - Decrypt conncetionstring.*.json files and change connection string.
+    - Enter mailsender password in ServiceCollectionExtensions.cs.
+    - Change encryption keys.
+    - Lastly and hardest, remove this comment block :)
+
+ */
+
+/// <summary>
+/// Application configuration.
+/// </summary>
+[ConfigureAwait(false)]
+public class Startup
 {
-    /*
-     
-     TODO What to do in step by step;
-        - Check the GlobalConstant.cs for unnecessary variables for this project.
-        - Check the HelperExtensions.cs for unnecessary extensions for this project.
-        - Check services and middlewares in this file.
-        - Change the running port on IIS of the api in launchsetting.json.
-        - Check the sample controller and service. (Account)
-        - Check Migrations folder and add your necessary methods into classes.
-        - Decrypt conncetionstring.*.json files and change connection string.
-        - Enter mailsender password in ServiceCollectionExtensions.cs.
-        - Change encryption keys.
-        - Lastly and hardest, remove this comment block :)
-    
-     */
+    #region Fields
+
+    private static IServiceCollection _serviceCollection;
+
+    #endregion
+
+    #region Properties
+
+    /// <summary> WebHostEnvironment value. </summary>
+    public static IWebHostEnvironment WebHostEnvironment { get; set; }
 
     /// <summary>
-    /// Application configuration.
+    /// For access shared resources.
     /// </summary>
-    [ConfigureAwait(false)]
-    public class Startup
+    public static IStringLocalizer<SharedResource> SharedStringLocalizer { get; set; }
+
+    #endregion
+
+    /// <summary>
+    /// Initializes new instance of <see cref="Startup"/>.
+    /// </summary>
+    /// <param name="env"></param>
+    public Startup(IWebHostEnvironment env)
     {
-        #region Fields
+        WebHostEnvironment = env;
+    }
 
-        private static IServiceCollection _serviceCollection;
+    /// <summary>
+    /// This method gets called by the runtime. Use this method to add services to the container.
+    /// </summary>
+    /// <param name="services"></param>
+    public void ConfigureServices(IServiceCollection services)
+    {
+        //Will be remove production.
+        //StartupConfiguration.EncryptFile().Wait();
+        //StartupConfiguration.DecryptFile().Wait();
+        _serviceCollection = services;
 
-        #endregion
+        Console.Out.WriteAppInfo("Service collection registration starting...");
 
-        #region Properties
+        services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-        /// <summary> WebHostEnvironment value. </summary>
-        public static IWebHostEnvironment WebHostEnvironment { get; set; }
+        services.AddCors();
 
-        /// <summary>
-        /// For access shared resources.
-        /// </summary>
-        public static IStringLocalizer<SharedResource> SharedStringLocalizer { get; set; }
+        services.AddControllers();
 
-        #endregion
+        //services.AddMilvaRedisCaching();
 
-        /// <summary>
-        /// Initializes new instance of <see cref="Startup"/>.
-        /// </summary>
-        /// <param name="env"></param>
-        public Startup(IWebHostEnvironment env)
+        services.AddVersioning();
+
+        services.AddIdentity();
+
+        var jsonOperations = services.AddJsonOperations();
+
+        services.AddJwtBearer(jsonOperations);
+
+        services.AddMilvaTemplateDbContext(jsonOperations);
+
+        services.AddMilvaTemplateRepositories();
+
+        services.AddMilvaTemplateServices();
+
+        services.AddSwagger();
+
+        Console.Out.WriteAppInfo("All services registered to service collection.");
+    }
+
+    /// <summary>
+    /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    /// </summary>
+    /// <param name="app"></param>
+    /// <param name="sharedStringLocalizer"></param>
+    /// <param name="applicationLifetime"></param>
+    public void Configure(IApplicationBuilder app, IStringLocalizer<SharedResource> sharedStringLocalizer, IHostApplicationLifetime applicationLifetime)
+    {
+        //Initializes string localizer 
+        SharedStringLocalizer = sharedStringLocalizer;
+
+        applicationLifetime.ApplicationStopped.Register(OnShutdown);
+
+        if (WebHostEnvironment.IsDevelopment())
         {
-            WebHostEnvironment = env;
+            app.UseDeveloperExceptionPage();
+
+            app.UseMilvaResponseTimeCalculator();
         }
 
-        /// <summary>
-        /// This method gets called by the runtime. Use this method to add services to the container.
-        /// </summary>
-        /// <param name="services"></param>
-        public void ConfigureServices(IServiceCollection services)
-        {
-            //Will be remove production.
-            //StartupConfiguration.EncryptFile().Wait();
-            //StartupConfiguration.DecryptFile().Wait();
-            _serviceCollection = services;
+        app.UseRequestLocalization();
 
-            Console.Out.WriteAppInfo("Service collection registration starting...");
+        app.UseActivityLogger();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+        app.UseMilvaTemplateExceptionHandler();
 
-            services.AddCors();
+        StartupConfiguration.CheckPublicFiles();
 
-            services.AddControllers();
+        app.UseStaticFiles();
 
-            //services.AddMilvaRedisCaching();
+        app.UseDirectoryBrowser();
 
-            services.AddVersioning();
+        app.UseRouting();
 
-            services.AddIdentity();
+        app.UseCors("ApiCorsPolicy");
 
-            var jsonOperations = services.AddJsonOperations();
+        app.UseAuthentication();
 
-            services.AddJwtBearer(jsonOperations);
+        app.UseAuthorization();
 
-            services.AddMilvaTemplateDbContext(jsonOperations);
+        app.UseEndpoints();
 
-            services.AddMilvaTemplateRepositories();
+        app.UseSwagger();
 
-            services.AddMilvaTemplateServices();
+        app.ConfigureAppStartupAsync(_serviceCollection).Wait();
 
-            services.AddSwagger();
+        Console.Out.WriteAppInfo($"Hosting environment : {WebHostEnvironment.EnvironmentName}");
+        Console.Out.WriteAppInfo($"Application started. Press Ctrl+C to shut down.");
+    }
 
-            Console.Out.WriteAppInfo("All services registered to service collection.");
-        }
-
-        /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="sharedStringLocalizer"></param>
-        /// <param name="applicationLifetime"></param>
-        public void Configure(IApplicationBuilder app, IStringLocalizer<SharedResource> sharedStringLocalizer, IHostApplicationLifetime applicationLifetime)
-        {
-            //Initializes string localizer 
-            SharedStringLocalizer = sharedStringLocalizer;
-
-            applicationLifetime.ApplicationStopped.Register(OnShutdown);
-
-            if (WebHostEnvironment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-
-                app.UseMilvaResponseTimeCalculator();
-            }
-
-            app.UseRequestLocalization();
-
-            app.UseActivityLogger();
-
-            app.UseMilvaTemplateExceptionHandler();
-
-            StartupConfiguration.CheckPublicFiles();
-
-            app.UseStaticFiles();
-
-            app.UseDirectoryBrowser();
-
-            app.UseRouting();
-
-            app.UseCors("ApiCorsPolicy");
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints();
-
-            app.UseSwagger();
-
-            app.ConfigureAppStartupAsync(_serviceCollection).Wait();
-
-            Console.Out.WriteAppInfo($"Hosting environment : {WebHostEnvironment.EnvironmentName}");
-            Console.Out.WriteAppInfo($"Application started. Press Ctrl+C to shut down.");
-        }
-
-        private void OnShutdown()
-        {
-        }
+    private void OnShutdown()
+    {
     }
 }

@@ -278,7 +278,7 @@
             <param name="sharedLocalizer"></param>
             <param name="contentService"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+        <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters})">
             <summary>
             Gets required content by contentParameters.EntityName.
             </summary>
@@ -291,6 +291,37 @@
             </summary>
             <param name="entityName"></param>
             <param name="propName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MilvaTemplate.API.Controllers.DeveloperOpsController">
+            <summary>
+            Provides competition's CRUD operations for admin and competition's operations for app users.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.DeveloperOpsController.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},MilvaTemplate.API.Services.Abstract.IAccountService,Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole})">
+            <summary>
+            Initializes new instances of <see cref="T:MilvaTemplate.API.Controllers.DeveloperOpsController"/>.
+            </summary>
+            <param name="userManager"></param>
+            <param name="accountService"></param>
+            <param name="roleManager"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.DeveloperOpsController.SwitchAppEnv">
+            <summary>
+            Switch environment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.DeveloperOpsController.GetAnyAdminToken">
+            <summary>
+            Return any user token.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Controllers.DeveloperOpsController.ResetEntities">
+            <summary>
+            Reset database.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO">
@@ -343,72 +374,72 @@
             UserName of MilvaTemplate user.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.DTOs.Content">
+        <member name="T:MilvaTemplate.API.DTOs.ContentDTOs.Content">
             <summary>
             Any content.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.Id">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.Id">
             <summary>
             Requested content id.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.ContentProp">
             <summary>
             Requested content's property.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp1">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.ContentProp1">
             <summary>
             Requested content's property.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.ContentProp2">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.ContentProp2">
             <summary>
             Requested content's property.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.ContentLangProp">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.ContentLangProp">
             <summary>
             Requested content's language property.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Content.ContentLangProp1">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Content.ContentLangProp1">
             <summary>
             Requested content's language property.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.DTOs.ContentParameters">
+        <member name="T:MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters">
             <summary>
             For request content. 
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.EntityName">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters.EntityName">
             <summary>
             Requested entity name.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.RequestedProps">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters.RequestedProps">
             <summary>
             Requested properties.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.ContentParameters.RequestedLangProps">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters.RequestedLangProps">
             <summary>
             Requested language properties.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.DTOs.Contents">
+        <member name="T:MilvaTemplate.API.DTOs.ContentDTOs.Contents">
             <summary>
             Content map object.
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Contents.Key">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Contents.Key">
             <summary>
             Content key. (e.g. Product)
             </summary>
         </member>
-        <member name="P:MilvaTemplate.API.DTOs.Contents.ContentList">
+        <member name="P:MilvaTemplate.API.DTOs.ContentDTOs.Contents.ContentList">
             <summary>
             Contents.
             </summary>
@@ -853,7 +884,7 @@
             <param name="returnFunc"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -868,7 +899,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -883,7 +914,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -899,7 +930,7 @@
             <param name="includes"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1324,7 +1355,7 @@
             An intermediate layer for data that the interface needs independent from anywhere..
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+        <member name="M:MilvaTemplate.API.Services.Abstract.IContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters})">
             <summary>
             Gets required content by <paramref name="contentParameterList"/>.EntityName.
             </summary>
@@ -1344,7 +1375,7 @@
             Provides sign-in,sign-up and sign-out process for user.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Abstract.ITokenManagement,Milvasoft.Helpers.DataAccess.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Abstract.ITokenManagement,Milvasoft.Helpers.DataAccess.EfCore.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
             <summary>
             Performs constructor injection for repository interfaces used in this service.
             </summary>
@@ -1386,7 +1417,7 @@
             </summary>
             <param name="dbContext"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentParameters})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.ContentService.GetRequiredContentAsync(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters})">
             <summary>
             Gets required content by <paramref name="contentParameterList"/>.EntityName.
             </summary>
@@ -1399,37 +1430,6 @@
             </summary>
             <param name="entityName"></param>
             <param name="propName"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Shhecret.API.Controllers.DeveloperOpsController">
-            <summary>
-            Provides competition's CRUD operations for admin and competition's operations for app users.
-            </summary>
-        </member>
-        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},MilvaTemplate.API.Services.Abstract.IAccountService,Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole})">
-            <summary>
-            Initializes new instances of <see cref="T:Shhecret.API.Controllers.DeveloperOpsController"/>.
-            </summary>
-            <param name="userManager"></param>
-            <param name="accountService"></param>
-            <param name="roleManager"></param>
-        </member>
-        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.SwitchAppEnv">
-            <summary>
-            Switch environment.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.GetAnyAdminToken">
-            <summary>
-            Return any user token.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Shhecret.API.Controllers.DeveloperOpsController.ResetEntities">
-            <summary>
-            Reset database.
-            </summary>
             <returns></returns>
         </member>
     </members>
