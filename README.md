@@ -32,5 +32,3 @@
 > Note: If you select "Place solution and project in same directory" box, you need add project to solution with "Add New Existing Project"
 
 ![Capture](https://user-images.githubusercontent.com/32344242/135268651-227dc8ed-24a1-4e02-bb53-e1af9edd0c36.PNG)
-
-
