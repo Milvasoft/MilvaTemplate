@@ -51,14 +51,14 @@ public class MilvaTemplateDbContext : MilvaDbContext<MilvaTemplateUser, MilvaTem
 
         modelBuilder.UseDatabaseTemplate("template0");
         modelBuilder.UseCollation("C");
-        modelBuilder.ConfigureStringProperties();
+        modelBuilder.UseTurkishCollation();
         modelBuilder.UseTablespace("pg_default");
 
         #endregion
 
         //modelBuilder.UseEncryption(_provider);
-        modelBuilder.ConfigureDecimalProperties();
-        modelBuilder.AddIndexToIndelibleEntities();
+        modelBuilder.UsePrecision();
+        modelBuilder.UseSoftDeleteQueryFilter();
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
+using MilvaTemplate.API.Helpers.Constants;
 
 namespace MilvaTemplate.API.DTOs;
 
@@ -10,14 +11,14 @@ public class PaginationParams
     /// <summary>
     /// Requested page number.
     /// </summary>
-    [MValidateDecimal(0, LocalizerKey = "WrongRequestedPageNumber", FullMessage = true)]
+    [MValidateDecimal(0, LocalizerKey = MilvaTemplateStringKey.WrongRequestedPageNumber, FullMessage = true)]
     public int PageIndex { get; set; } = 1;
 
     /// <summary>
     /// Requested item count in requested page.
     /// </summary>
-    [MValidateDecimal(0, LocalizerKey = "WrongRequestedItemCount", FullMessage = true)]
-    public int RequestedItemCount { get; set; } = 20;
+    [MValidateDecimal(0, LocalizerKey = MilvaTemplateStringKey.WrongRequestedItemCount, FullMessage = true)]
+    public int RequestedItemCount { get; set; } = 10;
 
     /// <summary>
     /// If order by column requested then Property name of entity.

@@ -17,5 +17,7 @@ public static class MilvaTemplateStringKey
     public const string LocalizedEntityName = nameof(LocalizedEntityName);
     public const string Authorization = nameof(Authorization);
     public const string Action = nameof(Action);
+    public const string WrongRequestedPageNumber = nameof(WrongRequestedPageNumber);
+    public const string WrongRequestedItemCount = nameof(WrongRequestedItemCount);
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

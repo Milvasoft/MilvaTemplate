@@ -732,117 +732,27 @@
             <summary>
             Helper extensions methods for Ops!yon Project.
             </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ValidateFile(Microsoft.AspNetCore.Http.IFormFile,Milvasoft.Helpers.FileOperations.Enums.FileType)">
             <summary>
-            Validates file. 
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <param name="file"></param>
-            <param name="fileType"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.SaveVideoToServerAsync``2(Microsoft.AspNetCore.Http.IFormFile,``0)">
             <summary>
-            Save uploaded IFormFile file to server. Target Path will be : ".../wwwroot/Media Library/Image Library/<paramref name="entity"></paramref>.Id".
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <param name="file"> Uploaded file in entity. </param>
-            <param name="entity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetFileUrlFromPath(System.String,Milvasoft.Helpers.FileOperations.Enums.FileType)">
             <summary>
-            Returns the path of the uploaded file.
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <param name="originalImagePath"> Uploaded file. </param>
-            <param name="fileType"> Uploaded file type. (e.g image,video,sound) </param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ConvertToFormFile(System.String)">
             <summary>
-            Converts data URI formatted base64 string to IFormFile.
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <param name="milvaBase64"></param>
-            <returns></returns>
-        </member>
-        <member name="P:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.LanguageIdIsoPairs">
             <summary>
-            Stores language id and iso code.
+            Helper extensions methods for Ops!yon Project.
             </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}})">
             <summary>
-            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <param name="langs"></param>
-            <param name="propertyName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangs``2(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            Helper extensions methods for Ops!yon Project.
             </summary>
-            <param name="langs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLanguageId(System.Int32)">
-            <summary>
-            Gets language id from CultureInfo.CurrentCulture.
-            </summary>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPaginationVariablesFromHeader(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
-            <summary>
-            Gets institution id from request's header. Then returns that id variable.
-            </summary>
-            <param name="httpContextAccessor"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Int32)">
-            <summary>
-            Checks <paramref name="id"/> is default record id or not.
-            </summary>
-            
-            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when <paramref name="id"/> is defult record id. </exception>
-            
-            <param name="id"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Collections.Generic.List{System.Int32})">
-            <summary>
-            Checks <paramref name="idList"/> contains default record or not.
-            </summary>
-            
-            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when contents contains defult record id. </exception>
-            
-            <param name="idList"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsDefaultRecord(System.Int32)">
-            <summary>
-            Checks <paramref name="id"/> is default record id or not.
-            </summary>
-            <param name="id"></param>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangPropValue(System.Object,System.String,System.String)">
-            <summary>
-            Get langs property in runtime.
-            </summary>
-            <param name="obj"></param>
-            <param name="langPropName"></param>
-            <param name="requestedPropName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String)">
-            <summary>
-            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
-            </summary>
-            <param name="langs"></param>
-            <param name="propName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPropertyValue(System.Object,System.String)">
-            <summary>
-            Gets requested property value.
-            </summary>
-            <param name="obj"></param>
-            <param name="propertyName"> e.g : ProductLangs.Name </param>
-            <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
             <summary>
@@ -884,67 +794,29 @@
             <param name="returnFunc"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Int32)">
             <summary>
-            Prepares pagination dto according to pagination parameters.
+            Checks <paramref name="id"/> is default record id or not.
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <param name="repository"></param>
-            <param name="pageIndex"></param>
-            <param name="requestedItemCount"></param>
-            <param name="orderByProperty"></param>
-            <param name="orderByAscending"></param>
-            <param name="condition"></param>
-            <param name="includes"></param>
-            <returns></returns>
+            
+            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when <paramref name="id"/> is defult record id. </exception>
+            
+            <param name="id"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckContentIsDefaultRecord(System.Collections.Generic.List{System.Int32})">
             <summary>
-            Prepares pagination dto according to pagination parameters.
+            Checks <paramref name="idList"/> contains default record or not.
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <param name="repository"></param>
-            <param name="pageIndex"></param>
-            <param name="requestedItemCount"></param>
-            <param name="orderByKeySelector"></param>
-            <param name="orderByAscending"></param>
-            <param name="condition"></param>
-            <param name="includes"></param>
-            <returns></returns>
+            
+            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when contents contains defult record id. </exception>
+            
+            <param name="idList"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsDefaultRecord(System.Int32)">
             <summary>
-            Prepares pagination dto according to pagination parameters.
+            Checks <paramref name="id"/> is default record id or not.
             </summary>
-            <typeparam name="TRepository"></typeparam>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <param name="repository"></param>
-            <param name="pageIndex"></param>
-            <param name="requestedItemCount"></param>
-            <param name="orderByProperty"></param>
-            <param name="orderByAscending"></param>
-            <param name="condition"></param>
-            <param name="includes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable})">
-            <summary>
-            Prepares pagination dto according to pagination parameters.
-            </summary>
-            <typeparam name="TRepository"></typeparam>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <param name="repository"></param>
-            <param name="pageIndex"></param>
-            <param name="requestedItemCount"></param>
-            <param name="orderByKeySelector"></param>
-            <param name="orderByAscending"></param>
-            <param name="condition"></param>
-            <param name="includes"></param>
-            <returns></returns>
+            <param name="id"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfParameterIsNull(System.Object,System.String)">
             <summary>
@@ -995,27 +867,106 @@
             <param name="entity"></param>
             <param name="localizerKey"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsBetween(System.DateTime,System.TimeSpan,System.TimeSpan)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ValidateFile(Microsoft.AspNetCore.Http.IFormFile,Milvasoft.Helpers.FileOperations.Enums.FileType)">
             <summary>
-            Compares <paramref name="date"/> for whether between <paramref name="startTime"/> and <paramref name="endTime"/>. 
+            Validates file. 
             </summary>
-            
-            <remarks>
-            This is a time comparison not a date comparison.
-            </remarks>
-            
-            <param name="date"></param>
-            <param name="startTime"></param>
-            <param name="endTime"></param>
+            <param name="file"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.SaveVideoToServerAsync``2(Microsoft.AspNetCore.Http.IFormFile,``0)">
+            <summary>
+            Save uploaded IFormFile file to server. Target Path will be : ".../wwwroot/Media Library/Image Library/<paramref name="entity"></paramref>.Id".
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="file"> Uploaded file in entity. </param>
+            <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.IsBetween(System.DateTime,System.DateTime,System.DateTime)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetFileUrlFromPath(System.String,Milvasoft.Helpers.FileOperations.Enums.FileType)">
             <summary>
-            Compares <paramref name="date"/> for whether between <paramref name="startDate"/> and <paramref name="endDate"/>. 
+            Returns the path of the uploaded file.
             </summary>
-            <param name="date"></param>
-            <param name="startDate"></param>
-            <param name="endDate"></param>
+            <param name="originalImagePath"> Uploaded file. </param>
+            <param name="fileType"> Uploaded file type. (e.g image,video,sound) </param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ConvertToFormFile(System.String)">
+            <summary>
+            Converts data URI formatted base64 string to IFormFile.
+            </summary>
+            <param name="milvaBase64"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPaginationVariablesFromHeader(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Gets institution id from request's header. Then returns that id variable.
+            </summary>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfo(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes app start information to console.
+            </summary>
+            <param name="textWriter"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfoAsync(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes app start information to console.
+            </summary>
+            <param name="textWriter"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.LanguageIdIsoPairs">
+            <summary>
+            Stores language id and iso code.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.String}})">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangs``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLanguageId(System.Int32)">
+            <summary>
+            Gets language id from CultureInfo.CurrentCulture.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLangPropValue(System.Object,System.String,System.String)">
+            <summary>
+            Get langs property in runtime.
+            </summary>
+            <param name="obj"></param>
+            <param name="langPropName"></param>
+            <param name="requestedPropName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String)">
+            <summary>
+            Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
+            </summary>
+            <param name="langs"></param>
+            <param name="propName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            Gets requested property value.
+            </summary>
+            <param name="obj"></param>
+            <param name="propertyName"> e.g : ProductLangs.Name </param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.MapAuditData``2(``0,``1)">
@@ -1034,19 +985,70 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfo(System.IO.TextWriter,System.String)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
             <summary>
-            Writes app start information to console.
+            Prepares pagination dto according to pagination parameters.
             </summary>
-            <param name="textWriter"></param>
-            <param name="message"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByProperty"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <param name="projection"></param>
+            <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.WriteAppInfoAsync(System.IO.TextWriter,System.String)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
             <summary>
-            Writes app start information to console.
+            Prepares pagination dto according to pagination parameters.
             </summary>
-            <param name="textWriter"></param>
-            <param name="message"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByKeySelector"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <param name="projection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TRepository"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByProperty"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <param name="projection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
+            <summary>
+            Prepares pagination dto according to pagination parameters.
+            </summary>
+            <typeparam name="TRepository"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="pageIndex"></param>
+            <param name="requestedItemCount"></param>
+            <param name="orderByKeySelector"></param>
+            <param name="orderByAscending"></param>
+            <param name="condition"></param>
+            <param name="includes"></param>
+            <param name="projection"></param>
             <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.MilvaLazy`1">
