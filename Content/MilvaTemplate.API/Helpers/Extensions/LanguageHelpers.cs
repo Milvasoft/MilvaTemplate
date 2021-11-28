@@ -115,7 +115,7 @@ public static partial class HelperExtensions
     /// <param name="langs"></param>
     /// <param name="propName"></param>
     /// <returns></returns>
-    private static string GetLang<TEntity>(this HashSet<TEntity> langs, string propName)
+    private static string GetLang<TEntity>(this IEnumerable<TEntity> langs, string propName)
     {
         var requestedLangId = GetLanguageId(GlobalConstant.DefaultLanguageId);
 

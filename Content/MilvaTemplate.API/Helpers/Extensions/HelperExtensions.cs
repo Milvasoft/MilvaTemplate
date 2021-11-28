@@ -4,7 +4,10 @@ using Milvasoft.Helpers.Exceptions;
 using Milvasoft.Helpers.Extensions;
 using MilvaTemplate.API.Helpers.Constants;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Helpers.Extensions;
@@ -77,5 +80,54 @@ public static partial class HelperExtensions
         await textWriter.WriteAsync("\n\n info: ");
         Console.ForegroundColor = ConsoleColor.Gray;
         await textWriter.WriteAsync($"{message}");
+    }
+
+    /// <summary>
+    /// Creates projection expression for contents service. THIS IS A AMAZING METHOD.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <param name="propertyNames"></param>
+    /// <param name="langProps"></param>
+    /// <param name="langType"></param>
+    /// <returns></returns>
+    public static Expression<Func<TEntity, TEntity>> CreateProjectionExpression<TEntity>(this IEnumerable<string> propertyNames, IEnumerable<string> langProps, Type langType = null)
+    {
+        var sourceAndResultType = typeof(TEntity);
+
+        LambdaExpression langExpression = null;
+
+        if (!langProps.IsNullOrEmpty())
+        {
+            langProps = langProps.Append("SystemLanguageId");
+
+            var langParameter = Expression.Parameter(langType, "l");
+
+            var langBindings = langProps.Select(column => Expression.Bind(langType.GetProperty(column), Expression.Property(langParameter, column)));
+
+            var langBody = Expression.MemberInit(Expression.New(langType), langBindings);
+
+            langExpression = Expression.Lambda(langBody, langParameter);
+        }
+
+        var parameter = Expression.Parameter(sourceAndResultType, "c");
+
+        MethodCallExpression selectExpressionForLangs = null;
+
+        if (langExpression != null)
+        {
+            selectExpressionForLangs = Expression.Call(typeof(Enumerable),
+                                                       nameof(Enumerable.Select),
+                                                       new Type[] { langType, langType },
+                                                       Expression.PropertyOrField(parameter, $"{langType.Name}s"),
+                                                       langExpression);
+        }
+
+
+
+        var bindings = propertyNames.Select(column => Expression.Bind(sourceAndResultType.GetProperty(column), column.EndsWith("Langs") ? selectExpressionForLangs : Expression.Property(parameter, column)));
+
+        var body = Expression.MemberInit(Expression.New(sourceAndResultType), bindings);
+
+        return Expression.Lambda<Func<TEntity, TEntity>>(body, parameter);
     }
 }

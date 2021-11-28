@@ -919,6 +919,16 @@
             <param name="message"></param>
             <returns></returns>
         </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CreateProjectionExpression``1(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Type)">
+            <summary>
+            Creates projection expression for contents service. THIS IS A AMAZING METHOD.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="propertyNames"></param>
+            <param name="langProps"></param>
+            <param name="langType"></param>
+            <returns></returns>
+        </member>
         <member name="P:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.LanguageIdIsoPairs">
             <summary>
             Stores language id and iso code.
@@ -953,7 +963,7 @@
             <param name="requestedPropName"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.HashSet{``0},System.String)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetLang``1(System.Collections.Generic.IEnumerable{``0},System.String)">
             <summary>
             Performs the necessary mapping for language dependent objects. For example, it is used to map the data in the Product class to the ProductDTO class.
             </summary>

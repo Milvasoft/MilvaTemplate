@@ -1,5 +1,6 @@
 ﻿using Fody;
 using Milvasoft.Helpers;
+using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
 using Milvasoft.Helpers.Exceptions;
 using Milvasoft.Helpers.Extensions;
 using MilvaTemplate.API.DTOs.ContentDTOs;
@@ -34,6 +35,7 @@ public class ContentService : IContentService
         _dbContext = dbContext;
     }
 
+
     /// <summary>
     /// Gets required content by <paramref name="contentParameterList"/>.EntityName.
     /// </summary>
@@ -45,20 +47,11 @@ public class ContentService : IContentService
 
         if (!contentParameterList.IsNullOrEmpty())
         {
-            #region Check Same Propert And Entity
-
-            /*var entityNames = contentParameterList.Select(p => p.EntityName).ToList();
-
-            HashSet<string> entitys = new HashSet<string>();
-
-            foreach (var item in entityNames) { entitys.Add(item); }
-
-            //Aynı entityName varsa hata fırlatıldı.
-            if (entitys.Count != entityNames.Count)
-                throw new MilvaUserFriendlyException(_stringLocalizer);*/
+            #region Check Same Property And Entity
 
             HashSet<string> paramaters;
             HashSet<string> langs;
+
             foreach (var contentParameters in contentParameterList)
             {
                 if (!contentParameters.RequestedLangProps.IsNullOrEmpty())
@@ -91,25 +84,57 @@ public class ContentService : IContentService
                 var requestedProps = contentParameters.RequestedProps;
                 var requestedLangProps = contentParameters.RequestedLangProps;
 
+                List<string> propNamesForProjection = new()
+                {
+                    EntityPropertyNames.Id,
+                    EntityPropertyNames.CreationDate
+                };
+
                 if (!requestedProps.IsNullOrEmpty())
+                {
                     if (requestedProps.Count > 3)
                         throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 
+                    propNamesForProjection.AddRange(requestedProps);
+                }
+
+                var assembly = Assembly.GetAssembly(typeof(MilvaTemplateUser));
+
+                var type = assembly.GetTypes().FirstOrDefault(i => i.Name == entityName) ?? throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
+
+                Type langType = null;
+
                 if (!requestedLangProps.IsNullOrEmpty())
+                {
                     if (requestedLangProps.Count > 2)
                         throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 
-                var assembly = Assembly.GetAssembly(typeof(MilvaTemplateUser));
-                var type = assembly.GetTypes().FirstOrDefault(i => i.Name == entityName) ?? throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
+                    propNamesForProjection.Add($"{type.Name}Langs");
 
-                var taskResult = (Task)_dbContext.GetType().GetMethod("GetRequiredContentsAsync").MakeGenericMethod(type).Invoke(_dbContext, null);
+                    langType = assembly.GetTypes().FirstOrDefault(i => i.Name == $"{type.Name}Lang")
+                                    ?? throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
+                }
+
+                var createProjectionExpressionMethod = typeof(HelperExtensions).GetMethod(nameof(HelperExtensions.CreateProjectionExpression),
+                                                                                          BindingFlags.Static | BindingFlags.Public);
+
+                var projectionExpression = createProjectionExpressionMethod.MakeGenericMethod(type).Invoke(propNamesForProjection,
+                                                                                                           new object[] { propNamesForProjection, requestedLangProps, langType });
+
+                var taskResult = (Task)_dbContext.GetType()
+                                                 .GetMethod("GetRequiredContentsAsync")
+                                                 .MakeGenericMethod(type)
+                                                 .Invoke(_dbContext, new object[] { projectionExpression });
+
                 await taskResult;
+
                 var resultProperty = taskResult.GetType().GetProperty("Result");
+
                 var contentList = resultProperty.GetValue(taskResult);
 
                 var count = (int)contentList.GetType().GetProperty("Count").GetValue(contentList, null);
 
-                List<Content> contents = new();
+                SortedList<DateTime, Content> contents = new();
 
                 static object GetDefaultValue(Type t)
                 {
@@ -135,7 +160,9 @@ public class ContentService : IContentService
 
                     for (int i = 0; i < count; i++)
                     {
-                        if (i == GlobalConstant.Zero) enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
+                        if (i == GlobalConstant.Zero)
+                            enumerator.GetType().GetMethod("MoveNext").Invoke(enumerator, null);
+
                         var item = enumerator.GetType().GetProperty("Current").GetValue(enumerator, null);
 
                         PropertyInfo p1 = null;
@@ -164,13 +191,15 @@ public class ContentService : IContentService
                             else p3 = item.GetType().GetProperty(requestedProps[2]);
 
 
-                        if (!requestedLangProps.IsNullOrEmpty() && requestedLangProps.Count >= 1 && string.IsNullOrEmpty(requestedLangProps[0]))
+                        if (!requestedLangProps.IsNullOrEmpty() && requestedLangProps.Count >= 1 && string.IsNullOrWhiteSpace(requestedLangProps[0]))
                             throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 
-                        if (!requestedLangProps.IsNullOrEmpty() && requestedLangProps.Count >= 2 && string.IsNullOrEmpty(requestedLangProps[1]))
+                        if (!requestedLangProps.IsNullOrEmpty() && requestedLangProps.Count >= 2 && string.IsNullOrWhiteSpace(requestedLangProps[1]))
                             throw new MilvaUserFriendlyException(MilvaException.InvalidParameter);
 
-                        contents.Add(new Content
+                        var q = item.GetType().GetProperty(EntityPropertyNames.CreationDate).GetValue(item, null);
+
+                        contents.Add((DateTime)item.GetType().GetProperty(EntityPropertyNames.CreationDate).GetValue(item, null), new Content
                         {
                             Id = item.GetType().GetProperty("Id").GetValue(item, null),
                             ContentProp = p1 != null
@@ -192,11 +221,12 @@ public class ContentService : IContentService
                     allContents.Add(new Contents
                     {
                         Key = entityName,
-                        ContentList = contents
+                        ContentList = contents.OrderByDescending(i => i.Key).Select(i => i.Value).ToList(),
                     });
                 }
             }
         }
+
         return allContents;
     }
 
