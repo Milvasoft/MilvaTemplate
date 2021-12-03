@@ -1,17 +1,10 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using Milvasoft.Helpers;
 using Milvasoft.Helpers.Enums;
 using MilvaTemplate.API.DTOs.ContentDTOs;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
-using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.API.Services.Abstract;
-using MilvaTemplate.Localization;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Controllers;
 

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Milvasoft.Helpers.Attributes.ActionFilter;
-using MilvaTemplate.Localization;
-using System;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 

@@ -4,9 +4,6 @@ using Milvasoft.Helpers.Identity.Abstract;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.Data;
 using MilvaTemplate.Entity.Identity;
-using MilvaTemplate.Localization;
-using System;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Services.Abstract;
 

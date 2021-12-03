@@ -1,6 +1,4 @@
 ﻿using Milvasoft.Helpers.Attributes.Validation;
-using MilvaTemplate.Localization;
-using System;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 

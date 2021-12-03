@@ -1,5 +1,4 @@
 ﻿using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
-using System;
 
 namespace MilvaTemplate.API.DTOs.AccountDTOs;
 

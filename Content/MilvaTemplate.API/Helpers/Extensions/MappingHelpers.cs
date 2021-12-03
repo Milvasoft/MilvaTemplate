@@ -2,7 +2,6 @@
 using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.Entity.Identity;
-using System;
 
 namespace MilvaTemplate.API.Helpers.Extensions;
 

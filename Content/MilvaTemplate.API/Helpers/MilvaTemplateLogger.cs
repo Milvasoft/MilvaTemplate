@@ -1,11 +1,8 @@
-﻿using Fody;
-using Milvasoft.Helpers.DependencyInjection;
+﻿using Milvasoft.Helpers.DependencyInjection;
 using Milvasoft.Helpers.Enums;
 using Milvasoft.Helpers.Mail;
 using Serilog;
 using Serilog.Events;
-using System;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Helpers;
 

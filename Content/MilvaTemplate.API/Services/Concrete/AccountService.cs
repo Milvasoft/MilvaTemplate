@@ -1,22 +1,14 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers.DataAccess.EfCore.Abstract;
-using Milvasoft.Helpers.Exceptions;
 using Milvasoft.Helpers.Identity.Abstract;
 using Milvasoft.Helpers.Identity.Concrete;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.Data;
 using MilvaTemplate.Entity.Identity;
-using MilvaTemplate.Localization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Services.Concrete;
 

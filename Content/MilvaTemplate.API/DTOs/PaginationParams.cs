@@ -1,5 +1,4 @@
 ﻿using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
-using MilvaTemplate.API.Helpers.Constants;
 
 namespace MilvaTemplate.API.DTOs;
 

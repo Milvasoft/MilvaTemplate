@@ -1,9 +1,4 @@
 ﻿using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
-using Milvasoft.Helpers.Exceptions;
-using Milvasoft.Helpers.Extensions;
-using Milvasoft.Helpers.Utils;
-using System;
-using System.Collections.Generic;
 
 namespace MilvaTemplate.API.Helpers.Extensions;
 

@@ -1,9 +1,4 @@
-﻿using Milvasoft.Helpers.Exceptions;
-using MilvaTemplate.API.Helpers.Constants;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MilvaTemplate.API.Helpers.Extensions;
+﻿namespace MilvaTemplate.API.Helpers.Extensions;
 
 /// <summary>
 /// Helper extensions methods for Ops!yon Project.

@@ -1,7 +1,6 @@
 ﻿using Milvasoft.Helpers.Attributes.Validation;
 using Milvasoft.Helpers.Identity.Abstract;
 using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
-using MilvaTemplate.Localization;
 
 namespace MilvaTemplate.API.DTOs.AccountDTOs;
 

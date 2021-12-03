@@ -1,21 +1,14 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Milvasoft.Helpers.FileOperations.Abstract;
-using MilvaTemplate.API.Helpers.Constants;
-using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.API.Migrations;
 using MilvaTemplate.Data.Abstract;
-using MilvaTemplate.Entity;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.AppStartup;
 

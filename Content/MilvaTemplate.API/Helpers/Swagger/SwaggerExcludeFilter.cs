@@ -1,6 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Linq;
 using System.Reflection;
 
 namespace MilvaTemplate.API.Helpers.Swagger;

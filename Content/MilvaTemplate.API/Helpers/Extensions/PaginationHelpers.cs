@@ -3,10 +3,6 @@ using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
 using Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary;
 using MilvaTemplate.Data;
 using MilvaTemplate.Data.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Helpers.Extensions;
 

@@ -1,15 +1,11 @@
 ﻿#region Using Directives
-using Fody;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers.Middlewares;
-using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.API.Middlewares;
-using MilvaTemplate.Localization;
-using System;
 #endregion
 
 namespace MilvaTemplate.API.AppStartup;

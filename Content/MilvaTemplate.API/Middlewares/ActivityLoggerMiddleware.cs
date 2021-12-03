@@ -1,11 +1,7 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Milvasoft.Helpers.Models.Response;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using MilvaTemplate.Data.Abstract;
-using MilvaTemplate.Entity;
-using System;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Middlewares;
 

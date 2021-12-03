@@ -1,12 +1,7 @@
-﻿using Fody;
-using Milvasoft.Helpers.Encryption.Concrete;
+﻿using Milvasoft.Helpers.Encryption.Concrete;
 using Milvasoft.Helpers.FileOperations.Abstract;
-using Milvasoft.Helpers.Models;
-using MilvaTemplate.API.Helpers.Constants;
 using MilvaTemplate.API.Helpers.Models;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.AppStartup;
 

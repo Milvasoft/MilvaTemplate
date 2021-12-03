@@ -1,10 +1,6 @@
-﻿using Fody;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
 using MilvaTemplate.Data;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Migrations;
 

@@ -1,11 +1,7 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.Data;
-using System;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Migrations;
 

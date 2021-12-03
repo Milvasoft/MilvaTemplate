@@ -1,6 +1,4 @@
 ﻿using MilvaTemplate.API.DTOs.ContentDTOs;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Services.Abstract;
 

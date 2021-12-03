@@ -2,8 +2,6 @@
 using Microsoft.OpenApi.Models;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Linq;
 using System.Reflection;
 
 namespace MilvaTemplate.API.Helpers.Swagger;

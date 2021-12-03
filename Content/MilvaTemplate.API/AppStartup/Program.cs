@@ -1,12 +1,8 @@
-using Fody;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MilvaTemplate.API.Helpers.Extensions;
 using Serilog;
 using Serilog.Events;
-using System;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.AppStartup;
 

@@ -1,14 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using Milvasoft.Helpers.Utils;
-using MilvaTemplate.API.Helpers.Constants;
-using MilvaTemplate.API.Helpers.Extensions;
-using MilvaTemplate.Localization;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters;

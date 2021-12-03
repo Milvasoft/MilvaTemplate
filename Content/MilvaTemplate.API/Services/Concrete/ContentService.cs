@@ -1,20 +1,10 @@
-﻿using Fody;
-using Milvasoft.Helpers;
-using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
-using Milvasoft.Helpers.Exceptions;
-using Milvasoft.Helpers.Extensions;
+﻿using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
 using MilvaTemplate.API.DTOs.ContentDTOs;
-using MilvaTemplate.API.Helpers.Constants;
-using MilvaTemplate.API.Helpers.Extensions;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.Data;
 using MilvaTemplate.Entity.Identity;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace MilvaTemplate.API.Services.Concrete;
 

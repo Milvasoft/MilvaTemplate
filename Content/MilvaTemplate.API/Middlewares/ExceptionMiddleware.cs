@@ -1,24 +1,12 @@
-﻿using Fody;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Milvasoft.Helpers;
 using Milvasoft.Helpers.DependencyInjection;
-using Milvasoft.Helpers.Exceptions;
-using Milvasoft.Helpers.Extensions;
 using Milvasoft.Helpers.Mail;
 using Milvasoft.Helpers.Models.Response;
-using Milvasoft.Helpers.Utils;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
-using MilvaTemplate.API.Helpers.Constants;
-using MilvaTemplate.Localization;
 using Newtonsoft.Json;
 using Serilog;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ResourceKey = MilvaTemplate.Localization.Resources.SharedResource;
 
 namespace MilvaTemplate.API.Middlewares;
 
