@@ -5,7 +5,7 @@ namespace MilvaTemplate.API.Helpers.Constants;
 /// <summary>
 /// Constants of localizer keys.
 /// </summary>
-public static class MilvaTemplateStringKey
+public static class StringKey
 {
     public const string AccountInfo = nameof(AccountInfo);
     public const string Deleted = nameof(Deleted);
@@ -19,5 +19,7 @@ public static class MilvaTemplateStringKey
     public const string Action = nameof(Action);
     public const string WrongRequestedPageNumber = nameof(WrongRequestedPageNumber);
     public const string WrongRequestedItemCount = nameof(WrongRequestedItemCount);
+    public const string Public = nameof(Public);
+    public const string MilvaTemplateMail = nameof(MilvaTemplateMail);
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

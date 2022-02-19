@@ -51,14 +51,14 @@ public class AccountController : ControllerBase
     /// <summary>
     /// Refresh token login for all users.
     /// </summary>
-    /// <param name="refreshLogin"></param>
+    /// <param name="refreshLoginDTO"></param>
     /// <returns></returns>
     [HttpPost("Login/{*refreshLogin}")]
     [AllowAnonymous]
     [MValidateStringParameter(10, 1000)]
-    public async Task<IActionResult> RefreshTokenLogin(string refreshLogin)
+    public async Task<IActionResult> RefreshTokenLogin(RefreshLoginDTO refreshLoginDTO)
     {
-        var loginResult = await _accountService.RefreshTokenLogin(refreshLogin);
+        var loginResult = await _accountService.RefreshTokenLogin(refreshLoginDTO);
 
         return loginResult.GetObjectResponse(_sharedLocalizer[nameof(ResourceKey.SuccessfullyLoginMessage)]);
     }
@@ -67,7 +67,7 @@ public class AccountController : ControllerBase
     /// Logout method. This endpoint is accessible for anyone.
     /// </summary>
     /// <returns></returns>
-    [HttpGet("LogOut")]
+    [HttpGet("Logout")]
     [Authorize(Roles = RoleName.All)]
     public async Task<IActionResult> LogoutAsync()
         => await _accountService.LogoutAsync().GetObjectResponseAsync<object>(_sharedLocalizer[nameof(ResourceKey.SuccessfullyLoguotMessage)]);

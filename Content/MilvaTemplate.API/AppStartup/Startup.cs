@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Milvasoft.Helpers.Middlewares;
+using MilvaTemplate.API.Helpers.Models;
 using MilvaTemplate.API.Middlewares;
+using System.IO;
 #endregion
 
 namespace MilvaTemplate.API.AppStartup;
@@ -68,9 +70,15 @@ public class Startup
         //Will be remove production.
         //StartupConfiguration.EncryptFile().Wait();
         //StartupConfiguration.DecryptFile().Wait();
+
         _serviceCollection = services;
 
         Console.Out.WriteAppInfo("Service collection registration starting...");
+
+        var jsonOperations = services.AddJsonOperations();
+
+        GlobalConstant.Configurations = jsonOperations.GetCryptedContentAsync<Configurations>(Path.Combine(GlobalConstant.JsonFilesPath,
+                                                                                                           "configurations.json")).Result;
 
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -84,9 +92,7 @@ public class Startup
 
         services.AddIdentity();
 
-        var jsonOperations = services.AddJsonOperations();
-
-        services.AddJwtBearer(jsonOperations);
+        services.AddJwtBearer();
 
         services.AddMilvaTemplateDbContext(jsonOperations);
 

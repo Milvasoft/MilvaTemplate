@@ -430,6 +430,11 @@
               Looks up a localized string similar to Lütfen geçerli bir değer girin..
             </summary>
         </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PleaseEnterUsername">
+            <summary>
+              Looks up a localized string similar to Lütfen kullanıcı adınızı giriniz..
+            </summary>
+        </member>
         <member name="P:MilvaTemplate.Localization.Resources.SharedResource.PleaseEnterValidUserInfo">
             <summary>
               Looks up a localized string similar to Lütfen geçerli bir kullanıcı bilgisi girin..
@@ -538,6 +543,11 @@
         <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RegexPatternPhoneNumber">
             <summary>
               Looks up a localized string similar to ^(0 (\d{3}) (\d{3}) (\d{2}) (\d{2}))$.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RequiredTwoFactor">
+            <summary>
+              Looks up a localized string similar to İki faktörlü bir onay gereklidir..
             </summary>
         </member>
         <member name="P:MilvaTemplate.Localization.Resources.SharedResource.RequiresTwoFactor">

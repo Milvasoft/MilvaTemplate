@@ -43,6 +43,7 @@ public class ExceptionMiddleware
         try
         {
             context.Request.EnableBuffering();
+
             await _next.Invoke(context);
         }
         catch (Exception ex)
@@ -67,24 +68,49 @@ public class ExceptionMiddleware
                 //If the exception is thrown due to not being able to connect to a service.
                 if (userFriendlyEx.ExceptionCode == (int)MilvaException.CannotGetResponse)
                     _ = SendExceptionMail(ex);
+
+                if (!GlobalConstant.RealProduction)
+                {
+                    var jsonData = await context.Request.ReadBodyFromRequestAsync();
+
+                    var messageTemplate = ex.Message + " ------ {@InnerException} ------ {@zBody} ------ {@RequestPath}";
+
+                    Log.Logger.Error(ex, messageTemplate, ex.InnerException?.Message ?? "void", jsonData ?? "void", context.Request.Path.Value);
+                }
             }
             else
             {
                 if (GlobalConstant.RealProduction)
                 {
-                    if (ex is OverflowException || ex is StackOverflowException) message = sharedLocalizer[nameof(ResourceKey.PleaseEnterAValidValue)];
-                    else message = sharedLocalizer[nameof(ResourceKey.AnErrorOccured)];
+                    if (ex is OverflowException or StackOverflowException)
+                    {
+                        message = sharedLocalizer[nameof(ResourceKey.PleaseEnterAValidValue)];
+                    }
+                    else if (ex is MilvaDeveloperException devEx)
+                    {
+                        if (devEx.ExceptionCode == (int)MilvaException.InvalidTenantId)
+                            message = sharedLocalizer[nameof(ResourceKey.PleaseEnterAValidValue)];
+                    }
+                    else
+                    {
+                        message = sharedLocalizer[nameof(ResourceKey.AnErrorOccured)];
 
-                    var logger = context.RequestServices.GetRequiredService<IMilvaLogger>();
+                        var logger = context.RequestServices.GetRequiredService<IMilvaLogger>();
 
-                    logger.Write(SeriLogEventLevel.Fatal, ex, ex.Message);
+                        logger.Write(SeriLogEventLevel.Fatal, ex, ex.Message);
 
-                    _ = SendExceptionMail(ex);
+                        _ = SendExceptionMail(ex);
+                    }
                 }
                 else
                 {
-                    message = ex + ex.Message + "  --- Inner exception : " + ex.InnerException?.Message;
-                    Log.Logger.Error(ex, ex.Message);
+                    var jsonData = await context.Request.ReadBodyFromRequestAsync();
+
+                    message = ex.Message;
+
+                    var messageTemplate = ex.Message + " ------ {@InnerException} ------ {@zBody} ------ {@RequestPath}";
+
+                    Log.Logger.Error(ex, messageTemplate, ex.InnerException?.Message ?? "void", jsonData ?? "void", context.Request.Path.Value);
                 }
             }
 
@@ -98,10 +124,13 @@ public class ExceptionMiddleware
                     Result = new object(),
                     ErrorCodes = errorCodes
                 };
+
                 var json = JsonConvert.SerializeObject(response);
-                context.Response.ContentType = MimeTypeNames.ApplicationJson;
+
                 context.Items.Remove(nameof(MethodContentAttribute.ActionContent));
+                context.Response.ContentType = MimeTypeNames.ApplicationJson;
                 context.Response.StatusCode = MilvaStatusCodes.Status200OK;
+
                 await context.Response.WriteAsync(json);
             }
         }
@@ -114,7 +143,7 @@ public class ExceptionMiddleware
 
             var path = context.Request.Path;
 
-            var stackTraceFirstLine = sr.ReadLine();
+            var stackTraceFirstLine = await sr.ReadLineAsync();
 
             await mailSender.MilvaSendMailAsync("errors@yours.com", "Unhandled Exception From MilvaTemplate", $"{path}|{ex.Message}|{stackTraceFirstLine}");
         }

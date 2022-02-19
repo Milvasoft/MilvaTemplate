@@ -116,12 +116,11 @@
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             JWT Token configurations
             </summary>
             <param name="services"></param>
-            <param name="jsonOperations"></param>
         </member>
         <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddJsonOperations(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -252,11 +251,11 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Controllers.AccountController.RefreshTokenLogin(System.String)">
+        <member name="M:MilvaTemplate.API.Controllers.AccountController.RefreshTokenLogin(MilvaTemplate.API.DTOs.AccountDTOs.RefreshLoginDTO)">
             <summary>
             Refresh token login for all users.
             </summary>
-            <param name="refreshLogin"></param>
+            <param name="refreshLoginDTO"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Controllers.AccountController.LogoutAsync">
@@ -271,11 +270,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Controllers.ContentsController.#ctor(Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource},MilvaTemplate.API.Services.Abstract.IContentService)">
+        <member name="M:MilvaTemplate.API.Controllers.ContentsController.#ctor(MilvaTemplate.API.Services.Abstract.IContentService)">
             <summary>
             Constructor of <c>ContentsController</c>
             </summary>
-            <param name="sharedLocalizer"></param>
             <param name="contentService"></param>
         </member>
         <member name="M:MilvaTemplate.API.Controllers.ContentsController.GetRequiredContent(System.Collections.Generic.List{MilvaTemplate.API.DTOs.ContentDTOs.ContentParameters})">
@@ -372,6 +370,21 @@
         <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.MilvaTemplateUserDTO.UserName">
             <summary>
             UserName of MilvaTemplate user.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.DTOs.AccountDTOs.RoleDTO">
+            <summary>
+            Role model.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.RoleDTO.RoleId">
+            <summary>
+            Id of Role
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.DTOs.AccountDTOs.RoleDTO.RoleName">
+            <summary>
+            Name of role.
             </summary>
         </member>
         <member name="T:MilvaTemplate.API.DTOs.ContentDTOs.Content">
@@ -567,6 +580,22 @@
             <param name="minValue"></param>
             <param name="maxValue"></param>
         </member>
+        <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateEnumAttribute">
+            <summary>
+            Determines minimum decimal value.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateEnumAttribute.#ctor">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateEnumAttribute.#ctor(System.Type)">
+            <summary>
+            Constructor of atrribute.
+            </summary>
+            <param name="enumType"></param>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.Attributes.ValidationAttributes.MValidateIdAttribute">
             <summary>
             Specifies that the class or property that this attribute is applied to requires the specified the valid id.
@@ -688,6 +717,16 @@
             Path of "Video Library" folder in wwwroot folder.
             </summary>
         </member>
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.MainMail">
+            <summary>
+            Main mail address information.
+            </summary>
+        </member>
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.Configurations">
+            <summary>
+            Configurations.
+            </summary>
+        </member>
         <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.MailContent">
             <summary>
             Mail content of injection mails.
@@ -718,14 +757,19 @@
             Key of project.
             </summary>
         </member>
-        <member name="T:MilvaTemplate.API.Helpers.Constants.MilvaTemplateStringKey">
+        <member name="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.RealProduction">
             <summary>
-            Constants of localizer keys.
+            Determines this app in real production or not.
             </summary>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.Constants.RoleName">
             <summary>
             Constants of MilvaTemplate roles.
+            </summary>
+        </member>
+        <member name="T:MilvaTemplate.API.Helpers.Constants.StringKey">
+            <summary>
+            Constants of localizer keys.
             </summary>
         </member>
         <member name="T:MilvaTemplate.API.Helpers.Extensions.HelperExtensions">
@@ -754,7 +798,7 @@
             Helper extensions methods for Ops!yon Project.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
             <summary>
             Checks guid list. If list is null or empty return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
             </summary>
@@ -774,7 +818,17 @@
             <param name="returnFunc"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckGuidObject``2(``0,System.Func{``0,``1})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckLongList``2(System.Collections.Generic.IEnumerable{``0},System.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Checks int list. If list is null or empty return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TDTO"></typeparam>
+            <param name="toBeCheckedList"></param>
+            <param name="returnFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.CheckObject``2(``0,System.Func{``0,``1})">
             <summary>
             Checks guid object. If is null return default(<typeparamref name="TDTO"/>). Otherwise invoke <paramref name="returnFunc"/>.
             </summary>
@@ -927,6 +981,13 @@
             <param name="propertyNames"></param>
             <param name="langProps"></param>
             <param name="langType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ReadBodyFromRequestAsync(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Reads body from http request.
+            </summary>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="P:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.LanguageIdIsoPairs">
@@ -1195,6 +1256,11 @@
             Allowed extensions for this media type.
             </summary>
         </member>
+        <member name="T:MilvaTemplate.API.Helpers.Models.IJsonModel">
+            <summary>
+            Indicates that the class to which it is implemented represents the model of a json file in the project.
+            </summary>
+        </member>
         <member name="T:MilvaTemplate.API.Helpers.Swagger.CustomAttributeOperationFilter">
             <summary>
             Swagger document creation utility class.
@@ -1331,6 +1397,25 @@
             </summary>
             <param name="entityList">The entityList<see cref="T:System.Collections.Generic.List`1"/>.</param>
         </member>
+        <member name="M:MilvaTemplate.API.Migrations.DataSeed.InitializeRolesAsync(Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole})">
+            <summary>
+            Initilizes roles. This is a default data.
+            </summary>
+            <param name="roleManager"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Migrations.DataSeed.InitializeUsersAsync(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser})">
+            <summary>
+            Initializes users.
+            </summary>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:MilvaTemplate.API.Migrations.DataSeed.InitializeLanguagesAsync">
+            <summary>
+            Initializes SystemLanguages.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:MilvaTemplate.API.Migrations.MilvaTemplateDbBuilder">
             <summary>
             Static class that runs while the project is up and running the reset methods to fake data on the tables.
@@ -1355,11 +1440,17 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.RefreshTokenLogin(System.String)">
+        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.RefreshTokenLogin(MilvaTemplate.API.DTOs.AccountDTOs.RefreshLoginDTO)">
             <summary>
             Refresh token login for all users.
             </summary>
-            <param name="refreshToken"></param>
+            <param name="refreshLoginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Abstract.IAccountService.LogoutAsync">
+            <summary>
+            Logout process for current logged in user..
+            </summary>
             <returns></returns>
         </member>
         <member name="T:MilvaTemplate.API.Services.Abstract.IContentService">
@@ -1387,13 +1478,14 @@
             Provides sign-in,sign-up and sign-out process for user.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},Milvasoft.Helpers.Identity.Abstract.ITokenManagement,Milvasoft.Helpers.DataAccess.EfCore.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},System.Lazy{Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser}},System.Lazy{Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole}},System.Lazy{Milvasoft.Helpers.Identity.Abstract.ITokenManagement},Milvasoft.Helpers.DataAccess.EfCore.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
             <summary>
             Performs constructor injection for repository interfaces used in this service.
             </summary>
             <param name="userManager"></param>
-            <param name="signInManager"></param>
-            <param name="tokenManagement"></param>
+            <param name="lazySignInManager"></param>
+            <param name="lazyRoleManager"></param>
+            <param name="lazyTokenManagement"></param>
             <param name="contextRepository"></param>
             <param name="httpContextAccessor"></param>
             <param name="sharedLocalizer"></param>
@@ -1405,11 +1497,11 @@
             <param name="loginDTO"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.RefreshTokenLogin(System.String)">
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.RefreshTokenLogin(MilvaTemplate.API.DTOs.AccountDTOs.RefreshLoginDTO)">
             <summary>
             Refresh token login for all users.
             </summary>
-            <param name="refreshToken"></param>
+            <param name="refreshLoginDTO"></param>
             <returns></returns>
         </member>
         <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.LogoutAsync">
@@ -1417,6 +1509,24 @@
             Logout process for current logged in user..
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.GetTokenExpiredDate">
+            <summary>
+            Defines token expired date.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.ValidateUserAsync(MilvaTemplate.API.DTOs.AccountDTOs.LoginDTO)">
+            <summary>
+            Validating user to login.
+            </summary>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.GenerateTokenWithRole(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            If Authentication is successful, JWT tokens are generated.
+            </summary>
         </member>
         <member name="T:MilvaTemplate.API.Services.Concrete.ContentService">
             <summary>

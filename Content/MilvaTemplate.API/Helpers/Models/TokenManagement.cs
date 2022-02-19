@@ -1,13 +1,13 @@
 ﻿using Milvasoft.Helpers.Identity.Abstract;
 using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
-using Newtonsoft.Json;
 
 namespace MilvaTemplate.API.Helpers.Models;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-[JsonObject("tokenManagement")]
 public class TokenManagement : ITokenManagement
 {
+    public string Key { get; set; }
+
     [MValidateString(1000)]
     public string Secret { get; set; }
 

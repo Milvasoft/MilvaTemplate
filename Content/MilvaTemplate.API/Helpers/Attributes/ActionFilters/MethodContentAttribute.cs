@@ -43,7 +43,7 @@ public class MethodContentAttribute : ActionFilterAttribute
 
                 var actionContent = LogMessage ? sharedLocalizer[ActionContent]
                                                : sharedLocalizer[$"{LocalizerKeys.LocalizedEntityName}{ActionContent}"] + " "
-                                                    + sharedLocalizer[$"{MilvaTemplateStringKey.Action}{requestMethod}"];
+                                                    + sharedLocalizer[$"{StringKey.Action}{requestMethod}"];
 
                 context.HttpContext.Items.Add(new KeyValuePair<object, object>(nameof(ActionContent), actionContent));
             }

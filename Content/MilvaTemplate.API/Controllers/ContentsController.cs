@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
-using Milvasoft.Helpers.Enums;
 using MilvaTemplate.API.DTOs.ContentDTOs;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using MilvaTemplate.API.Services.Abstract;
@@ -20,17 +18,14 @@ namespace MilvaTemplate.API.Controllers;
 [ConfigureAwait(false)]
 public class ContentsController : ControllerBase
 {
-    private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
     private readonly IContentService _contentService;
 
     /// <summary>
     /// Constructor of <c>ContentsController</c>
     /// </summary>
-    /// <param name="sharedLocalizer"></param>
     /// <param name="contentService"></param>
-    public ContentsController(IStringLocalizer<SharedResource> sharedLocalizer, IContentService contentService)
+    public ContentsController(IContentService contentService)
     {
-        _sharedLocalizer = sharedLocalizer;
         _contentService = contentService;
     }
 
@@ -45,9 +40,7 @@ public class ContentsController : ControllerBase
     {
         var contents = await _contentService.GetRequiredContentAsync(contentParameters);
 
-        var errorMessage = _sharedLocalizer.GetErrorMessage(MilvaTemplateStringKey.Content, CrudOperation.GetAll);
-
-        return contents.GetObjectResponse(_sharedLocalizer[nameof(ResourceKey.SuccessfullyOperationMessage)], errorMessage);
+        return contents.GetObjectResponseByEntities(HttpContext, StringKey.Content, false);
     }
 
     /// <summary>
@@ -62,8 +55,6 @@ public class ContentsController : ControllerBase
     {
         var contents = await _contentService.GetSpecMaxValueAsync(entityName, propName);
 
-        var errorMessage = _sharedLocalizer.GetErrorMessage(MilvaTemplateStringKey.Content, CrudOperation.GetAll);
-
-        return contents.GetObjectResponse(_sharedLocalizer[nameof(ResourceKey.SuccessfullyOperationMessage)], errorMessage);
+        return contents.GetObjectResponseByEntity(HttpContext, StringKey.Content, false);
     }
 }

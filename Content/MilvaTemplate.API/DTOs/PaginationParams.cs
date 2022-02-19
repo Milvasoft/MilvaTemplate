@@ -10,13 +10,13 @@ public class PaginationParams
     /// <summary>
     /// Requested page number.
     /// </summary>
-    [MValidateDecimal(0, LocalizerKey = MilvaTemplateStringKey.WrongRequestedPageNumber, FullMessage = true)]
+    [MValidateDecimal(0, LocalizerKey = StringKey.WrongRequestedPageNumber, FullMessage = true)]
     public int PageIndex { get; set; } = 1;
 
     /// <summary>
     /// Requested item count in requested page.
     /// </summary>
-    [MValidateDecimal(0, LocalizerKey = MilvaTemplateStringKey.WrongRequestedItemCount, FullMessage = true)]
+    [MValidateDecimal(0, LocalizerKey = StringKey.WrongRequestedItemCount, FullMessage = true)]
     public int RequestedItemCount { get; set; } = 10;
 
     /// <summary>

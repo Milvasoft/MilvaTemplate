@@ -7,6 +7,7 @@ using Milvasoft.Helpers.Encryption.Concrete;
 using MilvaTemplate.Entity;
 using MilvaTemplate.Entity.Identity;
 using System;
+using System.Reflection;
 
 namespace MilvaTemplate.Data;
 
@@ -28,7 +29,10 @@ public class MilvaTemplateDbContext : MilvaDbContext<MilvaTemplateUser, MilvaTem
     public MilvaTemplateDbContext(DbContextOptions<MilvaTemplateDbContext> options,
                                   IHttpContextAccessor httpContextAccessor,
                                   IAuditConfiguration auditConfiguration) : base(options, httpContextAccessor, auditConfiguration)
-                            => _provider = new MilvaEncryptionProvider(_key);
+    {
+        _provider = new MilvaEncryptionProvider(_key);
+        this.ChangeTracker.LazyLoadingEnabled = false;
+    }
 
     #region DbSets
 
@@ -52,13 +56,16 @@ public class MilvaTemplateDbContext : MilvaDbContext<MilvaTemplateUser, MilvaTem
         modelBuilder.UseDatabaseTemplate("template0");
         modelBuilder.UseCollation("C");
         modelBuilder.UseTurkishCollation();
-        modelBuilder.UseTablespace("pg_default");
 
         #endregion
 
-        //modelBuilder.UseEncryption(_provider);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        //modelBuilder.UseAnnotationEncryption(_provider);
+        modelBuilder.UseIndexToIndelibleEntities();
+        modelBuilder.UseIndexToCreationAuditableEntities();
         modelBuilder.UsePrecision();
-        modelBuilder.UseSoftDeleteQueryFilter();
+
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -27,7 +27,7 @@ public static partial class HelperExtensions
                 if (pageIndex <= GlobalConstant.Zero) throw new MilvaUserFriendlyException("InvalidPageIndexException");
             }
             else
-                throw new MilvaUserFriendlyException("MissingHeaderException", "PageIndex");
+                throw new MilvaUserFriendlyException(nameof(ResourceKey.MissingHeaderException), "PageIndex");
 
             int itemCount;
             httpContextAccessor.HttpContext.Request.Headers.TryGetValue("itemcount", out var itemCountValue);
@@ -37,11 +37,11 @@ public static partial class HelperExtensions
                 if (itemCount <= GlobalConstant.Zero) throw new MilvaUserFriendlyException("InvalidItemRangeException");
             }
             else
-                throw new MilvaUserFriendlyException("MissingHeaderException", "ItemCount");
+                throw new MilvaUserFriendlyException(nameof(ResourceKey.MissingHeaderException), "ItemCount");
 
             return (pageIndex, itemCount);
         }
-        else throw new MilvaUserFriendlyException("MissingHeaderException", "PageIndex,ItemCount");
+        else throw new MilvaUserFriendlyException(nameof(ResourceKey.MissingHeaderException), "PageIndex,ItemCount");
     }
 
     #endregion  
@@ -120,5 +120,33 @@ public static partial class HelperExtensions
         var body = Expression.MemberInit(Expression.New(sourceAndResultType), bindings);
 
         return Expression.Lambda<Func<TEntity, TEntity>>(body, parameter);
+    }
+
+    /// <summary>
+    /// Reads body from http request.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public static async Task<string> ReadBodyFromRequestAsync(this HttpRequest request)
+    {
+        string json = null;
+
+        if (request.HasJsonContentType())
+        {
+            if (request.Body.CanRead)
+            {
+                Stream requestStream = request.Body;
+
+                requestStream.Seek(0, SeekOrigin.Begin);
+
+                using var reader = new StreamReader(requestStream);
+
+                json = await reader.ReadToEndAsync();
+
+                request.Body.Position = 0;
+            }
+        }
+
+        return json;
     }
 }

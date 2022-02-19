@@ -122,10 +122,11 @@ public static class ApplicationBuilderExtensions
         CultureInfo.CurrentCulture = new CultureInfo("tr-TR");
 
         var supportedCultures = new List<CultureInfo>
-            {
-                new CultureInfo("tr-TR"),
-                new CultureInfo("en-US")
-            };
+        {
+            new CultureInfo("tr-TR"),
+            new CultureInfo("en-US")
+        };
+
         var options = new RequestLocalizationOptions
         {
             DefaultRequestCulture = new RequestCulture("tr-TR"),
@@ -158,7 +159,7 @@ public static class ApplicationBuilderExtensions
 
         #endregion
 
-        if (Startup.WebHostEnvironment.EnvironmentName == "Production")
-            await app.SeedDatabaseAsync();
+        //if (Startup.WebHostEnvironment.EnvironmentName == "Production")
+        await app.SeedDatabaseAsync();
     }
 }

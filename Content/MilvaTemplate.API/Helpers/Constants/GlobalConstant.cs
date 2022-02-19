@@ -75,6 +75,16 @@ public static class GlobalConstant
     public static string DocumentLibraryPath { get; } = Path.Combine(MediaLibraryPath, "Document Library");
 
     /// <summary>
+    /// Main mail address information.
+    /// </summary>
+    public static MailConfiguration MainMail { get; set; }
+
+    /// <summary>
+    /// Configurations.
+    /// </summary>
+    public static Configurations Configurations { get; set; }
+
+    /// <summary>
     /// Mail content of injection mails.
     /// </summary>
     public static string MailContent { get; } = $"Injection warning from MilvaTemplate.";
@@ -104,5 +114,8 @@ public static class GlobalConstant
     /// </summary>
     public const string MilvaTemplateKey = "w!z%C*F-JaNdRgUk";
 
+    /// <summary>
+    /// Determines this app in real production or not.
+    /// </summary>
     public static bool RealProduction { get; set; } = false;
 }

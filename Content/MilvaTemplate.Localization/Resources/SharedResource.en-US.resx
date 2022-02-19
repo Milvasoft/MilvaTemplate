@@ -528,4 +528,10 @@
   <data name="TokenExpired" xml:space="preserve">
     <value>Your session has timed out, please login again.</value>
   </data>
+  <data name="PleaseEnterUsername" xml:space="preserve">
+    <value>Please enter your username.</value>
+  </data>
+  <data name="RequiredTwoFactor" xml:space="preserve">
+    <value>A two-factor confirmation is required.</value>
+  </data>
 </root>

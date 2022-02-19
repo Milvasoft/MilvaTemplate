@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MilvaTemplate.Data;
+using MilvaTemplate.Entity.Identity;
 
 namespace MilvaTemplate.API.Migrations;
 
@@ -30,7 +32,9 @@ public static class MilvaTemplateDbBuilder
 
         await Console.Out.WriteAppInfoAsync("Database created. Seed starting...\n");
 
-        //TODO reset methods will be here...
+        await app.ApplicationServices.GetRequiredService<RoleManager<MilvaTemplateRole>>().InitializeRolesAsync();
+        await app.ApplicationServices.GetRequiredService<UserManager<MilvaTemplateUser>>().InitializeUsersAsync();
+        await DataSeed.InitializeLanguagesAsync();
 
         dbContext.ActivateSoftDelete();
 

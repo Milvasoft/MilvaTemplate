@@ -53,9 +53,9 @@ public static class StartupConfiguration
 
         await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "stringblacklist.json"));
         await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "allowedfileextensions.json"));
-        await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "tokenmanagement.json"));
         await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Development.json"));
         await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Production.json"));
+        await provider.EncryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "configurations.json"));
     }
 
     /// <summary>
@@ -68,9 +68,9 @@ public static class StartupConfiguration
 
         await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "stringblacklist.json"));
         await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "allowedfileextensions.json"));
-        await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "tokenmanagement.json"));
         await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Development.json"));
         await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "connectionstring.Production.json"));
+        await provider.DecryptFileAsync(Path.Combine(GlobalConstant.JsonFilesPath, "configurations.json"));
     }
 
     /// <summary>

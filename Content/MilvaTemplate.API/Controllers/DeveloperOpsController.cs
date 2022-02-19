@@ -74,8 +74,8 @@ public class DeveloperOpsController : ControllerBase
 
         var loginDTO = new LoginDTO
         {
-            Password = $"{user.UserName}+1234",
-            UserName = user.UserName
+            UserName = user.UserName,
+            Password = $"{user.UserName}-!",
         };
 
         var result = await _accountService.LoginAsync(loginDTO);

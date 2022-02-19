@@ -19,7 +19,7 @@ namespace MilvaTemplate.Localization.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SharedResource {
@@ -799,6 +799,15 @@ namespace MilvaTemplate.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lütfen kullanıcı adınızı giriniz..
+        /// </summary>
+        public static string PleaseEnterUsername {
+            get {
+                return ResourceManager.GetString("PleaseEnterUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lütfen geçerli bir kullanıcı bilgisi girin..
         /// </summary>
         public static string PleaseEnterValidUserInfo {
@@ -993,6 +1002,15 @@ namespace MilvaTemplate.Localization.Resources {
         public static string RegexPatternPhoneNumber {
             get {
                 return ResourceManager.GetString("RegexPatternPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İki faktörlü bir onay gereklidir..
+        /// </summary>
+        public static string RequiredTwoFactor {
+            get {
+                return ResourceManager.GetString("RequiredTwoFactor", resourceCulture);
             }
         }
         

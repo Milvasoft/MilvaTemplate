@@ -20,7 +20,6 @@ using Milvasoft.Helpers.Identity.Concrete;
 using Milvasoft.Helpers.Mail;
 using Milvasoft.Helpers.Models.Response;
 using MilvaTemplate.API.Helpers;
-using MilvaTemplate.API.Helpers.Models;
 using MilvaTemplate.API.Helpers.Swagger;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.API.Services.Concrete;
@@ -148,10 +147,9 @@ public static class ServiceCollectionExtensions
     /// JWT Token configurations
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="jsonOperations"></param>
-    public static void AddJwtBearer(this IServiceCollection services, IJsonOperations jsonOperations)
+    public static void AddJwtBearer(this IServiceCollection services)
     {
-        var tokenManagement = jsonOperations.GetCryptedContentAsync<TokenManagement>("tokenmanagement.json").Result;
+        var tokenManagement = GlobalConstant.Configurations.Tokens.First(i => i.Key == StringKey.Public);
 
         services.AddSingleton<ITokenManagement>(tokenManagement);
 
@@ -271,6 +269,8 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton<IAuditConfiguration>(new AuditConfiguration(true, true, true, true, true, true));
 
+        //You can remove this.
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         services.AddEntityFrameworkNpgsql().AddDbContext<MilvaTemplateDbContext>(opts =>
         {
             opts.UseNpgsql(connectionString, b => b.MigrationsAssembly("MilvaTemplate.API").EnableRetryOnFailure()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
@@ -299,10 +299,13 @@ public static class ServiceCollectionExtensions
         services.AddHttpClient();
         services.AddHttpContextAccessor();
 
-        services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstant.AppMail,
-                                                                    new NetworkCredential(GlobalConstant.AppMail, string.Empty),
-                                                                    587,
-                                                                    "mail.yourdomain.com"));
+        GlobalConstant.MainMail = GlobalConstant.Configurations.Mails.First(i => i.Key == StringKey.MilvaTemplateMail);
+
+        services.AddSingleton<IMilvaMailSender>(new MilvaMailSender(GlobalConstant.MainMail.Sender,
+                                                                    new NetworkCredential(GlobalConstant.MainMail.Sender, GlobalConstant.MainMail.SenderPass),
+                                                                    GlobalConstant.MainMail.SmtpPort,
+                                                                    GlobalConstant.MainMail.SmtpHost,
+                                                                    true));
 
         //Validation hatalarını optimize ettiğimiz için .net tarafından hata fırlatılmasını engelliyor.
         services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);

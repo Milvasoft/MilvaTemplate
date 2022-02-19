@@ -504,4 +504,10 @@
   <data name="TokenExpired" xml:space="preserve">
     <value>Oturumunuz zaman aşımına uğradı lütfen tekrar giriş yapınız.</value>
   </data>
+  <data name="PleaseEnterUsername" xml:space="preserve">
+    <value>Lütfen kullanıcı adınızı giriniz.</value>
+  </data>
+  <data name="RequiredTwoFactor" xml:space="preserve">
+    <value>İki faktörlü bir onay gereklidir.</value>
+  </data>
 </root>

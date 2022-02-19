@@ -81,5 +81,26 @@
             </summary>
             <param name="modelBuilder"></param>
         </member>
+        <member name="T:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator">
+            <summary>
+            For remove <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> FK Indexes.
+            </summary>
+        </member>
+        <member name="M:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator.#ctor(Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies,Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.INpgsqlOptions)">
+            <summary>
+            For remove <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> FK Indexes.
+            </summary>
+            <param name="dependencies"></param>
+            <param name="npgsqlOptions"></param>
+        </member>
+        <member name="M:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)">
+            <summary>
+            If index name equals to <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> this 3 name then don't create index.
+            </summary>
+            <param name="operation"></param>
+            <param name="model"></param>
+            <param name="builder"></param>
+            <param name="terminate"></param>
+        </member>
     </members>
 </doc>
