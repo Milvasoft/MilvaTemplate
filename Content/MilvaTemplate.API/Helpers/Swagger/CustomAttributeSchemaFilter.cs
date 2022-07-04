@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
-using Milvasoft.Helpers.Attributes.Validation;
+using Milvasoft.Attributes.Validation;
+using Milvasoft.Core.Utils.Constants;
 using MilvaTemplate.API.AppStartup;
 using MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 using Swashbuckle.AspNetCore.SwaggerGen;

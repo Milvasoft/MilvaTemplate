@@ -129,7 +129,7 @@
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+        <member name="M:MilvaTemplate.API.AppStartup.ServiceCollectionExtensions.AddMilvaTemplateDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Milvasoft.FileOperations.Abstract.IJsonOperations)">
             <summary>
             Migration database connection clause.
             </summary>
@@ -209,21 +209,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillConstansAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillConstansAsync(Milvasoft.FileOperations.Abstract.IJsonOperations)">
             <summary>
             Fill constants from json files.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillStringBlacklistAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillStringBlacklistAsync(Milvasoft.FileOperations.Abstract.IJsonOperations)">
             <summary>
             Fills <see cref="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.StringBlacklist"/> list from stringblacklist.json file.
             </summary>
             <param name="jsonOperations"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillAllowedFileExtensionsAsync(Milvasoft.Helpers.FileOperations.Abstract.IJsonOperations)">
+        <member name="M:MilvaTemplate.API.AppStartup.StartupConfiguration.FillAllowedFileExtensionsAsync(Milvasoft.FileOperations.Abstract.IJsonOperations)">
             <summary>
             Fills <see cref="P:MilvaTemplate.API.Helpers.Constants.GlobalConstant.AllowedFileExtensions"/> list from allowedfileextensions.json file.
             </summary>
@@ -853,7 +853,7 @@
             Checks <paramref name="id"/> is default record id or not.
             </summary>
             
-            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when <paramref name="id"/> is defult record id. </exception>
+            <exception cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"> Throwns when <paramref name="id"/> is defult record id. </exception>
             
             <param name="id"></param>
         </member>
@@ -862,7 +862,7 @@
             Checks <paramref name="idList"/> contains default record or not.
             </summary>
             
-            <exception cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"> Throwns when contents contains defult record id. </exception>
+            <exception cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"> Throwns when contents contains defult record id. </exception>
             
             <param name="idList"></param>
         </member>
@@ -874,54 +874,54 @@
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfParameterIsNull(System.Object,System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="parameterObject"/> is null.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="parameterObject"/> is null.
             </summary>
             <param name="parameterObject"></param>
             <param name="localizerKey"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNullOrEmpty(System.Collections.Generic.List{System.Object},System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
             </summary>
             <param name="list"></param>
             <param name="localizerKey"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfParameterIsNullOrEmpty``1(System.Collections.Generic.List{``0},System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
             </summary>
             <param name="list"></param>
             <param name="localizerKey"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNullOrEmpty(System.Collections.Generic.IEnumerable{System.Object},System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is null or empty.
             </summary>
             <param name="list"></param>
             <param name="localizerKey"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfListIsNotNullOrEmpty(System.Collections.Generic.IEnumerable{System.Object},System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is not null or empty.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="list"/> is not null or empty.
             </summary>
             <param name="list"></param>
             <param name="message"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfNullForGuidObject``1(``0,System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
             </summary>
             <param name="entity"></param>
             <param name="localizerKey"></param>
         </member>
         <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ThrowIfNullForIntObject``1(``0,System.String)">
             <summary>
-            Throwns <see cref="T:Milvasoft.Helpers.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
+            Throwns <see cref="T:Milvasoft.Core.Exceptions.MilvaUserFriendlyException"/> if <paramref name="entity"/> is null.
             </summary>
             <param name="entity"></param>
             <param name="localizerKey"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ValidateFile(Microsoft.AspNetCore.Http.IFormFile,Milvasoft.Helpers.FileOperations.Enums.FileType)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.ValidateFile(Microsoft.AspNetCore.Http.IFormFile,Milvasoft.FileOperations.Enums.FileType)">
             <summary>
             Validates file. 
             </summary>
@@ -938,7 +938,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetFileUrlFromPath(System.String,Milvasoft.Helpers.FileOperations.Enums.FileType)">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.GetFileUrlFromPath(System.String,Milvasoft.FileOperations.Enums.FileType)">
             <summary>
             Returns the path of the uploaded file.
             </summary>
@@ -1056,7 +1056,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1072,7 +1072,7 @@
             <param name="projection"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``2(MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase{``0,``1},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{``0},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``0,``0}})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1088,7 +1088,7 @@
             <param name="projection"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1105,7 +1105,7 @@
             <param name="projection"></param>
             <returns></returns>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
+        <member name="M:MilvaTemplate.API.Helpers.Extensions.HelperExtensions.PreparePagination``3(``0,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``1,System.Object}},System.Boolean,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}},System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{``1},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{``1,``1}})">
             <summary>
             Prepares pagination dto according to pagination parameters.
             </summary>
@@ -1139,7 +1139,7 @@
             The 'option' project logger class.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.#ctor(Milvasoft.Helpers.Mail.IMilvaMailSender)">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.#ctor(Milvasoft.Mail.IMilvaMailSender)">
             <summary>
             Initializes new instance of <see cref="T:MilvaTemplate.API.Helpers.MilvaTemplateLogger"/>
             </summary>
@@ -1181,14 +1181,14 @@
             </summary>
             <param name="message"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatal(System.String,Milvasoft.Helpers.Enums.MailSubject)">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatal(System.String,Milvasoft.Core.Utils.Enums.MailSubject)">
             <summary>
             Saves the log at fatal level. And sends mail to producer.
             </summary>
             <param name="message"></param>
             <param name="mailSubjectsEnum"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatalAsync(System.String,Milvasoft.Helpers.Enums.MailSubject)">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.LogFatalAsync(System.String,Milvasoft.Core.Utils.Enums.MailSubject)">
             <summary>
             Saves the log at fatal level. And sends mail to producer.
             </summary>
@@ -1209,14 +1209,14 @@
             <param name="message"></param>
             <param name="mailSubjectsEnum"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.String)">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Core.Abstractions.SeriLogEventLevel,System.String)">
             <summary>
             Write a log event with the specified level.
             </summary>
             <param name="seriLogEventLevel"></param>
             <param name="messageTemplate"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.Exception,System.String)">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Core.Abstractions.SeriLogEventLevel,System.Exception,System.String)">
             <summary>
             Write a log event with the specified level.
             </summary>
@@ -1224,7 +1224,7 @@
             <param name="exception"></param>
             <param name="messageTemplate"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.String,System.Object[])">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Core.Abstractions.SeriLogEventLevel,System.String,System.Object[])">
             <summary>
             Write a log event with the specified level.
             </summary>
@@ -1232,7 +1232,7 @@
             <param name="messageTemplate"></param>
             <param name="propertyValues"></param>
         </member>
-        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Helpers.DependencyInjection.SeriLogEventLevel,System.Exception,System.String,System.Object[])">
+        <member name="M:MilvaTemplate.API.Helpers.MilvaTemplateLogger.Write(Milvasoft.Core.Abstractions.SeriLogEventLevel,System.Exception,System.String,System.Object[])">
             <summary>
             Write a log event with the specified level and associated exception.
             </summary>
@@ -1478,7 +1478,7 @@
             Provides sign-in,sign-up and sign-out process for user.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},System.Lazy{Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser}},System.Lazy{Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole}},System.Lazy{Milvasoft.Helpers.Identity.Abstract.ITokenManagement},Milvasoft.Helpers.DataAccess.EfCore.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
+        <member name="M:MilvaTemplate.API.Services.Concrete.AccountService.#ctor(Microsoft.AspNetCore.Identity.UserManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser},System.Lazy{Microsoft.AspNetCore.Identity.SignInManager{MilvaTemplate.Entity.Identity.MilvaTemplateUser}},System.Lazy{Microsoft.AspNetCore.Identity.RoleManager{MilvaTemplate.Entity.Identity.MilvaTemplateRole}},System.Lazy{Milvasoft.Identity.Abstract.ITokenManagement},Milvasoft.DataAccess.EfCore.Abstract.IContextRepository{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizer{MilvaTemplate.Localization.SharedResource})">
             <summary>
             Performs constructor injection for repository interfaces used in this service.
             </summary>

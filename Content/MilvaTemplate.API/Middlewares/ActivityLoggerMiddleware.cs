@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Milvasoft.Helpers.Models.Response;
+using Milvasoft.Core.Utils.Models.Response;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using MilvaTemplate.Data.Abstract;
 

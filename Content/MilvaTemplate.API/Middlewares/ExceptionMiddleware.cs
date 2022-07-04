@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Milvasoft.Helpers.DependencyInjection;
-using Milvasoft.Helpers.Mail;
-using Milvasoft.Helpers.Models.Response;
+using Milvasoft.Core.Abstractions;
+using Milvasoft.Core.Utils.Constants;
+using Milvasoft.Core.Utils.Models.Response;
+using Milvasoft.Mail;
 using MilvaTemplate.API.Helpers.Attributes.ActionFilters;
 using Newtonsoft.Json;
 using Serilog;

@@ -8,9 +8,10 @@
     <DocumentationFile>..\MilvaTemplate.Data\MilvaTemplate.Data.xml</DocumentationFile>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Milvasoft.DataAccess.EfCore" Version="1.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<None Update="MilvaTemplate.Data.xml">

@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Milvasoft.Templates.Web.Ef</id>
-    <version>6.0.7</version>
+    <version>6.1.0</version>
     <description>
-      Template for web application with ef core with npsql. Web api template.
+      Template for web api with ef core with npsql. Web api template.
     </description>
     <authors>Milvasoft Corporation</authors>
     <license type="expression">Apache-2.0</license>

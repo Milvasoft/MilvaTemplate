@@ -7,18 +7,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Milvasoft.Helpers.Caching;
-using Milvasoft.Helpers.DataAccess.EfCore.Abstract;
-using Milvasoft.Helpers.DataAccess.EfCore.Concrete;
-using Milvasoft.Helpers.DataAccess.EfCore.MilvaContext;
-using Milvasoft.Helpers.DependencyInjection;
-using Milvasoft.Helpers.FileOperations;
-using Milvasoft.Helpers.FileOperations.Abstract;
-using Milvasoft.Helpers.FileOperations.Concrete;
-using Milvasoft.Helpers.Identity.Abstract;
-using Milvasoft.Helpers.Identity.Concrete;
-using Milvasoft.Helpers.Mail;
-using Milvasoft.Helpers.Models.Response;
+using Milvasoft.Caching.Redis;
+using Milvasoft.Core.Abstractions;
+using Milvasoft.Core.Utils.Constants;
+using Milvasoft.Core.Utils.Models.Response;
+using Milvasoft.DataAccess.EfCore.Abstract;
+using Milvasoft.DataAccess.EfCore.Concrete;
+using Milvasoft.DataAccess.EfCore.Utils;
+using Milvasoft.FileOperations;
+using Milvasoft.FileOperations.Abstract;
+using Milvasoft.FileOperations.Concrete;
+using Milvasoft.Identity.Abstract;
+using Milvasoft.Identity.Concrete;
+using Milvasoft.Mail;
 using MilvaTemplate.API.Helpers;
 using MilvaTemplate.API.Helpers.Swagger;
 using MilvaTemplate.API.Services.Abstract;
@@ -188,17 +189,17 @@ public static class ServiceCollectionExtensions
             {
                 //Token içinde name kontrol etme
                 OnTokenValidated = (context) =>
-            {
-                if (string.IsNullOrWhiteSpace(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
                 {
-                    var localizer = GetLocalizerInstance(context.HttpContext);
+                    if (string.IsNullOrWhiteSpace(context.Principal.Identity.Name) || context.SecurityToken is not JwtSecurityToken accessToken)
+                    {
+                        var localizer = GetLocalizerInstance(context.HttpContext);
 
-                    context.Fail(localizer[nameof(ResourceKey.Unauthorized)]);
-                    return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
-                }
+                        context.Fail(localizer[nameof(ResourceKey.Unauthorized)]);
+                        return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Unauthorized), MilvaStatusCodes.Status401Unauthorized);
+                    }
 
-                return Task.CompletedTask;
-            },
+                    return Task.CompletedTask;
+                },
                 OnForbidden = context =>
                 {
                     return ReturnResponseAsync(context.HttpContext, nameof(ResourceKey.Forbidden), MilvaStatusCodes.Status403Forbidden);
@@ -227,9 +228,9 @@ public static class ServiceCollectionExtensions
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenManagement.Secret)),
-                ValidateIssuer = true,
+                ValidateIssuer = false,
                 ValidIssuer = tokenManagement.Issuer,
-                ValidateAudience = true,
+                ValidateAudience = false,
                 ValidAudience = tokenManagement.Audience,
                 ValidateLifetime = true
             };

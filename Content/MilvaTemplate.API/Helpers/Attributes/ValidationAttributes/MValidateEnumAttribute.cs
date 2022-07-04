@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.Attributes.Validation;
+﻿using Milvasoft.Attributes.Validation;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ValidationAttributes;
 

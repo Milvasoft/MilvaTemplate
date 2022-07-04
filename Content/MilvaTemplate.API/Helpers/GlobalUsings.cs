@@ -1,9 +1,8 @@
 ﻿global using Fody;
-global using Milvasoft.Helpers;
-global using Milvasoft.Helpers.Exceptions;
-global using Milvasoft.Helpers.Extensions;
-global using Milvasoft.Helpers.Models;
-global using Milvasoft.Helpers.Utils;
+global using Milvasoft.Core;
+global using Milvasoft.Core.Exceptions;
+global using Milvasoft.Core.Extensions;
+global using Milvasoft.Core.Utils.Models;
 global using MilvaTemplate.API.Helpers.Constants;
 global using MilvaTemplate.API.Helpers.Extensions;
 global using MilvaTemplate.Entity;

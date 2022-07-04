@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
+﻿using Milvasoft.Core.EntityBase.Concrete;
 using MilvaTemplate.Entity.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;

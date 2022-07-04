@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
+using Milvasoft.Core.EntityBase.Abstract;
 using MilvaTemplate.Data;
 using MilvaTemplate.Entity.Identity;
 
@@ -12,6 +12,8 @@ namespace MilvaTemplate.API.Migrations;
 [ConfigureAwait(false)]
 public static class DataSeed
 {
+    public const string AdminUserName = "templateAdmin";
+
     /// <summary>
     /// Contains dipendency injection services.
     /// </summary>
@@ -64,7 +66,7 @@ public static class DataSeed
         {
             new MilvaTemplateUser {
                 Id = 1.ToGuid(),
-                UserName = "templateAdmin",
+                UserName = AdminUserName,
                 Email = "templateAdmin@templateAdmin.com",
                 PhoneNumber = "0 500 000 00 00",
             }
@@ -76,7 +78,7 @@ public static class DataSeed
 
             await userManager.CreateAsync(user, password);
 
-            if (user.UserName == "templateAdmin")
+            if (user.UserName == AdminUserName)
             {
                 await userManager.AddToRoleAsync(user, RoleName.Administrator);
             }

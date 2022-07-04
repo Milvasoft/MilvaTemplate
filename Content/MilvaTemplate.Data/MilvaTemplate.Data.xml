@@ -19,7 +19,7 @@
             <param name="tracking"></param>
             <returns> The entity found or null. </returns>
         </member>
-        <member name="M:MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase`2.GetByIdWithAuditAsync(`1,System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{`0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}},System.Boolean)">
+        <member name="M:MilvaTemplate.Data.Abstract.IMilvaTemplateRepositoryBase`2.GetByIdWithAuditAsync(`1,System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{`0},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}},System.Boolean)">
             <summary>
              Returns one entity which IsDeleted condition is true by entity Id with includes from database asynchronously. If the condition is requested, it also provides that condition. 
             </summary>
@@ -51,7 +51,7 @@
             <param name="tracking"></param>
             <returns> The entity found or null. </returns>
         </member>
-        <member name="M:MilvaTemplate.Data.Concrete.MilvaTemplateRepositoryBase`2.GetByIdWithAuditAsync(`1,System.Func{Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable{`0},Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}},System.Boolean)">
+        <member name="M:MilvaTemplate.Data.Concrete.MilvaTemplateRepositoryBase`2.GetByIdWithAuditAsync(`1,System.Func{Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable{`0},Milvasoft.DataAccess.EfCore.IncludeLibrary.IIncludable},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}},System.Boolean)">
             <summary>
             Returns one entity which IsDeleted condition is true by entity Id with includes from database asynchronously. If the condition is requested, it also provides that condition. 
             </summary>
@@ -67,7 +67,7 @@
             DbContext class of MilvaTemplate project. This class handles all database operations.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.Data.MilvaTemplateDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Milvasoft.Helpers.DependencyInjection.IAuditConfiguration)">
+        <member name="M:MilvaTemplate.Data.MilvaTemplateDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{MilvaTemplate.Data.MilvaTemplateDbContext},Microsoft.AspNetCore.Http.IHttpContextAccessor,Milvasoft.Core.Abstractions.IAuditConfiguration)">
             <summary>
             Cunstructor of <see cref="T:MilvaTemplate.Data.MilvaTemplateDbContext"/>
             </summary>
@@ -83,19 +83,19 @@
         </member>
         <member name="T:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator">
             <summary>
-            For remove <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> FK Indexes.
+            For remove <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.DeleterUserId"/> FK Indexes.
             </summary>
         </member>
-        <member name="M:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator.#ctor(Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies,Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.INpgsqlOptions)">
+        <member name="M:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator.#ctor(Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies,Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.INpgsqlSingletonOptions)">
             <summary>
-            For remove <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> FK Indexes.
+            For remove <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.DeleterUserId"/> FK Indexes.
             </summary>
             <param name="dependencies"></param>
             <param name="npgsqlOptions"></param>
         </member>
         <member name="M:MilvaTemplate.Data.RemoveIndexMigrationCodeGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)">
             <summary>
-            If index name equals to <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity.EntityPropertyNames.DeleterUserId"/> this 3 name then don't create index.
+            If index name equals to <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.CreatorUserId"/>, <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.LastModifierUserId"/> and <see cref="F:Milvasoft.Core.EntityBase.Concrete.EntityPropertyNames.DeleterUserId"/> this 3 name then don't create index.
             </summary>
             <param name="operation"></param>
             <param name="model"></param>

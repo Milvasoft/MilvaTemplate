@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Milvasoft.Helpers.FileOperations.Abstract;
+using Milvasoft.FileOperations.Abstract;
 using MilvaTemplate.API.Migrations;
 using MilvaTemplate.Data.Abstract;
 using Swashbuckle.AspNetCore.SwaggerUI;

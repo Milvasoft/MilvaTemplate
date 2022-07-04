@@ -1,5 +1,5 @@
-﻿using Milvasoft.Helpers.Encryption.Concrete;
-using Milvasoft.Helpers.FileOperations.Abstract;
+﻿using Milvasoft.Encryption.Concrete;
+using Milvasoft.FileOperations.Abstract;
 using MilvaTemplate.API.Helpers.Models;
 using System.IO;
 

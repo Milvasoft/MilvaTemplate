@@ -1,6 +1,6 @@
-﻿using Milvasoft.Helpers.DataAccess.EfCore.Abstract;
-using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
-using Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary;
+﻿using Milvasoft.Core.EntityBase.Abstract;
+using Milvasoft.DataAccess.EfCore.Abstract;
+using Milvasoft.DataAccess.EfCore.IncludeLibrary;
 using MilvaTemplate.Data;
 using MilvaTemplate.Data.Abstract;
 

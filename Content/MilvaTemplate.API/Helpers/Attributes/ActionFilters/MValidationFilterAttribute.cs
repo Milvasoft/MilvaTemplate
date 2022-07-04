@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Milvasoft.Helpers.Attributes.ActionFilter;
+using Milvasoft.Attributes.ActionFilter;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 
 namespace MilvaTemplate.API.Helpers.Attributes.ActionFilters;

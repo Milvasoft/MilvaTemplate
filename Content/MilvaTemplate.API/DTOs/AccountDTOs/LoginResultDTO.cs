@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Milvasoft.Helpers.Identity.Concrete;
+using Milvasoft.Identity.Abstract;
+using Milvasoft.Identity.Concrete;
 
 namespace MilvaTemplate.API.DTOs.AccountDTOs;
 

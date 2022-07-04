@@ -1,5 +1,5 @@
-﻿using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
-using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
+﻿using Milvasoft.Core.EntityBase.Abstract;
+using Milvasoft.Core.EntityBase.Concrete;
 using MilvaTemplate.API.DTOs.AccountDTOs;
 using MilvaTemplate.Entity.Identity;
 

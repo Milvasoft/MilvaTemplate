@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Milvasoft.Helpers" Version="6.7.25" />
+    <PackageReference Include="Milvasoft.Core" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

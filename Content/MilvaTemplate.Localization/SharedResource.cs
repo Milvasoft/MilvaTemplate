@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.DependencyInjection;
+﻿using Milvasoft.Core.Abstractions;
 
 namespace MilvaTemplate.Localization;
 

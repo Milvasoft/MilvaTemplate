@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Milvasoft.Helpers.DataAccess.EfCore.MilvaContext;
-using Milvasoft.Helpers.DependencyInjection;
-using Milvasoft.Helpers.Encryption.Abstract;
-using Milvasoft.Helpers.Encryption.Concrete;
+using Milvasoft.Core.Abstractions;
+using Milvasoft.DataAccess.EfCore.MilvaContext;
+using Milvasoft.Encryption.Abstract;
+using Milvasoft.Encryption.Concrete;
 using MilvaTemplate.Entity;
 using MilvaTemplate.Entity.Identity;
 using System;
@@ -14,7 +14,7 @@ namespace MilvaTemplate.Data;
 /// <summary>
 /// DbContext class of MilvaTemplate project. This class handles all database operations.
 /// </summary>
-public class MilvaTemplateDbContext : MilvaDbContext<MilvaTemplateUser, MilvaTemplateRole, Guid>
+public class MilvaTemplateDbContext : MilvaIdentityDbContext<MilvaTemplateUser, MilvaTemplateRole, Guid>
 {
 
     private const string _key = "5u8x/A?D(G+KbPeS";

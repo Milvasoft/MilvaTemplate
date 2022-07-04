@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
+﻿using Milvasoft.Core.EntityBase.Concrete;
 using MilvaTemplate.API.DTOs.ContentDTOs;
 using MilvaTemplate.API.Services.Abstract;
 using MilvaTemplate.Data;

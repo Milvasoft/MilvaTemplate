@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
-using Milvasoft.Helpers.Middlewares;
+using Milvasoft.Middlewares;
 using MilvaTemplate.API.Helpers.Models;
 using MilvaTemplate.API.Middlewares;
 using System.IO;

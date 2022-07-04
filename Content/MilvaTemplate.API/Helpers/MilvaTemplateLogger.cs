@@ -1,6 +1,6 @@
-﻿using Milvasoft.Helpers.DependencyInjection;
-using Milvasoft.Helpers.Enums;
-using Milvasoft.Helpers.Mail;
+﻿using Milvasoft.Core.Abstractions;
+using Milvasoft.Core.Utils.Enums;
+using Milvasoft.Mail;
 using Serilog;
 using Serilog.Events;
 

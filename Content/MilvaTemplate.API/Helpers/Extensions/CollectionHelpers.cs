@@ -1,4 +1,4 @@
-﻿using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
+﻿using Milvasoft.Core.EntityBase.Abstract;
 
 namespace MilvaTemplate.API.Helpers.Extensions;
 

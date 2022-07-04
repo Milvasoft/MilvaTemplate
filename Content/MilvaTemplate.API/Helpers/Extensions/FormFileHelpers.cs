@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Milvasoft.Helpers.FileOperations.Concrete;
-using Milvasoft.Helpers.FileOperations.Enums;
+using Milvasoft.FileOperations.Concrete;
+using Milvasoft.FileOperations.Enums;
 using System.IO;
 
 namespace MilvaTemplate.API.Helpers.Extensions;

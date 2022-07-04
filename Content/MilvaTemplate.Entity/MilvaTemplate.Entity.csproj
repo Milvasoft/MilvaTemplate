@@ -8,9 +8,9 @@
     <DocumentationFile>..\MilvaTemplate.Entity\MilvaTemplate.Entity.xml</DocumentationFile>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Milvasoft.Helpers" Version="6.7.25" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Milvasoft.Core" Version="1.0.0" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<None Update="MilvaTemplate.Entity.xml">

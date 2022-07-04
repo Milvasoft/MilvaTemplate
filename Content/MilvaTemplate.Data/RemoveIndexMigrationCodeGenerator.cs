@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Milvasoft.Helpers.DataAccess.EfCore.Concrete.Entity;
+using Milvasoft.Core.EntityBase.Concrete;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Migrations;
 
@@ -17,7 +17,7 @@ public class RemoveIndexMigrationCodeGenerator : NpgsqlMigrationsSqlGenerator
     /// </summary>
     /// <param name="dependencies"></param>
     /// <param name="npgsqlOptions"></param>
-    public RemoveIndexMigrationCodeGenerator(MigrationsSqlGeneratorDependencies dependencies, INpgsqlOptions npgsqlOptions) : base(dependencies, npgsqlOptions)
+    public RemoveIndexMigrationCodeGenerator(MigrationsSqlGeneratorDependencies dependencies, INpgsqlSingletonOptions npgsqlOptions) : base(dependencies, npgsqlOptions)
     {
     }
 

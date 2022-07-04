@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Milvasoft.Helpers;
-using Milvasoft.Helpers.DataAccess.EfCore.Abstract.Entity;
+using Milvasoft.Core;
+using Milvasoft.Core.EntityBase.Abstract;
+using Milvasoft.DataAccess.EfCore.IncludeLibrary;
 using Milvasoft.Helpers.DataAccess.EfCore.Concrete;
-using Milvasoft.Helpers.DataAccess.EfCore.IncludeLibrary;
 using MilvaTemplate.Data.Abstract;
 using MilvaTemplate.Entity.Identity;
 using System;
